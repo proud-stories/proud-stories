@@ -3,6 +3,10 @@ package com.proudstories;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.auth0.react.A0Auth0Package;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -22,7 +26,11 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+            new ReactNativeRestartPackage(),
+            new ReactNativeConfigPackage(),
+            new RNDeviceInfo(),
+            new A0Auth0Package()
       );
     }
 
