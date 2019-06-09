@@ -37,7 +37,6 @@
       };
 
       componentDidMount() {
-        console.log("boom panes!");
         SInfo.getItem("accessToken", {}).then(accessToken => {
           if (accessToken) {
             auth0.auth
@@ -89,7 +88,7 @@
             scope: Config.AUTHO_SCOPE,
             audience: Config.AUTH0_AUDIENCE,
             device: DeviceInfo.getUniqueID(),
-            prompt: "login"
+            // prompt: "login"
           })
           .then(res => {
             auth0.auth
