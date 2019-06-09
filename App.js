@@ -13,7 +13,16 @@ const instructions = Platform.select({
 const AppNavigator = createStackNavigator({
   Home: {
     screen: MainScreen
+  },
+  Login: {
+    screen: LoginScreen
+  },
+  Account: {
+    screen: AccountScreen
   }
+},
+{
+  initialRouteName: "Login" // show the login screen by default
 });
 
 const AppContainer = createAppContainer(AppNavigator);

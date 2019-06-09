@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+    import React, { Component } from "react";
     import { View, Text, Button, ActivityIndicator } from "react-native";
     import { NavigationActions, StackActions } from "react-navigation";
     import Auth0 from "react-native-auth0";
