@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainScreen from './components/MainScreen'
+import Login from "./components/Login";
+import Account from "./components/Account";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -15,10 +17,10 @@ const AppNavigator = createStackNavigator({
     screen: MainScreen
   },
   Login: {
-    screen: LoginScreen
+    screen: Login
   },
   Account: {
-    screen: AccountScreen
+    screen: Account
   }
 },
 {
