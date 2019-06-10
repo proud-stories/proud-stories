@@ -39,7 +39,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
-<<<<<<< HEAD
+
 		8DA6AB7D484D402D8464013B /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CEAD2E598F41B09ADD63FE /* libRNGestureHandler.a */; };
 		2C286C62542F433DB729EC9C /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61651F507F7B4FBEA7E47367 /* libRNGestureHandler-tvOS.a */; };
 		5E11739F1F2949629FC876AE /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4F921DD244C4C8E9438148F /* AntDesign.ttf */; };
@@ -65,7 +65,6 @@
 		C323B6C57CB24C4BA82230F9 /* libRNUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0E5462E89243DB88DCBDE5 /* libRNUploader.a */; };
 		B537528B1DE1480881FE5572 /* libVydiaRNFileUploader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C30AD69905E5493F954C1F64 /* libVydiaRNFileUploader.a */; };
 		79861833C72A4A479D07BA6E /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 973345E4BD754D23B987275C /* libRNImagePicker.a */; };
-=======
 		D1F702A69EDA4FAEBF717BDE /* libA0Auth0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E54D8727D65849CFAC32DDBD /* libA0Auth0.a */; };
 		725E65076DB54C37952BE9C0 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 305F1C457A134DB2BE86FC66 /* libRNDeviceInfo.a */; };
 		C9EBE3F05A8E44FC8BBD6329 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0496918E563E44E7B3DE9D08 /* libRNDeviceInfo-tvOS.a */; };
@@ -73,7 +72,16 @@
 		49B0A6CF06DE47E5908F133D /* libReactNativeConfig-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C439CFC6B9EB49F3823A7936 /* libReactNativeConfig-tvOS.a */; };
 		BBAF67CC712A4A2090CA6236 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0984D0DB634680A96ACAE4 /* libRCTRestart.a */; };
 		EF15B6213B2149228141E0AA /* libRNSensitiveInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5776DBC274674179B3233868 /* libRNSensitiveInfo.a */; };
->>>>>>> authentication
+
+
+		A768A616466240A38BD51A8A /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 156A1597C22E484A8FF004F4 /* libRCTVideo.a */; };
+
+		4C08EB8AC1034A1D8747280B /* libReactNativeExceptionHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4464B4B0424342CFA9D9A5B1 /* libReactNativeExceptionHandler.a */; };
+		B85C71E22FD64A579BE949E3 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A57719A4F844E84BB6DB618 /* libimageCropPicker.a */; };
+		0CDEDC38BA57457E8384E8C3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E20376FBE51A4F499E39CC74 /* libRNCamera.a */; };
+		1036E1B4D03B40598009605C /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A324DC1E34754697BDDF7BF9 /* libRNFS.a */; };
+		CE98A71F013F4DA1B85F5211 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC478F4974E740029D2EFFD6 /* libRNFetchBlob.a */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +419,7 @@
 		C30AD69905E5493F954C1F64 /* libVydiaRNFileUploader.a */ = {isa = PBXFileReference; name = "libVydiaRNFileUploader.a"; path = "libVydiaRNFileUploader.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		820FCFA0903D4D5785958FD2 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		973345E4BD754D23B987275C /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 		96CE0A3EB1064B18949A1F6F /* A0Auth0.xcodeproj */ = {isa = PBXFileReference; name = "A0Auth0.xcodeproj"; path = "../node_modules/react-native-auth0/ios/A0Auth0.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		E54D8727D65849CFAC32DDBD /* libA0Auth0.a */ = {isa = PBXFileReference; name = "libA0Auth0.a"; path = "libA0Auth0.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		EE08B211CF044D5EA8E9C4B8 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -423,6 +432,22 @@
 		3E0984D0DB634680A96ACAE4 /* libRCTRestart.a */ = {isa = PBXFileReference; name = "libRCTRestart.a"; path = "libRCTRestart.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		E8ED3F961CA7417888109938 /* RNSensitiveInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNSensitiveInfo.xcodeproj"; path = "../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		5776DBC274674179B3233868 /* libRNSensitiveInfo.a */ = {isa = PBXFileReference; name = "libRNSensitiveInfo.a"; path = "libRNSensitiveInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
+		39D37CDB73CB4237BBFD8F8B /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		156A1597C22E484A8FF004F4 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
+		16C49F6F05154F039AEB3656 /* ReactNativeExceptionHandler.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeExceptionHandler.xcodeproj"; path = "../node_modules/react-native-exception-handler/ios/ReactNativeExceptionHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		4464B4B0424342CFA9D9A5B1 /* libReactNativeExceptionHandler.a */ = {isa = PBXFileReference; name = "libReactNativeExceptionHandler.a"; path = "libReactNativeExceptionHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C9D54723411F4C72969B187A /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		7A57719A4F844E84BB6DB618 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5EFF46F1031E470AB015ECA7 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; name = "RNCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E20376FBE51A4F499E39CC74 /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		ED8A2DFBDFF542BFBA015267 /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A324DC1E34754697BDDF7BF9 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A4FEBD369468408E87FE3176 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		AC478F4974E740029D2EFFD6 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,19 +476,28 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-<<<<<<< HEAD
+
 				8DA6AB7D484D402D8464013B /* libRNGestureHandler.a in Frameworks */,
 				1A2B346A2E544251A94337BB /* libRNVectorIcons.a in Frameworks */,
 				C323B6C57CB24C4BA82230F9 /* libRNUploader.a in Frameworks */,
 				B537528B1DE1480881FE5572 /* libVydiaRNFileUploader.a in Frameworks */,
 				79861833C72A4A479D07BA6E /* libRNImagePicker.a in Frameworks */,
-=======
+
 				D1F702A69EDA4FAEBF717BDE /* libA0Auth0.a in Frameworks */,
 				725E65076DB54C37952BE9C0 /* libRNDeviceInfo.a in Frameworks */,
 				17C828DF025F4F1EBAD7232B /* libReactNativeConfig.a in Frameworks */,
 				BBAF67CC712A4A2090CA6236 /* libRCTRestart.a in Frameworks */,
 				EF15B6213B2149228141E0AA /* libRNSensitiveInfo.a in Frameworks */,
->>>>>>> authentication
+
+
+				A768A616466240A38BD51A8A /* libRCTVideo.a in Frameworks */,
+
+				4C08EB8AC1034A1D8747280B /* libReactNativeExceptionHandler.a in Frameworks */,
+				B85C71E22FD64A579BE949E3 /* libimageCropPicker.a in Frameworks */,
+				0CDEDC38BA57457E8384E8C3 /* libRNCamera.a in Frameworks */,
+				1036E1B4D03B40598009605C /* libRNFS.a in Frameworks */,
+				CE98A71F013F4DA1B85F5211 /* libRNFetchBlob.a in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,13 +514,13 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-<<<<<<< HEAD
+
 				2C286C62542F433DB729EC9C /* libRNGestureHandler-tvOS.a in Frameworks */,
 				DBE4CA7DDB0F4E5185DE3DBC /* libRNVectorIcons-tvOS.a in Frameworks */,
-=======
+
 				C9EBE3F05A8E44FC8BBD6329 /* libRNDeviceInfo-tvOS.a in Frameworks */,
 				49B0A6CF06DE47E5908F133D /* libReactNativeConfig-tvOS.a in Frameworks */,
->>>>>>> authentication
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,19 +694,27 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-<<<<<<< HEAD
+
 				7D2BC129D2234C088724C9BC /* RNGestureHandler.xcodeproj */,
 				C20E170F7A4144CBA716CCAE /* RNVectorIcons.xcodeproj */,
 				C54118BEC5984FE3AD3E1222 /* RNUploader.xcodeproj */,
 				E47833FE0E5441738B96ADBF /* VydiaRNFileUploader.xcodeproj */,
 				820FCFA0903D4D5785958FD2 /* RNImagePicker.xcodeproj */,
-=======
+
 				96CE0A3EB1064B18949A1F6F /* A0Auth0.xcodeproj */,
 				EE08B211CF044D5EA8E9C4B8 /* RNDeviceInfo.xcodeproj */,
 				6F094A0F0BC742E3A8A3079F /* ReactNativeConfig.xcodeproj */,
 				07709829FDC24F7DB73C75F0 /* RCTRestart.xcodeproj */,
 				E8ED3F961CA7417888109938 /* RNSensitiveInfo.xcodeproj */,
->>>>>>> authentication
+
+				39D37CDB73CB4237BBFD8F8B /* RCTVideo.xcodeproj */,
+
+				16C49F6F05154F039AEB3656 /* ReactNativeExceptionHandler.xcodeproj */,
+				C9D54723411F4C72969B187A /* imageCropPicker.xcodeproj */,
+				5EFF46F1031E470AB015ECA7 /* RNCamera.xcodeproj */,
+				ED8A2DFBDFF542BFBA015267 /* RNFS.xcodeproj */,
+				A4FEBD369468408E87FE3176 /* RNFetchBlob.xcodeproj */,
+
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1352,20 +1394,36 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Debug;
@@ -1394,20 +1452,36 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Release;
@@ -1430,17 +1504,27 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
+
 				);
 			};
 			name = Debug;
@@ -1462,17 +1546,26 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Release;
@@ -1509,20 +1602,35 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Debug;
@@ -1559,20 +1667,36 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Release;
@@ -1608,20 +1732,36 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Debug;
@@ -1657,20 +1797,35 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-<<<<<<< HEAD
+
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
-=======
+
 					"$(SRCROOT)/../node_modules/react-native-auth0/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/ios/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart",
 					"$(SRCROOT)/../node_modules/react-native-sensitive-info/ios/RNSensitiveInfo",
->>>>>>> authentication
+
+					"$(SRCROOT)/../node_modules/react-native-video/ios/**",
+
+					"$(SRCROOT)\..\node_modules\react-native-exception-handler\ios",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
+
 				);
 			};
 			name = Release;
