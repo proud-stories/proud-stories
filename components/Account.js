@@ -45,6 +45,7 @@ export default class Account extends Component {
 
             <Text style={styles.usernameText}>{name}</Text>
             <Button onPress={this.logout} title="Logout" color={buttonStyle} />
+            <Button onPress={() => this.props.navigation.navigate('Home')} title="Top Page" color={buttonStyle} />
           </View>
         )}
       </View>
