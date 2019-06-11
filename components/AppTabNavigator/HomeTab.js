@@ -64,20 +64,10 @@ class HomeTab extends Component<Props> {
         // }
     
     render() {
-        console.log("www")
         return (
-            // <ScrollView onScroll={this.handleScroll} scrollEventThrottle={16} scrollEnabled={false}>
             <Container  style={styles.container}>
                 <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
-                    {/* <Text>{this.state.message}</Text> */}
                     <View  >
-                    {/* <FlatList style={styles.flatview} data={this.state.videos} showVerticalScrollIndicator={false} renderItem={({item}) => (
-                        <View style={styles.flatview}>
-                        <CardComponent paused={true} url={item.url} title={item.title} description={item.description}/>
-                        <CardComponent2 imageSource={String(1)} likes="404"/>
-                        </View>
-                    )} keyExtractor={item => item.title} /> */}
-
                     {this.state.videos.map((video, index) => (
                         <View>
                         <Text>{this.state.message}</Text>
@@ -85,16 +75,9 @@ class HomeTab extends Component<Props> {
                         <CardComponent2 imageSource={String(index)} likes="404"/>
                         </View>
                     ))}
-
-                    {/* <CardComponent imageSource="1" likes="101" paused={true}/>
-                    <CardComponent2 imageSource="2" likes="8117" />
-                    <CardComponent2 imageSource="1" likes="201" />
-                <CardComponent imageSource="1" likes="3" paused={true}/> */}
-                    {/* <CardComponent2 imageSource="3" likes="8798435792" /> */}
                     </View>
                 </Content>
             </Container>
-// </ScrollView>
         );
     }
 }
