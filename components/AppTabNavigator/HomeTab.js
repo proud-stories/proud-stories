@@ -13,6 +13,23 @@ import CardComponent2 from '../CardComponent2' //adding old image posts for scro
 type Props = {};
 class HomeTab extends Component<Props> {
 
+    state = {
+        videos: [
+            {
+                title: "Uganda Pineapples",
+                description: "Pineapples of Uganda are very special.",
+                url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
+                paused: true
+            },
+            {
+                title: "Uganda Pineapples 2",
+                description: "Pineapples of Uganda are back in the exciting sequel.",
+                url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
+                paused: true
+            }
+        ]
+    }
+
     static navigationOptions = {
 
         tabBarIcon: ({ tintColor }) => (
@@ -42,10 +59,18 @@ class HomeTab extends Component<Props> {
             <Container style={styles.container}>
                 <Content>
                     <ScrollView onScroll={this.handleScroll}>
-                    <CardComponent imageSource="1" likes="101" paused={true}/>
+
+                    {this.state.videos.map((video, index) => (
+                        <View>
+                        <CardComponent paused={video.paused} url={video.url} title={video.title} description={video.description} />
+                        <CardComponent2 imageSource={String(index)} likes="404"/>
+                        </View>
+                    ))}
+
+                    {/* <CardComponent imageSource="1" likes="101" paused={true}/>
                     <CardComponent2 imageSource="2" likes="8117" />
                     <CardComponent2 imageSource="1" likes="201" />
-                    <CardComponent imageSource="1" likes="3" paused={true}/>
+                    <CardComponent imageSource="1" likes="3" paused={true}/> */}
                     <CardComponent2 imageSource="3" likes="8798435792" />
                     </ScrollView>
                 </Content>
