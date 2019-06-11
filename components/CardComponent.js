@@ -7,12 +7,36 @@ import {
     Image
 } from "react-native";
 import Video from 'react-native-video';
-
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
-type Props = {};
-class CardComponent extends Component<Props> {
+const THRESHOLD = 100;
 
+type Props = {};
+
+class CardComponent extends Component<Props> {
+    state = {
+        paused: true,
+    }
+    position = {
+        start: null,
+        end: null
+    }
+    handleVideoLayout = (e) => {
+        const { height } = Dimensions.get("window");
+        this.position.start = e.nativeEvent.layout.y - height + THRESHOLD;
+        this.position.end = e.nativeEvent.layout.y + e.nativeEvent.layout.height - THRESHOLD;
+    }
+    handleScroll = (e) => {
+        const scrollPosition = e.nativeEvent.contentOffset.y;
+        const paused = this.state.paused;
+        const { start, end } = this.position;
+
+        if (scrollPosition > start && scrollPosition < end && paused) {
+            this.setState({ paused: false });
+        } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
+            this.setState({ paused: true });
+        }
+    }
     render() {
 
         const images = {
@@ -33,12 +57,14 @@ class CardComponent extends Component<Props> {
                         </Body>
                     </Left>
                 </CardItem>
+                {/* const { width } = Dimensions.get("window"); */}
                 <CardItem cardBody style={{ height: 200 }}>
-                <ScrollView>
+                <ScrollView onScroll={this.handleScroll}>
                 <Video source={{uri: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4"}}   // Can be a URL or a local file.
                ref={(ref) => {
                 this.player = ref
-              }}  
+              }}
+          paused={this.state.paused}  
           onBuffer={this.onBuffer}                // Callback when remote video is buffering
           onError={this.videoError}               // Callback when video cannot be loaded
           style={styles.backgroundVideo} />
