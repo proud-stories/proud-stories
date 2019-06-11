@@ -297,11 +297,22 @@ class AddMediaTab extends React.Component {
     }
 
     uploadFile(file) {
-        RNFetchBlob.fetch('POST', 'https://proud-stories.herokuapp.com/upload', {
+        RNFetchBlob.fetch('POST', 'http://127.0.0.1:3333/upload', {
             'Content-Type': 'multipart/form-data',
         }, [
-                { name: 'video', data: RNFetchBlob.wrap(file), filename: "yeeta.mp4" }
+                {
+                    name: 'video', data: RNFetchBlob.wrap(file), filename: "heyaheya.mp4"
+                },
+                {
+                    name: 'body', data: JSON.stringify({
+                        user_id: '2',
+                        title: '12345678',
+                        description: "Testdesc",
+                        url: "google.com"
+                    })
+                }
             ]).then((res) => {
+                console.log(res)
                 this.props.navigation.navigate('MediaDescTab');
             })
             .catch((err) => {
