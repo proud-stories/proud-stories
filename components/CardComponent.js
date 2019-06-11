@@ -65,6 +65,7 @@ class CardComponent extends Component<Props> {
                ref={(ref) => {
                 this.player = ref
               }}
+          repeat
           paused={this.state.paused}  
           onLayout={this.handleVideoLayout}
         //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
