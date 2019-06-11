@@ -7,6 +7,7 @@ import {
 
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
+import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
 
 type Props = {};
 class HomeTab extends Component<Props> {
@@ -23,8 +24,9 @@ class HomeTab extends Component<Props> {
             <Container style={styles.container}>
                 <Content>
                     <CardComponent imageSource="1" likes="101" />
-                    {/* <CardComponent imageSource="2" likes="201" /> */}
-                    {/* <CardComponent imageSource="3" likes="301" /> */}
+                    <CardComponent2 imageSource="2" likes="201" />
+                    <CardComponent2 imageSource="1" likes="201" />
+                    <CardComponent2 imageSource="3" likes="301" />
                 </Content>
             </Container>
         );
