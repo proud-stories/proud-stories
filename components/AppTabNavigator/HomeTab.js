@@ -24,9 +24,10 @@ class HomeTab extends Component<Props> {
             <Container style={styles.container}>
                 <Content>
                     <CardComponent imageSource="1" likes="101" />
-                    <CardComponent2 imageSource="2" likes="201" />
+                    <CardComponent2 imageSource="2" likes="8117" />
                     <CardComponent2 imageSource="1" likes="201" />
-                    <CardComponent2 imageSource="3" likes="301" />
+                    <CardComponent imageSource="1" likes="3" />
+                    <CardComponent2 imageSource="3" likes="8798435792" />
                 </Content>
             </Container>
         );
