@@ -7,25 +7,26 @@ import {
 
 import { Icon } from 'native-base'
 
+
 type Props = {};
-class ProfileTab extends Component<Props> {
+class LikesTab extends Component<Props> {
 
     static navigationOptions = {
 
         tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
+            <Icon name="ios-heart" style={{ color: tintColor }} />
         )
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>ProfileTab</Text>
+                <Text>LikesTab</Text>
             </View>
         );
     }
 }
-export default ProfileTab;
+export default LikesTab;
 
 const styles = StyleSheet.create({
     container: {

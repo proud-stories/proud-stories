@@ -9,7 +9,6 @@ import {
 import HomeTab from './AppTabNavigator/HomeTab'
 import AddMediaTab from './AppTabNavigator/AddMediaTab'
 import ProfileTab from './AppTabNavigator/ProfileTab'
-import MediaDescTab from './AppTabNavigator/MediaDescTab'
 
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -18,12 +17,10 @@ import { Icon } from 'native-base'
 const AppTabNavigator = createMaterialTopTabNavigator({
     HomeTab: HomeTab,
     AddMediaTab: AddMediaTab,
-    ProfileTab: ProfileTab,
-    MediaDescTab: MediaDescTab,
+    ProfileTab: ProfileTab
 }, {
         animationEnabled: true,
         swipeEnabled: true,
-        lazy: true,
         tabBarPosition: "bottom",
         tabBarOptions: {
             style: {

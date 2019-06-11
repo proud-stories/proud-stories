@@ -8,24 +8,24 @@ import {
 import { Icon } from 'native-base'
 
 type Props = {};
-class ProfileTab extends Component<Props> {
+class SearchTab extends Component<Props> {
 
     static navigationOptions = {
 
         tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
+            <Icon name="ios-search" style={{ color: tintColor }} />
         )
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>ProfileTab</Text>
+                <Text>SearchTab</Text>
             </View>
         );
     }
 }
-export default ProfileTab;
+export default SearchTab;
 
 const styles = StyleSheet.create({
     container: {

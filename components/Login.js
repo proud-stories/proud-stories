@@ -93,9 +93,6 @@
           .then(res => {
             auth0.auth
               .userInfo({ token: res.accessToken })
-              // .then(data=> {
-              //   this.saveUser(data)
-              // })
               .then(data => {
                 this.gotoAccount(data);
               })
@@ -111,17 +108,6 @@
             console.log(error);
           });
       };
-
-      // saveUser = (data) => {
-      //   fetch('https://proud-stories-staging.herokuapp.com/users', {
-      //     method: 'POST',
-      //     body: JSON.stringify({
-      //       name: data.name,
-      //       nickname: data.nickname,
-      //       picture: data.picture
-      //     }),
-      //   });
-      // }
     
       gotoAccount = data => {
         this.setState({

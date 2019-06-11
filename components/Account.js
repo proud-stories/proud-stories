@@ -53,21 +53,21 @@ export default class Account extends Component {
   }
 }
 
-logout = () => {
-  SInfo.deleteItem("accessToken", {});
-  SInfo.deleteItem("refreshToken", {});
+// logout = () => {
+//   SInfo.deleteItem("accessToken", {});
+//   SInfo.deleteItem("refreshToken", {});
 
-  auth0.webAuth
-    .clearSession()
-    .then(res => {
-      console.log("clear session ok");
-    })
-    .catch(err => {
-      console.log("error clearing session: ", err);
-    });
+//   auth0.webAuth
+//     .clearSession()
+//     .then(res => {
+//       console.log("clear session ok");
+//     })
+//     .catch(err => {
+//       console.log("error clearing session: ", err);
+//     });
 
-  this.gotoLogin(); // go to login screen
-};
+//   this.gotoLogin(); // go to login screen
+// };
 
 gotoLogin = () => {
   const resetAction = StackActions.reset({
@@ -80,4 +80,19 @@ gotoLogin = () => {
   });
 
   this.props.navigation.dispatch(resetAction);
+};
+
+
+logout = () => {
+  if (Platform.OS === 'android') {
+      this.setState({ accessToken: null });
+  } else {
+      auth0.webAuth
+          .clearSession({})
+          .then(success => {
+              this.setState({ accessToken: null });
+          })
+          .catch(error => console.log(error));
+  }
+  this.gotoLogin(); // go to login screen
 };
