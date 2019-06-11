@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
     View,
+    ScrollView,
     Text,
     StyleSheet,
     Image
@@ -33,6 +34,7 @@ class CardComponent extends Component<Props> {
                     </Left>
                 </CardItem>
                 <CardItem cardBody style={{ height: 200 }}>
+                <ScrollView>
                 <Video source={{uri: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4"}}   // Can be a URL or a local file.
                ref={(ref) => {
                 this.player = ref
@@ -40,6 +42,7 @@ class CardComponent extends Component<Props> {
           onBuffer={this.onBuffer}                // Callback when remote video is buffering
           onError={this.videoError}               // Callback when video cannot be loaded
           style={styles.backgroundVideo} />
+          </ScrollView>
                     {/* <Image source={images[this.props.imageSource]} style={{ height: 200, width: null, flex: 1 }} /> */}
                 </CardItem>
                 <CardItem style={{ height: 45 }}>
