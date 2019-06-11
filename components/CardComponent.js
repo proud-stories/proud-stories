@@ -10,7 +10,7 @@ import {
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
-const THRESHOLD = 100;
+const THRESHOLD = 0;
 
 type Props = {};
 
@@ -31,7 +31,6 @@ class CardComponent extends Component<Props> {
         const scrollPosition = e.nativeEvent.contentOffset.y;
         const paused = this.state.paused;
         const { start, end } = this.position;
-
         if (scrollPosition > start && scrollPosition < end && paused) {
             this.setState({ paused: false });
         } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
@@ -68,8 +67,8 @@ class CardComponent extends Component<Props> {
               }}
           paused={this.state.paused}  
           onLayout={this.handleVideoLayout}
-          onBuffer={this.onBuffer}                // Callback when remote video is buffering
-          onError={this.videoError}               // Callback when video cannot be loaded
+        //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
+        //   onError={this.videoError}               // Callback when video cannot be loaded
           style={styles.backgroundVideo} />
           {/* </ScrollView> */}
                     {/* <Image source={images[this.props.imageSource]} style={{ height: 200, width: null, flex: 1 }} /> */}
