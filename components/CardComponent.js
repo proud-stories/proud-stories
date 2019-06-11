@@ -45,11 +45,10 @@ class CardComponent extends Component<Props> {
                 this.player = ref
               }}
           repeat
-          paused={this.state.paused}  
+          paused={this.props.paused}  
         //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
         //   onError={this.videoError}               // Callback when video cannot be loaded
           style={styles.backgroundVideo} />
-              <Text>{this.state.paused ? "Paused" : "Playing"}</Text>
                 </CardItem>
                 <CardItem style={{ height: 45 }}>
                     <Left>
