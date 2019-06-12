@@ -230,6 +230,19 @@ class AddMediaTab extends React.Component {
                                     <Text style={styles.flipText}> REC </Text>
                                 )}
                         </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[
+                                styles.flipButton,
+                                {
+                                    bottom: 50,
+                                    backgroundColor: 'black',
+                                },
+                            ]}
+                            onPress={() => this.openGallery()}
+                        >
+                            <Text style={styles.flipText}>Gallery</Text>
+
+                        </TouchableOpacity>
                     </View>
                     {this.state.zoom !== 0 && (
                         <Text style={[styles.flipText, styles.zoomText]}>Zoom: {this.state.zoom}</Text>
@@ -267,6 +280,16 @@ class AddMediaTab extends React.Component {
     uploadFile = (file) => {
         this.props.navigation.navigate('MediaDescTab', {
             file
+        });
+    }
+
+    openGallery() {
+        ImagePicker.openPicker({
+            mediaType: "video",
+        }).then((video) => {
+            this.uploadFile(video.path);
+        }).catch(err => {
+            console.error(err)
         });
     }
 }
