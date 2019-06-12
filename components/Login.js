@@ -34,7 +34,7 @@ export default class Login extends Component {
   };
 
   state = {
-    hasInitialized: false
+    hasInitialized: false,
   };
 
   componentDidMount() {
@@ -95,6 +95,9 @@ export default class Login extends Component {
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
+            this.saveUser(data)
+          })
+          .then(data => {
             this.gotoAccount(data);
           })
           .catch(err => {
@@ -110,6 +113,21 @@ export default class Login extends Component {
         console.log(error);
       });
   };
+
+  saveUser = async (data) => {
+    await AsyncStorage.setItem('@name', data.name);
+    await AsyncStorage.setItem('@photo', data.photo);
+
+    const response = fetch('https://proud-stories-staging.herokuapp.com/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: data.name
+      }),
+    })
+    
+    const userId = response.json()
+    await AsyncStorage.setItem('@id', userId.id);
+  }
 
   gotoAccount = data => {
     this.setState({

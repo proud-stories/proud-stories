@@ -37,20 +37,6 @@ export default class Account extends Component {
     picture: ""
   };
 
-  // componentDidMount() {
-  //   this.saveUser({this.state.name, this.state.picture})
-  // }
-
-  saveUser = (data) => {
-    fetch('https://proud-stories-staging.herokuapp.com/users', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: data.name,
-        picture: data.picture
-      }),
-    });
-  }
-
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam("name");
