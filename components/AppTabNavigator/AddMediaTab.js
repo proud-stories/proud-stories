@@ -176,21 +176,11 @@ class AddMediaTab extends React.Component {
                 }}
                 type={this.state.type}
                 flashMode={this.state.flash}
-                autoFocus={this.state.autoFocus}
-                autoFocusPointOfInterest={this.state.autoFocusPoint.normalized}
+                autoFocus={true}
                 zoom={this.state.zoom}
-                whiteBalance={this.state.whiteBalance}
-                ratio={this.state.ratio}
-                focusDepth={this.state.depth}
                 permissionDialogTitle={'Permission to use camera'}
                 permissionDialogMessage={'We need your permission to use your camera phone'}
             >
-                <View style={StyleSheet.absoluteFill}>
-                    <View style={[styles.autoFocusBox, drawFocusRingPosition]} />
-                    <TouchableWithoutFeedback onPress={this.touchToFocus.bind(this)}>
-                        <View style={{ flex: 1 }} />
-                    </TouchableWithoutFeedback>
-                </View>
                 <View
                     style={{
                         flex: 0.5,
@@ -207,30 +197,15 @@ class AddMediaTab extends React.Component {
                             justifyContent: 'space-around',
                         }}
                     >
-                        <TouchableOpacity style={styles.flipButton} onPress={this.toggleFacing.bind(this)}>
+                        {/* toggleFlash and toggleSide button <TouchableOpacity style={styles.flipButton} onPress={this.toggleFacing.bind(this)}>
                             <Text style={styles.flipText}> FLIP </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.flipButton} onPress={this.toggleFlash.bind(this)}>
                             <Text style={styles.flipText}> FLASH: {this.state.flash} </Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                 </View>
                 <View style={{ bottom: 0 }}>
-                    <View
-                        style={{
-                            height: 20,
-                            backgroundColor: 'transparent',
-                            flexDirection: 'row',
-                            alignSelf: 'flex-end',
-                        }}
-                    >
-                        <Slider
-                            style={{ width: 150, marginTop: 15, alignSelf: 'flex-end' }}
-                            onValueChange={this.setFocusDepth.bind(this)}
-                            step={0.1}
-                            disabled={this.state.autoFocus === 'on'}
-                        />
-                    </View>
                     <View
                         style={{
                             height: 56,
@@ -243,8 +218,7 @@ class AddMediaTab extends React.Component {
                             style={[
                                 styles.flipButton,
                                 {
-                                    flex: 0.3,
-                                    alignSelf: 'flex-end',
+                                    bottom: 50,
                                     backgroundColor: this.state.isRecording ? 'white' : 'darkred',
                                 },
                             ]}
@@ -260,7 +234,7 @@ class AddMediaTab extends React.Component {
                     {this.state.zoom !== 0 && (
                         <Text style={[styles.flipText, styles.zoomText]}>Zoom: {this.state.zoom}</Text>
                     )}
-                    <View
+                    {/* <View
                         style={{
                             height: 56,
                             backgroundColor: 'transparent',
@@ -280,13 +254,7 @@ class AddMediaTab extends React.Component {
                         >
                             <Text style={styles.flipText}> - </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[styles.flipButton, { flex: 0.25, alignSelf: 'flex-end' }]}
-                            onPress={this.toggleFocus.bind(this)}
-                        >
-                            <Text style={styles.flipText}> AF : {this.state.autoFocus} </Text>
-                        </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </View>
             </RNCamera>
         );
@@ -296,28 +264,10 @@ class AddMediaTab extends React.Component {
         return <View style={styles.container}>{this.renderCamera()}</View>;
     }
 
-    uploadFile(file) {
-        RNFetchBlob.fetch('POST', 'http://127.0.0.1:3333/upload', {
-            'Content-Type': 'multipart/form-data',
-        }, [
-                {
-                    name: 'video', data: RNFetchBlob.wrap(file), filename: "heyaheya.mp4"
-                },
-                {
-                    name: 'body', data: JSON.stringify({
-                        user_id: '2',
-                        title: '12345678',
-                        description: "Testdesc",
-                        url: "google.com"
-                    })
-                }
-            ]).then((res) => {
-                console.log(res)
-                this.props.navigation.navigate('MediaDescTab');
-            })
-            .catch((err) => {
-                // error handling ..
-            })
+    uploadFile = (file) => {
+        this.props.navigation.navigate('MediaDescTab', {
+            file
+        });
     }
 }
 
@@ -329,26 +279,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     flipButton: {
-        flex: 0.3,
-        height: 40,
-        marginHorizontal: 2,
-        marginBottom: 10,
-        marginTop: 10,
-        borderRadius: 8,
+        height: 80,
+        width: 80,
+        borderRadius: 100,
         borderColor: 'white',
         borderWidth: 1,
-        padding: 5,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    autoFocusBox: {
-        position: 'absolute',
-        height: 64,
-        width: 64,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: 'white',
-        opacity: 0.4,
     },
     flipText: {
         color: 'white',
