@@ -10,7 +10,9 @@ import {
 
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
-import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
+// import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
+import ReactDOM from "react-dom";
+
 type Props = {};
 class HomeTab extends Component<Props> {
     
@@ -18,20 +20,23 @@ class HomeTab extends Component<Props> {
         videos: [
             {
                 title: "Uganda Pineapples",
-                description: "Pineapples of Uganda are very special.",
+                description: "Pineapples of Uganda are delicious.",
                 url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
+                likes: 100,
                 paused: true
             },
             {
-                title: "Uganda Pineapples 2",
-                description: "Pineapples of Uganda are back in the exciting sequel.",
+                title: "Pineapple wine!",
+                description: "Did you know you can make wine from pineapple? It's so delicious.",
                 url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/heyaheya.mp4",
+                likes: 251,
                 paused: true
             },
             {
-                title: "Uganda Pineapples 3",
-                description: "Pineapples of Uganda are back in the exciting sequel.",
+                title: "Uganda Pineapples Peeling",
+                description: "This is how to peel a pineapple.",
                 url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
+                likes: 298,
                 paused: true
             }
         ]
@@ -53,6 +58,10 @@ class HomeTab extends Component<Props> {
     handleScroll = (e) => {
             console.log("hello world from handle scroll")
             // this.setState({ message: "Changed!" })
+            // let posts = Array.from(ReactDOM.findDOMNode(this).children).filter(elt => elt.className === 'post');
+            // posts.forEach(post => {
+            //     post.paused = !post.paused
+            // })
     }
     // const scrollPosition = e.nativeEvent.contentOffset.y;
         // const paused = this.state.paused;
@@ -64,10 +73,12 @@ class HomeTab extends Component<Props> {
         // }
     
     componentDidMount() {
+
         fetch("https://proud-stories.herokuapp.com/videos")
         .then(data => data.json())
         .then(data => {
             data.forEach(item => {
+                item.paused = true;
                 this.setState({ videos: [item, ...this.state.videos] })
             })
         })
@@ -76,6 +87,8 @@ class HomeTab extends Component<Props> {
 
     componentDidUpdate() {
         console.log("Updated")
+        //check if the component 
+
     }
     render() {
         return (
@@ -85,7 +98,7 @@ class HomeTab extends Component<Props> {
                     {this.state.videos.map((video, index) => (
                         <View key={index}>
                         {/* <Text>{this.state.message}</Text> */}
-                        <CardComponent paused={video.paused} url={video.url} title={video.title} description={video.description} />
+                        <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description}/>
                         {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
                         </View>
                     ))}

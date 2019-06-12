@@ -34,6 +34,7 @@ class CardComponent extends Component<Props> {
                 {/* const { width } = Dimensions.get("window"); */}
                 <CardItem cardBody style={{ height: 200 }}>
                 <Video source={{uri: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4"}}   // Can be a URL or a local file.
+                style={{ width: Dimensions.get("window").width, margin:0 }}
                ref={(ref) => {
                 this.player = ref
               }}
