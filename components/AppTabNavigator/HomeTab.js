@@ -63,6 +63,17 @@ class HomeTab extends Component<Props> {
                 //     this.setState({ paused: true });
         // }
     
+    componentDidMount() {
+        fetch("https://proud-stories.herokuapp.com/videos").then(data => {
+            data.forEach(item => {
+                this.setState({ videos: this.state.videos.unshift(item) })
+            })
+        })
+    }
+
+    componentDidUpdate() {
+        console.log("Updated")
+    }
     render() {
         return (
             <Container  style={styles.container}>
