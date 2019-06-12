@@ -34,8 +34,8 @@ class HomeTab extends Component<Props> {
                 url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
                 paused: true
             }
-        ],
-        message: "Hello"
+        ]
+        // message: "Hello"
     }
     
     static navigationOptions = {
@@ -52,7 +52,7 @@ class HomeTab extends Component<Props> {
         // }
     handleScroll = (e) => {
             console.log("hello world from handle scroll")
-            this.setState({ message: "Changed!" })
+            // this.setState({ message: "Changed!" })
     }
     // const scrollPosition = e.nativeEvent.contentOffset.y;
         // const paused = this.state.paused;
@@ -64,11 +64,14 @@ class HomeTab extends Component<Props> {
         // }
     
     componentDidMount() {
-        fetch("https://proud-stories.herokuapp.com/videos").then(data => {
+        fetch("https://proud-stories.herokuapp.com/videos")
+        .then(data => data.json())
+        .then(data => {
             data.forEach(item => {
-                this.setState({ videos: this.state.videos.unshift(item) })
+                this.setState({ videos: [item, ...this.state.videos] })
             })
         })
+        .catch((err) => {throw Error(err)});
     }
 
     componentDidUpdate() {
@@ -80,10 +83,10 @@ class HomeTab extends Component<Props> {
                 <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
                     <View  >
                     {this.state.videos.map((video, index) => (
-                        <View>
-                        <Text>{this.state.message}</Text>
+                        <View key={index}>
+                        {/* <Text>{this.state.message}</Text> */}
                         <CardComponent paused={video.paused} url={video.url} title={video.title} description={video.description} />
-                        <CardComponent2 imageSource={String(index)} likes="404"/>
+                        {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
                         </View>
                     ))}
                     </View>
