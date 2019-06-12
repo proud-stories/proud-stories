@@ -47,12 +47,7 @@ const wbOrder = {
 const landmarkSize = 2;
 
 class AddMediaTab extends React.Component {
-    static navigationOptions = {
 
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-add-circle" style={{ color: tintColor }} />
-        )
-    }
     state = {
         flash: 'off',
         zoom: 0,

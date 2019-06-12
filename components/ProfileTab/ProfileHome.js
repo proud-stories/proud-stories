@@ -7,20 +7,12 @@ import {
 
 import { Icon } from 'native-base'
 
-type Props = {};
-class ProfileTab extends Component<Props> {
-
-    static navigationOptions = {
-
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
-        )
-    }
+class ProfileTab extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>ProfileTab</Text>
+                <Text>ProfileHome</Text>
             </View>
         );
     }

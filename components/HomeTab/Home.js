@@ -8,8 +8,7 @@ import {
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
 
-type Props = {};
-class HomeTab extends Component<Props> {
+class HomeTab extends Component {
 
     static navigationOptions = {
 
