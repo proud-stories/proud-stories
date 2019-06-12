@@ -63,8 +63,7 @@ class CardComponent extends Component<Props> {
                 <CardItem>
                     <Body>
                         <Text>
-                            <Text style={{ fontWeight: "900" }}>username
-                            </Text>
+                            <Text style={{ fontWeight: "900" }}>username   </Text>
                             {this.props.description}
                         </Text>
                     </Body>
