@@ -69,6 +69,20 @@ logout = () => {
   this.gotoLogin(); // go to login screen
 };
 
+// logout = () => {
+//   if (Platform.OS === 'android') {
+//       this.setState({ accessToken: null });
+//   } else {
+//       auth0.webAuth
+//           .clearSession({})
+//           .then(success => {
+//               this.setState({ accessToken: null });
+//           })
+//           .catch(error => console.log(error));
+//   }
+//   this.gotoLogin(); // go to login screen
+// };
+
 gotoLogin = () => {
   const resetAction = StackActions.reset({
     index: 0,
@@ -80,4 +94,4 @@ gotoLogin = () => {
   });
 
   this.props.navigation.dispatch(resetAction);
-};
+}; 
