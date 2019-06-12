@@ -98,7 +98,7 @@ class HomeTab extends Component<Props> {
                     {this.state.videos.map((video, index) => (
                         <View key={index}>
                         {/* <Text>{this.state.message}</Text> */}
-                        <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description}/>
+                        <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description} likes={video.likes}/>
                         {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
                         </View>
                     ))}
