@@ -20,20 +20,13 @@ class CardComponent extends Component<Props> {
 
     render() {
 
-        const images = {
-
-            "1": require('../assets/feed_images/1.jpg'),
-            "2": require('../assets/feed_images/2.jpg'),
-            "3": require('../assets/feed_images/3.png')
-        }
-
         return (
             <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>Varun </Text>
+                            <Text>Username </Text>
                             <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
                         </Body>
                     </Left>
@@ -52,6 +45,7 @@ class CardComponent extends Component<Props> {
                 </CardItem>
                 <CardItem style={{ height: 45 }}>
                     <Left>
+                        <Text>{this.props.title}     </Text>
                         <Button transparent>
                             <Icon name="heart-o" type="FontAwesome" style={{ color: 'black' }} />
                         </Button>
@@ -69,9 +63,9 @@ class CardComponent extends Component<Props> {
                 <CardItem>
                     <Body>
                         <Text>
-                            <Text style={{ fontWeight: "900" }}>varun
+                            <Text style={{ fontWeight: "900" }}>username
                             </Text>
-                            Ea do Lorem occaecat laborum do. Minim ullamco ipsum minim eiusmod dolore cupidatat magna exercitation amet proident qui. Est do irure magna dolor adipisicing do quis labore excepteur. Commodo veniam dolore cupidatat nulla consectetur do nostrud ea cupidatat ullamco labore. Consequat ullamco nulla ullamco minim.
+                            {this.props.description}
                         </Text>
                     </Body>
                 </CardItem>
