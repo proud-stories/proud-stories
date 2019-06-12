@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import { Icon } from 'native-base'
+import Account from '../Account';
 
 type Props = {};
 class ProfileTab extends Component<Props> {
@@ -20,7 +21,7 @@ class ProfileTab extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Text>ProfileTab</Text>
+                <Account/>
             </View>
         );
     }

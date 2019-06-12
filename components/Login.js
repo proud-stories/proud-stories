@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Text, Button, ActivityIndicator, AsyncStorage } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -89,7 +89,7 @@ export default class Login extends Component {
         scope: Config.AUTHO_SCOPE,
         audience: Config.AUTH0_AUDIENCE,
         device: DeviceInfo.getUniqueID(),
-        prompt: "login"
+        // prompt: "login"
       })
       .then(res => {
         auth0.auth
@@ -128,17 +128,6 @@ export default class Login extends Component {
         })
       ]
     });
-
-    // saveUser = (data) => {
-      //   fetch('https://proud-stories-staging.herokuapp.com/users', {
-      //     method: 'POST',
-      //     body: JSON.stringify({
-      //       name: data.name,
-      //       nickname: data.nickname,
-      //       picture: data.picture
-      //     }),
-      //   });
-      // }
 
     this.props.navigation.dispatch(resetAction);
   };
