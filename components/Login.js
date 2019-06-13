@@ -89,7 +89,7 @@ export default class Login extends Component {
         scope: Config.AUTHO_SCOPE,
         audience: Config.AUTH0_AUDIENCE,
         device: DeviceInfo.getUniqueID(),
-        // prompt: "login"
+        prompt: "login"
       })
       .then(res => {
         auth0.auth

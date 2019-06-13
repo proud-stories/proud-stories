@@ -13,11 +13,7 @@ class ProfileTab extends Component {
     render() {
         return (
             <View style={styles.container}>
-<<<<<<< HEAD:components/AppTabNavigator/ProfileTab.js
-                <Account/>
-=======
                 <Text>ProfileHome</Text>
->>>>>>> d1606f93d64d8ad265b505e916548cda7e15e11f:components/ProfileTab/ProfileHome.js
             </View>
         );
     }

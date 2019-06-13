@@ -42,7 +42,6 @@ export default class Account extends Component {
     const name = navigation.getParam("name");
     const picture = navigation.getParam("picture");
 
-    this.saveUser({name, picture})
     return (
       <View style={styles.container}>
         {name && (
