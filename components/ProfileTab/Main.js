@@ -6,19 +6,23 @@ import {
     Platform
 } from "react-native";
 
-import ProfileHome from './ProfileHome'
+import Account from '../Account'
+import Login from "../Login"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon } from 'native-base'
 
 const AppNavigator = createStackNavigator({
     ProfileHome: {
-        screen: ProfileHome
+        screen: Account
+    },
+    Login: {
+        screen: Login
     }
 },
-    {
-        initialRouteName: "ProfileHome",
-        headerMode: "none"
+{
+    initialRouteName: "ProfileHome",
+    headerMode: "none"
     });
 
 const AppTabContainer = createAppContainer(AppNavigator)

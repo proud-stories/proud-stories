@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, Image, Button } from "react-native";
+import { View, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
+import { Container, Content, Button, Text } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -32,66 +34,73 @@ export default class Account extends Component {
     };
   };
 
-  render() {
-    const { navigation } = this.props;
-    const name = navigation.getParam("name");
-    const picture = navigation.getParam("picture");
+  componentWillMount() {
+    this.getData();
+  }
 
-    return (
-      <View style={styles.container}>
-        {name && (
-          <View style={styles.profileContainer}>
-            <Image style={styles.picture} source={{ uri: picture }} />
+  state= {
+    name: "",
+    picture: ""
+  }
 
-            <Text style={styles.usernameText}>{name}</Text>
-            <Button onPress={this.logout} title="Logout" color={buttonStyle} />
-            <Button onPress={() => this.props.navigation.navigate('Home')} title="Top Page" color={buttonStyle} />
-          </View>
-        )}
-      </View>
-    );
+
+getData = async () => {
+  try {
+    const name = await AsyncStorage.getItem('@name');
+    const picture = await AsyncStorage.getItem('@picture');
+    this.setState({
+      name: name,
+      picture: picture
+    })
+  } catch (error) {
+    // Error retrieving data
+    console.log(error.message);
   }
 }
 
-logout = () => {
-  SInfo.deleteItem("accessToken", {});
-  SInfo.deleteItem("refreshToken", {});
+  render() {
+    return (
+      <Container>
+          <View style={styles.container}>
+            <Image style={styles.picture} source={{ uri: this.state.picture }} />
 
-  auth0.webAuth
-    .clearSession()
-    .then(res => {
-      console.log("clear session ok");
-    })
-    .catch(err => {
-      console.log("error clearing session: ", err);
-    });
+            <Text style={styles.usernameText}>{this.state.name}</Text>
 
-  this.gotoLogin(); // go to login screen
-};
+            <Text style={styles.credit}>Your current credit is: 0</Text>
+            <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
+            <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block><Text>Charge my credits</Text></Button>
+            <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout} ><Text>Logout</Text></Button>
+          </View>
+      </Container>
+    );
+  }
 
-// logout = () => {
-//   if (Platform.OS === 'android') {
-//       this.setState({ accessToken: null });
-//   } else {
-//       auth0.webAuth
-//           .clearSession({})
-//           .then(success => {
-//               this.setState({ accessToken: null });
-//           })
-//           .catch(error => console.log(error));
-//   }
-//   this.gotoLogin(); // go to login screen
-// };
-
-gotoLogin = () => {
-  const resetAction = StackActions.reset({
-    index: 0,
-    actions: [
-      NavigationActions.navigate({
-        routeName: "Login"
+  logout = () => {
+    SInfo.deleteItem("accessToken", {});
+    SInfo.deleteItem("refreshToken", {});
+  
+    auth0.webAuth
+      .clearSession()
+      .then(res => {
+        console.log("clear session ok");
       })
-    ]
-  });
+      .catch(err => {
+        console.log("error clearing session: ", err);
+      });
+  
+    this.gotoLogin(); // go to login screen
+  };
 
-  this.props.navigation.dispatch(resetAction);
-}; 
+  gotoLogin = () => {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: "Login"
+        })
+      ]
+    });
+  
+    this.props.navigation.dispatch(resetAction);
+  }; 
+}

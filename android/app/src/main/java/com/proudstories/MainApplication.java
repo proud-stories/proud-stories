@@ -3,6 +3,7 @@ package com.proudstories;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.brentvatne.react.ReactVideoPackage;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new AsyncStoragePackage(),
             new RNFetchBlobPackage(),
             new ImagePickerPackage(), new RNCameraPackage(),
           new PickerPackage(), new ReactNativeExceptionHandlerPackage(), new VectorIconsPackage(),

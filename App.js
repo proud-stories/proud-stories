@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
-import Account from "./components/Account";
+import Account from "./components/ProfileTab/Main"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',

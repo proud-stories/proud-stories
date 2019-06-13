@@ -10,14 +10,19 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	usernameText: {
-		fontSize: 15,
+		fontSize: 17,
 		fontWeight: "bold",
 		marginTop: 10,
 		marginBottom: 10
 	},
+	credit: {
+		fontSize: 17,
+		marginTop: 10,
+		marginBottom: 30
+	},
 	picture: {
-		width: 50,
-		height: 50
+		width: 80,
+		height: 80
 	}
 });
 

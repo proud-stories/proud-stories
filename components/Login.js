@@ -1,12 +1,13 @@
-
 import React, { Component } from "react";
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Image, ActivityIndicator } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import SInfo from "react-native-sensitive-info";
 import RNRestart from "react-native-restart";
+import AsyncStorage from '@react-native-community/async-storage';
+import { Container, Button, Text } from 'native-base';
 
 import {
   headerColorStyle,
@@ -34,7 +35,7 @@ export default class Login extends Component {
   };
 
   state = {
-    hasInitialized: false
+    hasInitialized: false,
   };
 
   componentDidMount() {
@@ -43,7 +44,7 @@ export default class Login extends Component {
         auth0.auth
           .userInfo({ token: accessToken })
           .then(data => {
-            this.gotoAccount(data);
+            this.gotoTopPage(data);
           })
           .catch(err => {
             SInfo.getItem("refreshToken", {}).then(refreshToken => {
@@ -70,16 +71,23 @@ export default class Login extends Component {
 
   render() {
     return (
+      <Container>
       <View style={styles.container}>
+      <Image
+          source={require('../img/download3.png')}
+        />
         <ActivityIndicator
           size="large"
           color="#05a5d1"
           animating={!this.state.hasInitialized}
         />
         {this.state.hasInitialized && (
-          <Button onPress={this.login} title="Login" color={buttonStyle} />
+          <Button info block onPress={this.login} color={buttonStyle}>
+            <Text>Login/Register</Text>
+          </Button>
         )}
       </View>
+      </Container>
     );
   }
 
@@ -94,8 +102,11 @@ export default class Login extends Component {
       .then(res => {
         auth0.auth
           .userInfo({ token: res.accessToken })
+          // .then(data => {
+          //   return this.saveUser(data)
+          // })
           .then(data => {
-            this.gotoAccount(data);
+            return this.gotoTopPage(data);
           })
           .catch(err => {
             console.log("err: ");
@@ -111,7 +122,24 @@ export default class Login extends Component {
       });
   };
 
-  gotoAccount = data => {
+  // saveUser = async (data) => {
+
+    // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     name: data.name
+    //   }),
+    // })
+    
+    // const userId = response.json()
+    // await AsyncStorage.setItem('@id', userId.id);
+  //   return data;
+  // }
+
+  gotoTopPage = async data => {
+    await AsyncStorage.setItem('@name', data.name);
+    await AsyncStorage.setItem('@picture', data.picture);
+
     this.setState({
       hasInitialized: true
     });
@@ -120,25 +148,10 @@ export default class Login extends Component {
       index: 0,
       actions: [
         NavigationActions.navigate({
-          routeName: "Account",
-          params: {
-            name: data.name,
-            picture: data.picture
-          }
+          routeName: "Home",
         })
       ]
     });
-
-    // saveUser = (data) => {
-      //   fetch('https://proud-stories-staging.herokuapp.com/users', {
-      //     method: 'POST',
-      //     body: JSON.stringify({
-      //       name: data.name,
-      //       nickname: data.nickname,
-      //       picture: data.picture
-      //     }),
-      //   });
-      // }
 
     this.props.navigation.dispatch(resetAction);
   };
