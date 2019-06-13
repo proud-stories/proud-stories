@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, Image, Button } from "react-native";
+import { View, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
+import { Container, Content, Button, Text } from 'native-base';
 
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -38,17 +39,19 @@ export default class Account extends Component {
     const picture = navigation.getParam("picture");
 
     return (
-      <View style={styles.container}>
+      <Container>
         {name && (
-          <View style={styles.profileContainer}>
+          <View style={styles.container}>
             <Image style={styles.picture} source={{ uri: picture }} />
 
             <Text style={styles.usernameText}>{name}</Text>
-            <Button onPress={this.logout} title="Logout" color={buttonStyle} />
-            <Button onPress={() => this.props.navigation.navigate('Home')} title="Top Page" color={buttonStyle} />
+            <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
+            <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block><Text>Charge my credits</Text></Button>
+            <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout} ><Text>Logout</Text></Button>
+            <Button block info onPress={() => this.props.navigation.navigate('Home')}><Text>Top Page</Text></Button>
           </View>
         )}
-      </View>
+      </Container>
     );
   }
 

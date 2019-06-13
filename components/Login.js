@@ -80,7 +80,7 @@ export default class Login extends Component {
           animating={!this.state.hasInitialized}
         />
         {this.state.hasInitialized && (
-          <Button block onPress={this.login} color={buttonStyle}>
+          <Button info block onPress={this.login} color={buttonStyle}>
             <Text>Login/Register</Text>
           </Button>
         )}
