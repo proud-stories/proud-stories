@@ -32,11 +32,6 @@ export default class Account extends Component {
     };
   };
 
-  state = {
-    name: "",
-    picture: ""
-  };
-
   render() {
     const { navigation } = this.props;
     const name = navigation.getParam("name");
@@ -56,47 +51,33 @@ export default class Account extends Component {
       </View>
     );
   }
-}
 
-logout = () => {
-  SInfo.deleteItem("accessToken", {});
-  SInfo.deleteItem("refreshToken", {});
-
-  auth0.webAuth
-    .clearSession()
-    .then(res => {
-      console.log("clear session ok");
-    })
-    .catch(err => {
-      console.log("error clearing session: ", err);
-    });
-
-  this.gotoLogin(); // go to login screen
-};
-
-// logout = () => {
-//   if (Platform.OS === 'android') {
-//       this.setState({ accessToken: null });
-//   } else {
-//       auth0.webAuth
-//           .clearSession({})
-//           .then(success => {
-//               this.setState({ accessToken: null });
-//           })
-//           .catch(error => console.log(error));
-//   }
-//   this.gotoLogin(); // go to login screen
-// };
-
-gotoLogin = () => {
-  const resetAction = StackActions.reset({
-    index: 0,
-    actions: [
-      NavigationActions.navigate({
-        routeName: "Login"
+  logout = () => {
+    SInfo.deleteItem("accessToken", {});
+    SInfo.deleteItem("refreshToken", {});
+  
+    auth0.webAuth
+      .clearSession()
+      .then(res => {
+        console.log("clear session ok");
       })
-    ]
-  });
+      .catch(err => {
+        console.log("error clearing session: ", err);
+      });
+  
+    this.gotoLogin(); // go to login screen
+  };
 
-  this.props.navigation.dispatch(resetAction);
-}; 
+  gotoLogin = () => {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: "Login"
+        })
+      ]
+    });
+  
+    this.props.navigation.dispatch(resetAction);
+  }; 
+}

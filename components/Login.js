@@ -1,12 +1,14 @@
 
 import React, { Component } from "react";
-import { View, Text, Button, ActivityIndicator, AsyncStorage } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import SInfo from "react-native-sensitive-info";
 import RNRestart from "react-native-restart";
+import AsyncStorage from '@react-native-community/async-storage';
+import { Container, Button, Text } from 'native-base';
 
 import {
   headerColorStyle,
@@ -70,6 +72,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <Container>
       <View style={styles.container}>
         <ActivityIndicator
           size="large"
@@ -77,9 +80,12 @@ export default class Login extends Component {
           animating={!this.state.hasInitialized}
         />
         {this.state.hasInitialized && (
-          <Button onPress={this.login} title="Login" color={buttonStyle} />
+          <Button block onPress={this.login} color={buttonStyle}>
+            <Text>Login/Register</Text>
+          </Button>
         )}
       </View>
+      </Container>
     );
   }
 
@@ -94,11 +100,11 @@ export default class Login extends Component {
       .then(res => {
         auth0.auth
           .userInfo({ token: res.accessToken })
+          // .then(data => {
+          //   return this.saveUser(data)
+          // })
           .then(data => {
-            this.saveUser(data)
-          })
-          .then(data => {
-            this.gotoAccount(data);
+            return this.gotoAccount(data);
           })
           .catch(err => {
             console.log("err: ");
@@ -114,22 +120,26 @@ export default class Login extends Component {
       });
   };
 
-  saveUser = async (data) => {
-    await AsyncStorage.setItem('@name', data.name);
-    await AsyncStorage.setItem('@photo', data.photo);
+  // saveUser = async (data) => {
+  //   await AsyncStorage.setItem('@name', data.name);
+  //   await AsyncStorage.setItem('@photo', data.photo);
 
-    const response = fetch('https://proud-stories-staging.herokuapp.com/users', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: data.name
-      }),
-    })
+    // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     name: data.name
+    //   }),
+    // })
     
-    const userId = response.json()
-    await AsyncStorage.setItem('@id', userId.id);
-  }
+    // const userId = response.json()
+    // await AsyncStorage.setItem('@id', userId.id);
+  //   return data;
+  // }
 
-  gotoAccount = data => {
+  gotoAccount = async data => {
+    // await AsyncStorage.setItem('@name', data.name);
+    // await AsyncStorage.setItem('@photo', data.photo);
+
     this.setState({
       hasInitialized: true
     });

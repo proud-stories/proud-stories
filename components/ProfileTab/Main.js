@@ -6,14 +6,14 @@ import {
     Platform
 } from "react-native";
 
-import ProfileHome from './ProfileHome'
+import Account from '../Account'
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon } from 'native-base'
 
 const AppNavigator = createStackNavigator({
     ProfileHome: {
-        screen: ProfileHome
+        screen: Account
     }
 },
     {

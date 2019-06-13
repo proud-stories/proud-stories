@@ -11,13 +11,9 @@ import {
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
 // import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
-<<<<<<< HEAD:components/AppTabNavigator/HomeTab.js
-// import ReactDOM from "react-dom";
-=======
 //import ReactDOM from "react-dom";
 
 class HomeTab extends Component {
->>>>>>> d1606f93d64d8ad265b505e916548cda7e15e11f:components/HomeTab/Home.js
 
     state = {
         videos: [
