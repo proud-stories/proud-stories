@@ -15,7 +15,6 @@ import {
     Dimensions,
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import RNFetchBlob from 'react-native-fetch-blob'
 
 const handleError = (error, isFatal) => {
     // fetch
@@ -273,7 +272,7 @@ class AddMediaTab extends React.Component {
     }
 
     uploadFile = (file) => {
-        this.props.navigation.navigate('MediaDescTab', {
+        this.props.navigation.navigate('AddMediaInfo', {
             file
         });
     }
@@ -284,7 +283,7 @@ class AddMediaTab extends React.Component {
         }).then((video) => {
             this.uploadFile(video.path);
         }).catch(err => {
-            console.error(err)
+            console.log(err)
         });
     }
 }

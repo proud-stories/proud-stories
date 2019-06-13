@@ -11,7 +11,7 @@ import {
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
 // import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 
 class HomeTab extends Component {
 

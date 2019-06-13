@@ -51,7 +51,7 @@ class MediaDescTab extends Component {
                     name: 'video', data: RNFetchBlob.wrap(file), filename: "vid.mp4"
                 },
                 {
-                    name: 'user_id', data: "6"
+                    name: 'user_id', data: "1"
                 },
                 {
                     name: 'title', data: this.state.title
@@ -61,6 +61,7 @@ class MediaDescTab extends Component {
                 }
             ]).then((res) => {
                 console.log(res)
+                this.props.navigation.navigate('Home')
             })
             .catch((err) => {
                 console.log(err)
