@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { Container, Content, Button, Text } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -33,24 +34,45 @@ export default class Account extends Component {
     };
   };
 
+  componentWillMount() {
+    this.getData();
+  }
+
+  state= {
+    name: "",
+    picture: ""
+  }
+
+
+getData = async () => {
+  try {
+    const name = await AsyncStorage.getItem('@name');
+    const picture = await AsyncStorage.getItem('@picture');
+    this.setState({
+      name: name,
+      picture: picture
+    })
+  } catch (error) {
+    // Error retrieving data
+    console.log(error.message);
+  }
+}
+
   render() {
-    const { navigation } = this.props;
-    const name = navigation.getParam("name");
-    const picture = navigation.getParam("picture");
+    // const { navigation } = this.props;
+    // const name = navigation.getParam("name");
+    // const picture = navigation.getParam("picture");
 
     return (
       <Container>
-        {name && (
           <View style={styles.container}>
-            <Image style={styles.picture} source={{ uri: picture }} />
+            <Image style={styles.picture} source={{ uri: this.state.picture }} />
 
-            <Text style={styles.usernameText}>{name}</Text>
+            <Text style={styles.usernameText}>{this.state.name}</Text>
             <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
             <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block><Text>Charge my credits</Text></Button>
             <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout} ><Text>Logout</Text></Button>
-            <Button block info onPress={() => this.props.navigation.navigate('Home')}><Text>Top Page</Text></Button>
           </View>
-        )}
       </Container>
     );
   }

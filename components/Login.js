@@ -1,6 +1,5 @@
-
 import React, { Component } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { View, Image, ActivityIndicator } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -45,7 +44,7 @@ export default class Login extends Component {
         auth0.auth
           .userInfo({ token: accessToken })
           .then(data => {
-            this.gotoAccount(data);
+            this.gotoTopPage(data);
           })
           .catch(err => {
             SInfo.getItem("refreshToken", {}).then(refreshToken => {
@@ -74,6 +73,9 @@ export default class Login extends Component {
     return (
       <Container>
       <View style={styles.container}>
+      <Image
+          source={require('../img/download3.png')}
+        />
         <ActivityIndicator
           size="large"
           color="#05a5d1"
@@ -104,7 +106,7 @@ export default class Login extends Component {
           //   return this.saveUser(data)
           // })
           .then(data => {
-            return this.gotoAccount(data);
+            return this.gotoTopPage(data);
           })
           .catch(err => {
             console.log("err: ");
@@ -136,9 +138,9 @@ export default class Login extends Component {
   //   return data;
   // }
 
-  gotoAccount = async data => {
-    // await AsyncStorage.setItem('@name', data.name);
-    // await AsyncStorage.setItem('@photo', data.photo);
+  gotoTopPage = async data => {
+    await AsyncStorage.setItem('@name', data.name);
+    await AsyncStorage.setItem('@picture', data.picture);
 
     this.setState({
       hasInitialized: true
@@ -148,11 +150,11 @@ export default class Login extends Component {
       index: 0,
       actions: [
         NavigationActions.navigate({
-          routeName: "Account",
-          params: {
-            name: data.name,
-            picture: data.picture
-          }
+          routeName: "Home",
+          // params: {
+          //   name: data.name,
+          //   picture: data.picture
+          // }
         })
       ]
     });
