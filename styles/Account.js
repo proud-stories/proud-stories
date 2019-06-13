@@ -13,6 +13,11 @@ const styles = StyleSheet.create({
 		fontSize: 17,
 		fontWeight: "bold",
 		marginTop: 10,
+		marginBottom: 10
+	},
+	credit: {
+		fontSize: 17,
+		marginTop: 10,
 		marginBottom: 30
 	},
 	picture: {

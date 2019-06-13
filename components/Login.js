@@ -123,8 +123,6 @@ export default class Login extends Component {
   };
 
   // saveUser = async (data) => {
-  //   await AsyncStorage.setItem('@name', data.name);
-  //   await AsyncStorage.setItem('@photo', data.photo);
 
     // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
     //   method: 'POST',
@@ -151,10 +149,6 @@ export default class Login extends Component {
       actions: [
         NavigationActions.navigate({
           routeName: "Home",
-          // params: {
-          //   name: data.name,
-          //   picture: data.picture
-          // }
         })
       ]
     });

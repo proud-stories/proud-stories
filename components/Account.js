@@ -59,16 +59,14 @@ getData = async () => {
 }
 
   render() {
-    // const { navigation } = this.props;
-    // const name = navigation.getParam("name");
-    // const picture = navigation.getParam("picture");
-
     return (
       <Container>
           <View style={styles.container}>
             <Image style={styles.picture} source={{ uri: this.state.picture }} />
 
             <Text style={styles.usernameText}>{this.state.name}</Text>
+
+            <Text style={styles.credit}>Your current credit is: 0</Text>
             <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
             <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block><Text>Charge my credits</Text></Button>
             <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout} ><Text>Logout</Text></Button>
