@@ -11,11 +11,10 @@ import {
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
 // import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
-import ReactDOM from "react-dom";
+//import ReactDOM from "react-dom";
 
-type Props = {};
-class HomeTab extends Component<Props> {
-    
+class HomeTab extends Component {
+
     state = {
         videos: [
             {
@@ -42,47 +41,47 @@ class HomeTab extends Component<Props> {
         ]
         // message: "Hello"
     }
-    
+
     static navigationOptions = {
-        
+
         tabBarIcon: ({ tintColor }) => (
             <Icon name="ios-home" style={{ color: tintColor }} />
-            )
-        }
-        
+        )
+    }
+
     // handleVideoLayout = (e) => {
-        //     const { height } = Dimensions.get("window");
-        //     this.position.start = e.nativeEvent.layout.y - height + THRESHOLD;
-        //     this.position.end = e.nativeEvent.layout.y + e.nativeEvent.layout.height - THRESHOLD;
-        // }
+    //     const { height } = Dimensions.get("window");
+    //     this.position.start = e.nativeEvent.layout.y - height + THRESHOLD;
+    //     this.position.end = e.nativeEvent.layout.y + e.nativeEvent.layout.height - THRESHOLD;
+    // }
     handleScroll = (e) => {
-            console.log("hello world from handle scroll")
-            // this.setState({ message: "Changed!" })
-            // let posts = Array.from(ReactDOM.findDOMNode(this).children).filter(elt => elt.className === 'post');
-            // posts.forEach(post => {
-            //     post.paused = !post.paused
-            // })
+        console.log("hello world from handle scroll")
+        // this.setState({ message: "Changed!" })
+        // let posts = Array.from(ReactDOM.findDOMNode(this).children).filter(elt => elt.className === 'post');
+        // posts.forEach(post => {
+        //     post.paused = !post.paused
+        // })
     }
     // const scrollPosition = e.nativeEvent.contentOffset.y;
-        // const paused = this.state.paused;
-        // const { start, end } = this.position;
-        // if (true) {
-            //     this.setState({ paused: false });
-            // } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
-                //     this.setState({ paused: true });
-        // }
-    
+    // const paused = this.state.paused;
+    // const { start, end } = this.position;
+    // if (true) {
+    //     this.setState({ paused: false });
+    // } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
+    //     this.setState({ paused: true });
+    // }
+
     componentDidMount() {
 
         fetch("https://proud-stories.herokuapp.com/videos")
-        .then(data => data.json())
-        .then(data => {
-            data.forEach(item => {
-                item.paused = true;
-                this.setState({ videos: [item, ...this.state.videos] })
+            .then(data => data.json())
+            .then(data => {
+                data.forEach(item => {
+                    item.paused = true;
+                    this.setState({ videos: [item, ...this.state.videos] })
+                })
             })
-        })
-        .catch((err) => {throw Error(err)});
+            .catch((err) => { throw Error(err) });
     }
 
     componentDidUpdate() {
@@ -92,16 +91,16 @@ class HomeTab extends Component<Props> {
     }
     render() {
         return (
-            <Container  style={styles.container}>
+            <Container style={styles.container}>
                 <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
                     <View  >
-                    {this.state.videos.map((video, index) => (
-                        <View key={index}>
-                        {/* <Text>{this.state.message}</Text> */}
-                        <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description} likes={video.likes}/>
-                        {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
-                        </View>
-                    ))}
+                        {this.state.videos.map((video, index) => (
+                            <View key={index}>
+                                {/* <Text>{this.state.message}</Text> */}
+                                <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description} likes={video.likes} />
+                                {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
+                            </View>
+                        ))}
                     </View>
                 </Content>
             </Container>
@@ -122,5 +121,5 @@ const styles = StyleSheet.create({
         borderColor: 'red',
         borderWidth: 1,
         height: 400
-      }
+    }
 });
