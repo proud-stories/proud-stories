@@ -9,13 +9,20 @@ import {
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 
-const THRESHOLD = 10000;
-
 type Props = {};
 
 class CardComponent extends Component<Props> {
     state = {
         paused: true,
+    }
+
+    componentDidUpdate(props, state) {
+        if (this.props.playing === props.key && state.paused) {
+            this.setState({ paused: false });
+        }
+        else if (props.playing !== props.key && !state.paused) {
+            this.setState({ paused: true });
+        }
     }
 
     render() {
@@ -32,19 +39,14 @@ class CardComponent extends Component<Props> {
                     </Left>
                 </CardItem>
                 {/* const { width } = Dimensions.get("window"); */}
-                <CardItem cardBody style={{ height: 200 }}>
-                <Video source={{uri: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4"}}   // Can be a URL or a local file.
-                style={{ width: Dimensions.get("window").width, margin:0 }}
-               ref={(ref) => {
-                this.player = ref
-              }}
-          repeat
-          paused={this.props.paused}  
-        //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
-        //   onError={this.videoError}               // Callback when video cannot be loaded
-          style={styles.backgroundVideo} />
+                <CardItem cardBody style={{height:200}} >
+                <Video source={{uri: this.props.url}}   // Can be a URL or a local file.
+                style={{ width: Dimensions.get("window").width }}
+                repeat
+                paused={this.props.paused}  
+                style={styles.backgroundVideo} />
                 </CardItem>
-                <CardItem style={{ height: 45 }}>
+                <CardItem>
                     <Left>
                         <Text>{this.props.title}     </Text>
                         <Button transparent>
@@ -58,7 +60,7 @@ class CardComponent extends Component<Props> {
                     </Left>
                 </CardItem>
 
-                <CardItem style={{ height: 10 }}>
+                <CardItem>
                     <Text>{this.props.likes} likes </Text>
                 </CardItem>
                 <CardItem>
