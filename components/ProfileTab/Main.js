@@ -7,10 +7,10 @@ import {
 } from "react-native";
 
 import Account from '../Account'
+import Login from "../Login"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon } from 'native-base'
-import Login from "../Login"
 
 const AppNavigator = createStackNavigator({
     ProfileHome: {
