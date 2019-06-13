@@ -3,8 +3,9 @@ package com.proudstories;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.brentvatne.react.ReactVideoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import com.imagepicker.ImagePickerPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage;
@@ -33,7 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFetchBlobPackage(), new RNCameraPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNFetchBlobPackage(),
+            new ImagePickerPackage(), new RNCameraPackage(),
           new PickerPackage(), new ReactNativeExceptionHandlerPackage(), new VectorIconsPackage(),
           new ReactVideoPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
           new ReactNativeConfigPackage(), new RNDeviceInfo(), new A0Auth0Package(), new RNGestureHandlerPackage());

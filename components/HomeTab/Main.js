@@ -2,14 +2,28 @@ import React, { Component } from "react";
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    Platform
 } from "react-native";
 
-import { Icon } from 'native-base'
-import Account from '../Account';
+import Home from './Home'
 
-type Props = {};
-class ProfileTab extends Component<Props> {
+import { createAppContainer, createStackNavigator, create } from 'react-navigation';
+import { Icon } from 'native-base'
+
+const AppNavigator = createStackNavigator({
+    Home: {
+        screen: Home
+    }
+},
+    {
+        initialRouteName: "Home",
+        headerMode: "none"
+    });
+
+const AppTabContainer = createAppContainer(AppNavigator)
+
+class HomeTab extends Component {
 
     static navigationOptions = {
 
@@ -20,13 +34,11 @@ class ProfileTab extends Component<Props> {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Account/>
-            </View>
+            <AppTabContainer />
         );
     }
 }
-export default ProfileTab;
+export default HomeTab;
 
 const styles = StyleSheet.create({
     container: {
