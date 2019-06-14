@@ -22,30 +22,34 @@ class HomeTab extends Component {
                 {
                     title: "Uganda Pineapples",
                     description: "Pineapples of Uganda are delicious.",
-                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/goats.mp4",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
                     likes: 100,
-                    paused: true
+                    paused: true,
+                    id: 1
                 },
                 {
                     title: "Pineapple wine!",
                     description: "Did you know you can make wine from pineapple? It's so delicious.",
                     url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
                     likes: 251,
-                    paused: true
+                    paused: true,
+                    id:2
                 },
                 {
                     title: "Uganda Pineapples Peeling",
                     description: "This is how to peel a pineapple.",
-                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/goats.mp4",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
                     likes: 298,
-                    paused: true
+                    paused: true,
+                    id:3
                 },
                 {
                     title: "Uganda Pineapples Peeling",
                     description: "This is how to peel a pineapple.",
-                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/goats.mp4",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
                     likes: 298,
-                    paused: true
+                    paused: true,
+                    id: 4
                 }
             ],
             playing: 0
@@ -66,8 +70,8 @@ class HomeTab extends Component {
             url={data.url}
             likes={data.likes}
             style={{margin:0}}
-            key={index}
-            paused={index === this.state.playing}
+            key={data.id}
+            paused={data.id === this.state.playing}
             playing={this.state.playing}
         />
     }

@@ -17,10 +17,11 @@ class CardComponent extends Component<Props> {
     }
 
     componentDidUpdate(props, state) {
-        if (this.props.playing === props.key && state.paused) {
+        console.log("The component updated")
+        if (this.props.playing === this.props.id && this.state.paused) {
             this.setState({ paused: false });
         }
-        else if (props.playing !== props.key && !state.paused) {
+        else if (this.props.playing !== this.props.id && !this.state.paused) {
             this.setState({ paused: true });
         }
     }
@@ -33,18 +34,18 @@ class CardComponent extends Component<Props> {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>Username </Text>
+                            <Text>{this.props.paused ? "Paused" : "Playing"} </Text>
                             <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
                         </Body>
                     </Left>
                 </CardItem>
                 {/* const { width } = Dimensions.get("window"); */}
                 <CardItem cardBody style={{height:200}} >
-                <Video source={{uri: this.props.url}}   // Can be a URL or a local file.
+                {/* <Video source={{uri: this.props.url}}   // Can be a URL or a local file.
                 style={{ width: Dimensions.get("window").width }}
                 repeat
-                paused={this.props.paused}  
-                style={styles.backgroundVideo} />
+                paused={this.props.playing !== this.props.key}  
+                style={styles.backgroundVideo} /> */}
                 </CardItem>
                 <CardItem>
                     <Left>
