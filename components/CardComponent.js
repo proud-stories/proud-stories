@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import Toast from 'react-native-root-toast';
+import { whileStatement } from "@babel/types";
 
 const THRESHOLD = 10000;
 
@@ -85,12 +87,37 @@ class CardComponent extends Component {
                 videoId: this.props.id,
                 userId: 1,
             }),
-        }).then((res) => {
-            if (res.status !== 204)
-                this.setState({ didLike: false, likes: this.state.likes - 1 });
-        }).catch((err) => {
-            console.error(err)
-        })
+        }).then(res => res.json())
+            .then(res => {
+                console.log(res.status)
+                if (res.status !== 200)
+                    this.setState({ didLike: false, likes: this.state.likes - 1 });
+
+                let isShowing = false;
+
+                if (res.status === 500) {
+                    if (!isShowing)
+                        Toast.show(res.error, {
+                            duration: Toast.durations.LONG,
+                            position: Toast.positions.TOP,
+                            shadow: true,
+                            backgroundColor: "crimson",
+                            textColor: "white",
+                            opacity: 1,
+                            animation: true,
+                            hideOnPress: true,
+                            onShow: () => {
+                                isShowing = true;
+                            },
+                            onHide: () => {
+                                isShowing = false;
+                            }
+                        }
+                        )
+                }
+            }).catch((err) => {
+                console.error(err)
+            })
     }
 }
 export default CardComponent;
