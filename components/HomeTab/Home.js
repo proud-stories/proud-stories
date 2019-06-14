@@ -16,30 +16,7 @@ import CardComponent from '../CardComponent'
 class HomeTab extends Component {
 
     state = {
-        videos: [
-            {
-                title: "Uganda Pineapples",
-                description: "Pineapples of Uganda are delicious.",
-                url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
-                likes: 100,
-                paused: true
-            },
-            {
-                title: "Pineapple wine!",
-                description: "Did you know you can make wine from pineapple? It's so delicious.",
-                url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/heyaheya.mp4",
-                likes: 251,
-                paused: true
-            },
-            {
-                title: "Uganda Pineapples Peeling",
-                description: "This is how to peel a pineapple.",
-                url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
-                likes: 298,
-                paused: true
-            }
-        ]
-        // message: "Hello"
+        videos: []
     }
 
     static navigationOptions = {
@@ -73,13 +50,14 @@ class HomeTab extends Component {
 
     componentDidMount() {
 
-        fetch("https://proud-stories.herokuapp.com/videos")
+        fetch("http://10.0.2.2:3333/videos")
             .then(data => data.json())
             .then(data => {
                 data.forEach(item => {
                     item.paused = true;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
+                console.warn(this.state)
             })
             .catch((err) => { throw Error(err) });
     }
@@ -94,10 +72,10 @@ class HomeTab extends Component {
             <Container style={styles.container}>
                 <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
                     <View  >
-                        {this.state.videos.map((video, index) => (
-                            <View key={index}>
+                        {this.state.videos.map((video) => (
+                            <View key={video.id}>
                                 {/* <Text>{this.state.message}</Text> */}
-                                <CardComponent className={"post"} paused={video.paused} url={video.url} title={video.title} description={video.description} likes={video.likes} />
+                                <CardComponent className={"post"} paused={video.paused} didLike={video.didLike} id={video.id} url={video.url} title={video.title} description={video.description} likes={video.count} />
                                 {/* <CardComponent2 imageSource={String(index)} likes="404"/> */}
                             </View>
                         ))}
