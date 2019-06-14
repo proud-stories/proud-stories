@@ -1,29 +1,19 @@
 import React, { Component } from "react";
 import {
     View,
-    ScrollView,
-    Text,
     StyleSheet,
-    FlatList,
-    Dimensions
+    Image
 } from "react-native";
 
 import { Container, Content, Icon } from 'native-base'
-import CardComponent from '../CardComponent'
+import CardComponent from '../../CardComponent'
 // import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
 //import ReactDOM from "react-dom";
 
-class HomeTab extends Component {
+class Videos extends Component {
 
     state = {
         videos: []
-    }
-
-    static navigationOptions = {
-
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="ios-home" style={{ color: tintColor }} />
-        )
     }
 
     // handleVideoLayout = (e) => {
@@ -50,7 +40,7 @@ class HomeTab extends Component {
 
     componentDidMount() {
 
-        fetch("http://10.0.2.2:3333/videos")
+        fetch("http://10.0.2.2:3333/users/1/videos")
             .then(data => data.json())
             .then(data => {
                 data.forEach(item => {
@@ -82,8 +72,43 @@ class HomeTab extends Component {
             </Container>
         );
     }
+
+    onTitleChange = (event) => {
+        this.setState({ title: event });
+    }
+
+    onDescriptionChange = (event) => {
+        this.setState({ description: event });
+    }
+
+    uploadVideo() {
+        const { navigation } = this.props;
+        const file = navigation.getParam('file', null);
+        RNFetchBlob.fetch('POST', 'https://proud-stories-staging.herokuapp.com/upload', {
+            'Content-Type': 'multipart/form-data',
+        }, [
+                {
+                    name: 'video', data: RNFetchBlob.wrap(file), filename: "vid.mp4"
+                },
+                {
+                    name: 'user_id', data: "1"
+                },
+                {
+                    name: 'title', data: this.state.title
+                },
+                {
+                    name: 'description', data: this.state.description
+                }
+            ]).then((res) => {
+                console.log(res)
+                this.props.navigation.navigate('Home')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 }
-export default HomeTab;
+export default Videos;
 
 const styles = StyleSheet.create({
     container: {

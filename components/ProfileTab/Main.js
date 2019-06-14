@@ -6,8 +6,9 @@ import {
     Platform
 } from "react-native";
 
-import Account from '../Account'
+import Account from './Account'
 import Login from "../Login"
+import MyVideos from "./MyVideos/Videos"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon } from 'native-base'
@@ -18,11 +19,14 @@ const AppNavigator = createStackNavigator({
     },
     Login: {
         screen: Login
+    },
+    MyVideos: {
+        screen: MyVideos
     }
 },
-{
-    initialRouteName: "ProfileHome",
-    headerMode: "none"
+    {
+        initialRouteName: "ProfileHome",
+        headerMode: "none"
     });
 
 const AppTabContainer = createAppContainer(AppNavigator)

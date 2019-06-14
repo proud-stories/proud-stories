@@ -34,7 +34,8 @@ const AppTabNavigator = createMaterialTopTabNavigator({
             inactiveTintColor: '#d1cece',
             showLabel: false,
             showIcon: true
-        }
+        },
+        headerMode: "none"
     }
 )
 
