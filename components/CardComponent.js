@@ -12,6 +12,9 @@ import Toast from 'react-native-root-toast';
 import { whileStatement } from "@babel/types";
 
 type Props = {};
+class CardComponent extends Component {
+    constructor(props) {
+        super(props)
 
         this.state = {
             paused: true,
