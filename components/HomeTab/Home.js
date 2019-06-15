@@ -10,13 +10,68 @@ import {
 
 import { Container, Content, Icon } from 'native-base'
 import CardComponent from '../CardComponent'
-// import CardComponent2 from '../CardComponent2' //adding old image posts for scroll testing. Delete this later.
-//import ReactDOM from "react-dom";
+import {RecyclerListView, DataProvider, LayoutProvider} from 'recyclerlistview';
 
 class HomeTab extends Component {
-
-    state = {
-        videos: []
+    constructor(args) {
+        super(args);
+        this.state = {
+            videos: [
+                {
+                    title: "Uganda Pineapples",
+                    description: "Pineapples of Uganda are delicious.",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
+                    likes: 100,
+                    paused: true,
+                    id: 1
+                },
+                {
+                    title: "Pineapple wine!",
+                    description: "Did you know you can make wine from pineapple? It's so delicious.",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
+                    likes: 251,
+                    paused: true,
+                    id:2
+                },
+                {
+                    title: "Uganda Pineapples Peeling",
+                    description: "This is how to peel a pineapple.",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/video.mp4",
+                    likes: 298,
+                    paused: true,
+                    id:3
+                },
+                {
+                    title: "Uganda Pineapples Peeling",
+                    description: "This is how to peel a pineapple.",
+                    url: "https://proud-videos.s3-ap-northeast-1.amazonaws.com/waits.mp4",
+                    likes: 298,
+                    paused: true,
+                    id: 4
+                }
+            ],
+            playing: 0
+        }
+        this.state.dataProvider = new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
+        
+        this._layoutProvider = new LayoutProvider(_index => 'card', (_type, dim) => {
+            dim.width = Dimensions.get('window').width;
+            dim.height = 420;
+        });
+        this._renderRow = this._renderRow.bind(this)
+    }
+    _renderRow(_type, data, index) {
+        return <CardComponent
+            className={'card'}
+            title={data.title}
+            description={data.description}
+            url={data.url}
+            likes={data.likes}
+            style={{margin:0}}
+            key={data.id}
+            paused={data.id === this.state.playing}
+            playing={this.state.playing}
+        />
     }
 
     static navigationOptions = {
@@ -26,58 +81,46 @@ class HomeTab extends Component {
         )
     }
 
-    // handleVideoLayout = (e) => {
-    //     const { height } = Dimensions.get("window");
-    //     this.position.start = e.nativeEvent.layout.y - height + THRESHOLD;
-    //     this.position.end = e.nativeEvent.layout.y + e.nativeEvent.layout.height - THRESHOLD;
-    // }
-    handleScroll = (e) => {
-        console.log("hello world from handle scroll")
-        // this.setState({ message: "Changed!" })
-        // let posts = Array.from(ReactDOM.findDOMNode(this).children).filter(elt => elt.className === 'post');
-        // posts.forEach(post => {
-        //     post.paused = !post.paused
-        // })
+
+    onScroll = (e) => {
+        let playing = Math.round( (e.nativeEvent.contentOffset.y)/420 );
+        if (this.state.playing !== playing) {
+            this.setState({ playing })
+        }
+        console.log("playing is", this.state.playing)
+        console.log("offset is ", e.nativeEvent.contentOffset.y, e.nativeEvent.contentOffset.y/420)
     }
-    // const scrollPosition = e.nativeEvent.contentOffset.y;
-    // const paused = this.state.paused;
-    // const { start, end } = this.position;
-    // if (true) {
-    //     this.setState({ paused: false });
-    // } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
-    //     this.setState({ paused: true });
-    // }
 
     componentDidMount() {
-
-        fetch("http://10.0.2.2:3333/videos")
+        fetch("/videofeed")
             .then(data => data.json())
             .then(data => {
+                //add the items from database into state
                 data.forEach(item => {
-                    item.paused = true;
+                    item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.warn(this.state)
+                //update the dataProvider
+                this.setState({ dataProvider:
+                    new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
+                })
             })
             .catch((err) => { throw Error(err) });
     }
 
-    componentDidUpdate() {
-        console.log("Updated")
-        //check if the component 
-
-    }
     render() {
         return (
             <Container style={styles.container}>
-                <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
-                    <View  >
-                        {this.state.videos.map((video) => (
-                            <View key={video.id}>
-                                <CardComponent className={"post"} paused={video.paused} didLike={video.didLike} id={video.id} url={video.url} title={video.title} description={video.description} likes={video.count} />
-                            </View>
-                        ))}
-                    </View>
+                <Content>
+                    <RecyclerListView
+                        onScroll={this.onScroll}
+                        renderAheadOffset={0}
+                        style={{ height: Dimensions.get('window').height*.8, width: Dimensions.get('window').width }}
+                        rowRenderer={this._renderRow}
+                        dataProvider={this.state.dataProvider}
+                        layoutProvider={this._layoutProvider}
+                        // renderAheadOffset={1000}
+                    />
                 </Content>
             </Container>
         );

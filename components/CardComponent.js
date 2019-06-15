@@ -11,11 +11,7 @@ import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'nati
 import Toast from 'react-native-root-toast';
 import { whileStatement } from "@babel/types";
 
-const THRESHOLD = 10000;
-
-class CardComponent extends Component {
-    constructor(props) {
-        super(props)
+type Props = {};
 
         this.state = {
             paused: true,
@@ -25,6 +21,16 @@ class CardComponent extends Component {
         console.log(this.props)
     }
 
+    componentDidUpdate(props, state) {
+        console.log("The component updated")
+        if (this.props.playing === this.props.id && this.state.paused) {
+            this.setState({ paused: false });
+        }
+        else if (this.props.playing !== this.props.id && !this.state.paused) {
+            this.setState({ paused: true });
+        }
+    }
+
     render() {
         return (
             <Card>
@@ -32,7 +38,7 @@ class CardComponent extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>Username </Text>
+                            <Text>{this.props.paused ? "Paused" : "Playing"} </Text>
                             <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
                         </Body>
                     </Left>
@@ -50,7 +56,7 @@ class CardComponent extends Component {
                         //   onError={this.videoError}               // Callback when video cannot be loaded
                         style={styles.backgroundVideo} />
                 </CardItem>
-                <CardItem style={{ height: 45 }}>
+                <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
                             <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: 'black' }} />
