@@ -11,7 +11,7 @@ import Login from "../Login"
 import MyVideos from "./MyVideos/Videos"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
-import { Icon } from 'native-base'
+import { Icon, Root } from 'native-base'
 
 const AppNavigator = createStackNavigator({
     ProfileHome: {
@@ -43,6 +43,8 @@ class ProfileTab extends Component {
     render() {
         return (
             <AppTabContainer />
+
+
         );
     }
 }

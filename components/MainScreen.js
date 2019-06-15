@@ -12,7 +12,7 @@ import MediaTab from './MediaTab/Main'
 
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { Icon } from 'native-base'
+import { Root } from 'native-base'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     HomeTab: HomeTab,
@@ -49,7 +49,9 @@ class MainScreen extends Component {
 
     render() {
         return (
-            <AppTabContainer />
+            <Root>
+                <AppTabContainer />
+            </Root>
         );
     }
 }
