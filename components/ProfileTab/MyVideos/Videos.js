@@ -52,11 +52,6 @@ class Videos extends Component {
             .catch((err) => { throw Error(err) });
     }
 
-    componentDidUpdate() {
-        console.log("Updated")
-        //check if the component 
-
-    }
     render() {
         return (
             <Container style={styles.container}>
@@ -64,7 +59,7 @@ class Videos extends Component {
                     <View  >
                         {this.state.videos.map((video) => (
                             <View key={video.id}>
-                                <CardComponent className={"post"} {...video} />
+                                <CardComponent className={"post"} {...video} editVideo={() => this.editVideo(video)} />
                             </View>
                         ))}
                     </View>
@@ -81,31 +76,8 @@ class Videos extends Component {
         this.setState({ description: event });
     }
 
-    uploadVideo() {
-        const { navigation } = this.props;
-        const file = navigation.getParam('file', null);
-        RNFetchBlob.fetch('POST', 'https://proud-stories-staging.herokuapp.com/upload', {
-            'Content-Type': 'multipart/form-data',
-        }, [
-                {
-                    name: 'video', data: RNFetchBlob.wrap(file), filename: "vid.mp4"
-                },
-                {
-                    name: 'user_id', data: "1"
-                },
-                {
-                    name: 'title', data: this.state.title
-                },
-                {
-                    name: 'description', data: this.state.description
-                }
-            ]).then((res) => {
-                console.log(res)
-                this.props.navigation.navigate('Home')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+    editVideo = (video) => {
+        this.props.navigation.navigate('EditVideo', { ...video })
     }
 }
 export default Videos;

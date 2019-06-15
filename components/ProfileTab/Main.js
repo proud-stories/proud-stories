@@ -9,6 +9,7 @@ import {
 import Account from './Account'
 import Login from "../Login"
 import MyVideos from "./MyVideos/Videos"
+import EditVideo from "./MyVideos/EditVideo"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon, Root } from 'native-base'
@@ -22,6 +23,9 @@ const AppNavigator = createStackNavigator({
     },
     MyVideos: {
         screen: MyVideos
+    },
+    EditVideo: {
+        screen: EditVideo
     }
 },
     {

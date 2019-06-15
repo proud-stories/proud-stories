@@ -59,6 +59,11 @@ class CardComponent extends Component {
                         <Button transparent>
                             <Icon name="bubbles" type="SimpleLineIcons" style={{ color: 'black' }} />
                         </Button>
+                        {this.props.editVideo !== undefined &&
+                            <Button transparent onPress={() => this.editVideo()}>
+                                <Icon name="edit" type="FontAwesome" style={{ color: 'black' }} />
+                            </Button>
+                        }
 
 
                     </Left>
@@ -100,6 +105,10 @@ class CardComponent extends Component {
             }).catch((err) => {
                 console.error(err)
             })
+    }
+
+    editVideo() {
+        this.props.editVideo();
     }
 }
 export default CardComponent;
