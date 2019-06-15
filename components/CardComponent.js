@@ -26,10 +26,10 @@ class CardComponent extends Component {
 
     componentDidUpdate(props, state) {
         console.log("The component updated")
-        if (this.props.playing === this.props.id && this.state.paused) {
+        if (this.props.playing.video === this.props.index && this.state.paused) {
             this.setState({ paused: false });
         }
-        else if (this.props.playing !== this.props.id && !this.state.paused) {
+        else if (this.props.playing.video !== this.props.index && !this.state.paused) {
             this.setState({ paused: true });
         }
     }
@@ -41,23 +41,24 @@ class CardComponent extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>{this.props.paused ? "Paused" : "Playing"} </Text>
+                            <Text>{this.props.playing.video === this.props.index ? "Playing" : "Paused"} </Text>
                             <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
                         </Body>
                     </Left>
                 </CardItem>
                 {/* const { width } = Dimensions.get("window"); */}
                 <CardItem cardBody style={{ height: 200 }}>
-                    <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
+                    <Text>{this.props.playing.video === this.props.index ? "Playing" : "Paused"}</Text>
+                    <Text>Playback: {this.props.playing.video} Index:{this.props.index}</Text>
+                    {/* <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
                         style={{ width: Dimensions.get("window").width, margin: 0 }}
                         ref={(ref) => {
                             this.player = ref
                         }}
                         repeat
+                        // paused={this.props.playing.video !== this.props.index}
                         paused={this.props.paused}
-                        //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                        //   onError={this.videoError}               // Callback when video cannot be loaded
-                        style={styles.backgroundVideo} />
+                        style={styles.backgroundVideo} /> */}
                 </CardItem>
                 <CardItem>
                     <Left>
