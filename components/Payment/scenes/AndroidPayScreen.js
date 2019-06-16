@@ -29,7 +29,7 @@ export default class AndroidPayScreen extends PureComponent {
       })
       const token = await stripe.paymentRequestWithNativePay({
         total_price: this.state.amount,
-        currency_code: 'JPY',
+        currency_code: 'USD',
         shipping_address_required: false,
         phone_number_required: false,
       })
@@ -49,7 +49,7 @@ export default class AndroidPayScreen extends PureComponent {
           Android Pay
         </Text>
         <Item  style={styles.input}>
-            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="How much credits to charge" />
+            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="USD" />
         </Item>
         <Text style={styles.instruction}>
           Click button to show Android Pay dialog.

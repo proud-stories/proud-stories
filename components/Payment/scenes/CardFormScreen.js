@@ -36,7 +36,7 @@ export default class CardFormScreen extends PureComponent {
           Pay by Credit Card
         </Text>
         <Item  style={styles.input}>
-            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="How much credits to charge" />
+            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="USD" />
         </Item>
         <Text style={styles.instruction}>
           Click button to show Card Form dialog.
