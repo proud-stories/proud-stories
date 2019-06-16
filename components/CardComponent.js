@@ -21,17 +21,33 @@ class CardComponent extends Component {
             didLike: props.didLike,
             likes: Number(props.likes)
         }
-        console.log(this.props)
     }
 
-    componentDidUpdate(props, state) {
-        console.log("The component updated")
-        if (this.props.playing.video === this.props.index && this.state.paused) {
-            this.setState({ paused: false });
-        }
-        else if (this.props.playing.video !== this.props.index && !this.state.paused) {
-            this.setState({ paused: true });
-        }
+    // componentDidUpdate(props, state) {
+    //     console.log("The component updated")
+    //     if (this.props.playing === this.props.index && this.state.paused) {
+    //         this.setState({ paused: false });
+    //     }
+    //     else if (this.props.playing !== this.props.index && !this.state.paused) {
+    //         this.setState({ paused: true });
+    //     }
+    // }
+
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     if(nextProps.playing !== prevState.playing){
+    //       return { playing: nextProps.playing};
+    //    }
+    //    else return null;
+    //  }
+
+    // componentDidUpdate(prevProps) {
+    //     if(prevProps.paused !== this.props.paused) {
+    //         this.setState({paused: this.props.playing !== this.props.index})
+    //     }
+    // }
+
+    handleClick = (e) => {
+        this.setState({ paused: !this.state.paused })
     }
 
     render() {
@@ -41,24 +57,22 @@ class CardComponent extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>{this.props.playing.video === this.props.index ? "Playing" : "Paused"} </Text>
+                            <Text>Username </Text>
                             <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
                         </Body>
                     </Left>
                 </CardItem>
                 {/* const { width } = Dimensions.get("window"); */}
                 <CardItem cardBody style={{ height: 200 }}>
-                    <Text>{this.props.playing.video === this.props.index ? "Playing" : "Paused"}</Text>
-                    <Text>Playback: {this.props.playing.video} Index:{this.props.index}</Text>
-                    {/* <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
+                    <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
                         style={{ width: Dimensions.get("window").width, margin: 0 }}
-                        ref={(ref) => {
-                            this.player = ref
-                        }}
+                        // ref={(ref) => {
+                        //     this.player = ref
+                        // }}
                         repeat
-                        // paused={this.props.playing.video !== this.props.index}
-                        paused={this.props.paused}
-                        style={styles.backgroundVideo} /> */}
+                        onClick={this.handleClick}
+                        paused={this.state.paused}
+                        style={styles.backgroundVideo} />
                 </CardItem>
                 <CardItem>
                     <Left>
