@@ -5,7 +5,7 @@ import {
     Image
 } from "react-native";
 
-import { Container, Header, Content, Textarea, Form, Text, Item, Button, Input, Toast } from "native-base";
+import { Container, Header, Content, Textarea, Form, Text, Item, Button, Input, Toast, Body } from "native-base";
 import RNFetchBlob from 'rn-fetch-blob'
 
 class MediaDescTab extends Component {
@@ -24,12 +24,14 @@ class MediaDescTab extends Component {
                         <Textarea rowSpan={5} value={this.state.description} bordered placeholder="Description"
                             onChangeText={this.onDescriptionChange} />
                     </Form>
-                    <Button onPress={() => this.saveVideo()}>
-                        <Text>Save</Text>
-                    </Button>
-                    <Button danger>
-                        <Text>Delete Video</Text>
-                    </Button>
+                    <Body style={{ flexDirection: 'row' }}>
+                        <Button style={styles.buttons} onPress={() => this.saveVideo()}>
+                            <Text>Save</Text>
+                        </Button>
+                        <Button style={styles.buttons} onPress={() => this.deleteVideo()} danger>
+                            <Text>Delete Video</Text>
+                        </Button>
+                    </Body>
                 </Content>
             </Container>
         );
@@ -64,6 +66,23 @@ class MediaDescTab extends Component {
             })
     }
 
+    deleteVideo() {
+        fetch(`http://10.0.2.2:3333/videos/${this.state.id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        }).then(res => res.json())
+            .then(res => {
+                if (res.status === 500) {
+                    Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
+                }
+                if (res.status === 200) {
+                    Toast.show({ text: "Video has been successfully deleted", buttonText: "Okay", type: "success", position: "top", duration: 5000 })
+                }
+            }).catch((err) => {
+                Toast.show({ text: "We had trouble reaching the service. Please try again later.", buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
+            })
+    }
+
 }
 export default MediaDescTab;
 
@@ -72,5 +91,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    buttons: {
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 5
     }
 });

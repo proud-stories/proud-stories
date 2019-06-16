@@ -278,6 +278,8 @@ class AddMediaTab extends React.Component {
     }
 
     openGallery() {
+        this.props.navigation.navigate('AddMediaInfo');
+        return;
         ImagePicker.openPicker({
             mediaType: "video",
         }).then((video) => {
