@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import {
     View,
-    ScrollView,
     Text,
     StyleSheet,
-    FlatList,
     Dimensions
 } from "react-native";
 
@@ -49,8 +47,7 @@ class HomeTab extends Component {
                     paused: true,
                     id: 4
                 }
-            ],
-            playing: {video: 0}
+            ]
         }
         this.state.dataProvider = new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
         
@@ -60,6 +57,7 @@ class HomeTab extends Component {
         });
         this._renderRow = this._renderRow.bind(this)
     }
+
     _renderRow(_type, data, index) {
         return <CardComponent
             className={'card'}
@@ -69,31 +67,17 @@ class HomeTab extends Component {
             likes={data.likes}
             style={{margin:0}}
             key={Math.round(Math.random()*10000000)}
-            index={index}
-            // paused={index === this.state.playing.video}
-            playing={this.state.playing}
         />
     }
 
     static navigationOptions = {
-
         tabBarIcon: ({ tintColor }) => (
             <Icon name="ios-home" style={{ color: tintColor }} />
         )
     }
 
-
-    onScroll = (e) => {
-        let playing = Math.round( (e.nativeEvent.contentOffset.y)/420 );
-        if (this.state.playing !== playing) {
-            this.setState({ playing: {video: playing} })
-        }
-        console.log("playing is", this.state.playing)
-        console.log("offset is ", e.nativeEvent.contentOffset.y, e.nativeEvent.contentOffset.y/420)
-    }
-
-    componentDidMount() {
-        fetch("/videofeed")
+    component() {
+        fetch("/videofeed/1")
             .then(data => data.json())
             .then(data => {
                 //add the items from database into state
@@ -112,10 +96,8 @@ class HomeTab extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Content onScroll={this.onScroll}>
+                <Content>
                     <RecyclerListView
-                        onScroll={this.onScroll}
-                        renderAheadOffset={-200}
                         style={{ height: Dimensions.get('window').height*.8, width: Dimensions.get('window').width }}
                         rowRenderer={this._renderRow}
                         dataProvider={this.state.dataProvider}
@@ -132,13 +114,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    flatview: {
-        // justifyContent: 'center',
-        paddingTop: 30,
-        borderRadius: 2,
-        borderColor: 'red',
-        borderWidth: 1,
-        height: 400
     }
 });
