@@ -4,13 +4,10 @@ import DrawerLayout from 'react-native-drawer-layout-polyfill'
 import stripe from 'tipsi-stripe'
 import Header from './components/Header'
 import MenuItem from './components/MenuItem'
-import ApplePayScreen from './scenes/ApplePayScreen'
 // import AndroidPayScreen from './scenes/AndroidPayScreen'
 import CardFormScreen from './scenes/CardFormScreen'
 import CustomCardScreen from './scenes/CustomCardScreen'
-import CustomBankScreen from './scenes/CustomBankScreen'
 import CardTextFieldScreen from './scenes/CardTextFieldScreen'
-import SourceScreen from './scenes/SourceScreen'
 import testID from './utils/testID'
 
 stripe.setOptions({
@@ -24,15 +21,9 @@ export default class Root extends PureComponent {
     index: 0,
     isDrawerOpen: false,
     routes: [
-      Platform.select({
-        ios: ApplePayScreen,
-        // android: AndroidPayScreen,
-      }),
       CardFormScreen,
       CustomCardScreen,
-      CustomBankScreen,
       CardTextFieldScreen,
-      SourceScreen,
     ].filter(item => item),
   }
 
