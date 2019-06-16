@@ -3,11 +3,13 @@ import { View, Text, StyleSheet } from 'react-native'
 import stripe from 'tipsi-stripe'
 import Button from '../components/Button'
 import testID from '../utils/testID'
+import { Item, Input } from 'native-base';
 
 export default class AndroidPayScreen extends PureComponent {
   static title = 'Android Pay'
 
   state = {
+    amount: 0,
     loading: false,
     allowed: false,
     token: null,
@@ -26,12 +28,14 @@ export default class AndroidPayScreen extends PureComponent {
         token: null,
       })
       const token = await stripe.paymentRequestWithNativePay({
-        total_price: '100.00',
-        currency_code: 'USD',
+        total_price: this.state.amount,
+        currency_code: 'JPY',
         shipping_address_required: false,
         phone_number_required: false,
       })
-      this.setState({ loading: false, token })
+      this.setState({ token })
+      const payment = await doPayment(this.state.amount, this.state.token.tokenId)
+      this.setState({ loading: false })
     } catch (error) {
       this.setState({ loading: false })
     }
@@ -44,6 +48,9 @@ export default class AndroidPayScreen extends PureComponent {
         <Text style={styles.header} {...testID('headerText')}>
           Android Pay
         </Text>
+        <Item  style={styles.input}>
+            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="How much credits to charge" />
+        </Item>
         <Text style={styles.instruction}>
           Click button to show Android Pay dialog.
         </Text>
@@ -88,4 +95,8 @@ const styles = StyleSheet.create({
   token: {
     height: 20,
   },
+  input: {
+    backgroundColor: "white",
+    width: 270
+  }
 })
