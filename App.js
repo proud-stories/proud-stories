@@ -24,7 +24,7 @@ const AppNavigator = createStackNavigator({
   }
 },
   {
-    initialRouteName: "Login" // show the login screen by default
+    initialRouteName: "Account" // show the login screen by default
   });
 
 const AppContainer = createAppContainer(AppNavigator);

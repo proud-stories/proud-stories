@@ -8,6 +8,7 @@ import {
 
 import Account from '../Account'
 import Login from "../Login"
+import Payment from "../Payment/Payment"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon } from 'native-base'
@@ -18,6 +19,9 @@ const AppNavigator = createStackNavigator({
     },
     Login: {
         screen: Login
+    },
+    Payment: {
+        screen: Payment
     }
 },
 {

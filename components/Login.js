@@ -106,6 +106,7 @@ export default class Login extends Component {
           //   return this.saveUser(data)
           // })
           .then(data => {
+            this.hasInitialized = false;
             return this.gotoTopPage(data);
           })
           .catch(err => {
@@ -139,6 +140,7 @@ export default class Login extends Component {
   gotoTopPage = async data => {
     await AsyncStorage.setItem('@name', data.name);
     await AsyncStorage.setItem('@picture', data.picture);
+    await AsyncStorage.setItem('@id', data.sub);
 
     this.setState({
       hasInitialized: true
