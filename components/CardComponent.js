@@ -5,7 +5,6 @@ import {
     StyleSheet,
     Image,
     Dimensions,
-    TouchableHighlight
 } from "react-native";
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
