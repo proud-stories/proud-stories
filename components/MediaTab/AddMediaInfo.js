@@ -42,6 +42,7 @@ class MediaDescTab extends Component {
                     uniqueKey="id"
                     displayKey="name"
                     ref={(component) => { this.state.multiSelect = component }}
+                    hideSubmitButton={true}
                     onSelectedItemsChange={this.onSelectedItemsChange}
                     selectedItems={selectedItems}
                     selectText="Pick Tags"
@@ -89,17 +90,13 @@ class MediaDescTab extends Component {
             .then(res => {
                 if (res.status === 200) {
                     this.setState({ categories: res.categories })
-                    console.warn(res.categories)
-                    console.warn(res)
                 }
                 else {
                     Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
-                    console.warn(res.error)
                 }
             })
             .catch((err) => {
                 Toast.show({ text: err, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
-                console.warn(err)
             });
     }
 

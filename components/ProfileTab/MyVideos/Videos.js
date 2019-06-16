@@ -47,7 +47,6 @@ class Videos extends Component {
                     item.paused = true;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.warn(this.state)
             })
             .catch((err) => { throw Error(err) });
     }
