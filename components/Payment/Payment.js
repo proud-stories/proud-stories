@@ -4,15 +4,12 @@ import DrawerLayout from 'react-native-drawer-layout-polyfill'
 import stripe from 'tipsi-stripe'
 import Header from './components/Header'
 import MenuItem from './components/MenuItem'
-// import AndroidPayScreen from './scenes/AndroidPayScreen'
+import AndroidPayScreen from './scenes/AndroidPayScreen'
 import CardFormScreen from './scenes/CardFormScreen'
-import CustomCardScreen from './scenes/CustomCardScreen'
-import CardTextFieldScreen from './scenes/CardTextFieldScreen'
 import testID from './utils/testID'
 
 stripe.setOptions({
-  publishableKey: '<PUBLISHABLE_KEY>',
-  merchantId: '<MERCHANT_ID>',
+  publishableKey: 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y',
   androidPayMode: 'test',
 })
 
@@ -22,8 +19,7 @@ export default class Root extends PureComponent {
     isDrawerOpen: false,
     routes: [
       CardFormScreen,
-      CustomCardScreen,
-      CardTextFieldScreen,
+      AndroidPayScreen
     ].filter(item => item),
   }
 
