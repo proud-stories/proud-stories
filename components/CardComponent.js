@@ -4,12 +4,12 @@ import {
     Text,
     StyleSheet,
     Image,
-    Dimensions
+    Dimensions,
+    TouchableHighlight
 } from "react-native";
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import Toast from 'react-native-root-toast';
-import { whileStatement } from "@babel/types";
 
 type Props = {};
 class CardComponent extends Component {
@@ -21,33 +21,6 @@ class CardComponent extends Component {
             didLike: props.didLike,
             likes: Number(props.likes)
         }
-    }
-
-    // componentDidUpdate(props, state) {
-    //     console.log("The component updated")
-    //     if (this.props.playing === this.props.index && this.state.paused) {
-    //         this.setState({ paused: false });
-    //     }
-    //     else if (this.props.playing !== this.props.index && !this.state.paused) {
-    //         this.setState({ paused: true });
-    //     }
-    // }
-
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     if(nextProps.playing !== prevState.playing){
-    //       return { playing: nextProps.playing};
-    //    }
-    //    else return null;
-    //  }
-
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps.paused !== this.props.paused) {
-    //         this.setState({paused: this.props.playing !== this.props.index})
-    //     }
-    // }
-
-    handleClick = (e) => {
-        this.setState({ paused: !this.state.paused })
     }
 
     render() {
@@ -62,15 +35,11 @@ class CardComponent extends Component {
                         </Body>
                     </Left>
                 </CardItem>
-                {/* const { width } = Dimensions.get("window"); */}
-                <CardItem cardBody style={{ height: 200 }}>
-                    <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
+                <CardItem cardBody style={{ height: 220 }}>
+                    <Video
+                        source={{ uri: this.props.url }}   // Can be a URL or a local file.
                         style={{ width: Dimensions.get("window").width, margin: 0 }}
-                        // ref={(ref) => {
-                        //     this.player = ref
-                        // }}
                         repeat
-                        onClick={this.handleClick}
                         paused={this.state.paused}
                         style={styles.backgroundVideo} />
                 </CardItem>
