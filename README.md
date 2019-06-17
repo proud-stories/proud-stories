@@ -2,6 +2,8 @@
 
 Introducing "proud stories" - a micro social-investment SNS where users share their activities showcasing pride in their community with the world through short videos. Videos receive "applause" - a small monetary contribution for each upvote on your video. Check it out on the Play Store [here](loc cit).
 
+[Insert several screenshots here]
+
 This repo contains the mobile app written in React Native. Presently it is compatible with Android, but will be available on iOS in a future release.
 
 ## Getting Started
@@ -14,7 +16,11 @@ First install Android Studio, and Android SDK. To build the app, it will be nece
 ```sdk.dir=/Users/USERNAME/Library/Android/sdk``` (Mac) <br>
 ```sdk.dir=C:\\Users\\USERNAME\\AppData\\Local\\Android\\sdk``` (Windows)
 
-Then from the root directory get dependencies with `npm install`.
+Then from the root directory get dependencies with `npm install`.for communities with video sharing foll
+
+#### Environment variables
+
+For authentication we use Auth0. Sign up and obtain credentials from [link to auth0] and add them to a `.env` file in the root directory following `.env.example`.
 
 #### Running the app in emulator with Android SDK
 
@@ -23,3 +29,4 @@ First open an emulator. Our primary device for testing was the Pixel 2, which ca
 ```path/to/Android/sdk/emulator/emulator --avd Pixel_2_API_29 -no-snapshot -wipe-data```
 
 Once the emulator has opened, from the root directory run `react-native run-android` to build the app and start metro bundler. If the server stops use `react-native start` to restart without the rebuild.
+
