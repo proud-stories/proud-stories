@@ -12,7 +12,7 @@ import MediaTab from './MediaTab/Main'
 
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { Icon } from 'native-base'
+import { Root } from 'native-base'
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     HomeTab: HomeTab,
@@ -21,6 +21,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
 }, {
         animationEnabled: true,
         swipeEnabled: true,
+        lazy: true,
         tabBarPosition: "bottom",
         tabBarOptions: {
             style: {
@@ -34,7 +35,8 @@ const AppTabNavigator = createMaterialTopTabNavigator({
             inactiveTintColor: '#d1cece',
             showLabel: false,
             showIcon: true
-        }
+        },
+        headerMode: "none"
     }
 )
 
@@ -48,7 +50,9 @@ class MainScreen extends Component {
 
     render() {
         return (
-            <AppTabContainer />
+            <Root>
+                <AppTabContainer />
+            </Root>
         );
     }
 }

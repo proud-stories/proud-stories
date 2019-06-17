@@ -7,9 +7,9 @@ import {
     Dimensions
 } from "react-native";
 import Video from 'react-native-video';
-import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
-import Toast from 'react-native-root-toast';
+import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
 import { whileStatement } from "@babel/types";
+import Moment from 'react-moment';
 
 const THRESHOLD = 10000;
 
@@ -20,12 +20,13 @@ class CardComponent extends Component {
         this.state = {
             paused: true,
             didLike: props.didLike,
-            likes: Number(props.likes)
+            likes: Number(props.count)
         }
         console.log(this.props)
     }
 
     render() {
+        const dateToFormat = this.props.created_at;
         return (
             <Card>
                 <CardItem>
@@ -33,7 +34,7 @@ class CardComponent extends Component {
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
                             <Text>Username </Text>
-                            <Text style={{ fontSize: 12 }} >Jan 15, 2018</Text>
+                            <Text style={{ fontSize: 12 }} ><Moment element={Text} fromNow>{dateToFormat}</Moment></Text>
                         </Body>
                     </Left>
                 </CardItem>
@@ -53,11 +54,16 @@ class CardComponent extends Component {
                 <CardItem style={{ height: 45 }}>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
-                            <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: 'black' }} />
+                            <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: this.state.didLike ? "red" : "black" }} />
                         </Button>
                         <Button transparent>
                             <Icon name="bubbles" type="SimpleLineIcons" style={{ color: 'black' }} />
                         </Button>
+                        {this.props.editVideo !== undefined &&
+                            <Button transparent onPress={() => this.editVideo()}>
+                                <Icon name="edit" type="FontAwesome" style={{ color: 'black' }} />
+                            </Button>
+                        }
 
 
                     </Left>
@@ -93,31 +99,16 @@ class CardComponent extends Component {
                 if (res.status !== 200)
                     this.setState({ didLike: false, likes: this.state.likes - 1 });
 
-                let isShowing = false;
-
                 if (res.status === 500) {
-                    if (!isShowing)
-                        Toast.show(res.error, {
-                            duration: Toast.durations.LONG,
-                            position: Toast.positions.TOP,
-                            shadow: true,
-                            backgroundColor: "crimson",
-                            textColor: "white",
-                            opacity: 1,
-                            animation: true,
-                            hideOnPress: true,
-                            onShow: () => {
-                                isShowing = true;
-                            },
-                            onHide: () => {
-                                isShowing = false;
-                            }
-                        }
-                        )
+                    Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
                 }
             }).catch((err) => {
                 console.error(err)
             })
+    }
+
+    editVideo() {
+        this.props.editVideo();
     }
 }
 export default CardComponent;
