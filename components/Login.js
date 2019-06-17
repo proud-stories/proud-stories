@@ -92,6 +92,9 @@ export default class Login extends Component {
   }
 
   login = () => {
+    this.setState({
+      hasInitialized: true
+    });
     auth0.webAuth
       .authorize({
         scope: Config.AUTHO_SCOPE,
@@ -123,19 +126,19 @@ export default class Login extends Component {
       });
   };
 
-  // saveUser = async (data) => {
+  saveUser = async (data) => {
 
-    // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     name: data.name
-    //   }),
-    // })
+    const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: data.name
+      }),
+    })
     
-    // const userId = response.json()
-    // await AsyncStorage.setItem('@id', userId.id);
-  //   return data;
-  // }
+    const userId = response.json()
+    await AsyncStorage.setItem('@id', userId.id);
+    return data;
+  }
 
   gotoTopPage = async data => {
     await AsyncStorage.setItem('@name', data.name);

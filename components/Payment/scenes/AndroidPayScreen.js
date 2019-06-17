@@ -5,6 +5,11 @@ import Button from '../components/Button'
 import testID from '../utils/testID'
 import { Item, Input } from 'native-base';
 
+stripe.setOptions({
+  publishableKey: 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y',
+  androidPayMode: 'test',
+})
+
 export default class AndroidPayScreen extends PureComponent {
   static title = 'Android Pay'
 
@@ -30,8 +35,6 @@ export default class AndroidPayScreen extends PureComponent {
       const token = await stripe.paymentRequestWithNativePay({
         total_price: this.state.amount,
         currency_code: 'USD',
-        shipping_address_required: false,
-        phone_number_required: false,
       })
       this.setState({ token })
       const payment = await doPayment(this.state.amount * 100, this.state.token.tokenId)
