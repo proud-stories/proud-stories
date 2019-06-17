@@ -4,15 +4,16 @@ import {
     Text,
     StyleSheet,
     Image,
-    Dimensions
+    Dimensions,
 } from "react-native";
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
-import { whileStatement } from "@babel/types";
 import Moment from 'react-moment';
 
 const THRESHOLD = 10000;
 
+
+type Props = {};
 class CardComponent extends Component {
     constructor(props) {
         super(props)
@@ -22,7 +23,6 @@ class CardComponent extends Component {
             didLike: props.didLike,
             likes: Number(props.count)
         }
-        console.log(this.props)
     }
 
     render() {
@@ -38,20 +38,15 @@ class CardComponent extends Component {
                         </Body>
                     </Left>
                 </CardItem>
-                {/* const { width } = Dimensions.get("window"); */}
-                <CardItem cardBody style={{ height: 200 }}>
-                    <Video source={{ uri: this.props.url }}   // Can be a URL or a local file.
+                <CardItem cardBody style={{ height: 220 }}>
+                    <Video
+                        source={{ uri: this.props.url }}   // Can be a URL or a local file.
                         style={{ width: Dimensions.get("window").width, margin: 0 }}
-                        ref={(ref) => {
-                            this.player = ref
-                        }}
                         repeat
-                        paused={this.props.paused}
-                        //   onBuffer={this.onBuffer}                // Callback when remote video is buffering
-                        //   onError={this.videoError}               // Callback when video cannot be loaded
+                        paused={this.state.paused}
                         style={styles.backgroundVideo} />
                 </CardItem>
-                <CardItem style={{ height: 45 }}>
+                <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
                             <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: this.state.didLike ? "red" : "black" }} />
