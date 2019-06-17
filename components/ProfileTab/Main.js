@@ -10,6 +10,7 @@ import Account from './Account'
 import Login from "../Login"
 import MyVideos from "./MyVideos/Videos"
 import EditVideo from "./MyVideos/EditVideo"
+import Payment from "../Payment/Payment"
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon, Root } from 'native-base'
@@ -26,12 +27,15 @@ const AppNavigator = createStackNavigator({
     },
     EditVideo: {
         screen: EditVideo
+    },
+    Payment: {
+        screen: Payment
     }
 },
-    {
-        initialRouteName: "ProfileHome",
-        headerMode: "none"
-    });
+{
+    initialRouteName: "ProfileHome",
+    headerMode: "none"
+});
 
 const AppTabContainer = createAppContainer(AppNavigator)
 

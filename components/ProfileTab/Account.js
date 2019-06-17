@@ -44,18 +44,17 @@ export default class Account extends Component {
   }
 
 
-  getData = async () => {
-    try {
-      const name = await AsyncStorage.getItem('@name');
-      const picture = await AsyncStorage.getItem('@picture');
-      this.setState({
-        name: name,
-        picture: picture
-      })
-    } catch (error) {
-      // Error retrieving data
-      console.log(error.message);
-    }
+getData = async () => {
+  try {
+    const name = await AsyncStorage.getItem('@name');
+    const picture = await AsyncStorage.getItem('@picture');
+    this.setState({
+      name: name,
+      picture: picture,
+    })
+  } catch (error) {
+    // Error retrieving data
+    console.log(error.message);
   }
 
   render() {
@@ -66,11 +65,11 @@ export default class Account extends Component {
 
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
-          <Text style={styles.credit}>Your current credit is: 0</Text>
-          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
-          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block><Text>Charge my credits</Text></Button>
-          <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout} ><Text>Logout</Text></Button>
-        </View>
+            <Text style={styles.credit}>Your current credit is: 0</Text>
+            <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
+            <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block onPress={this.gotoPayment}><Text>Charge my credits</Text></Button>
+            <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout}><Text>Logout</Text></Button>
+          </View>
       </Container>
     );
   }
@@ -102,5 +101,18 @@ export default class Account extends Component {
     });
 
     this.props.navigation.dispatch(resetAction);
-  };
+  }; 
+
+  gotoPayment = () => {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: "Payment"
+        })
+      ]
+    });
+  
+    this.props.navigation.dispatch(resetAction);
+  }; 
 }
