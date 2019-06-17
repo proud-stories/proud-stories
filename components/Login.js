@@ -25,10 +25,10 @@ export default class Login extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Login",
-      headerStyle: { 
+      headerStyle: {
         backgroundColor: headerColorStyle
       },
-      headerTitleStyle: { 
+      headerTitleStyle: {
         color: headerTextColorStyle
       }
     };
@@ -72,21 +72,21 @@ export default class Login extends Component {
   render() {
     return (
       <Container>
-      <View style={styles.container}>
-      <Image
-          source={require('../img/download3.png')}
-        />
-        <ActivityIndicator
-          size="large"
-          color="#05a5d1"
-          animating={!this.state.hasInitialized}
-        />
-        {this.state.hasInitialized && (
-          <Button info block onPress={this.login} color={buttonStyle}>
-            <Text>Login/Register</Text>
-          </Button>
-        )}
-      </View>
+        <View style={styles.container}>
+          <Image
+            source={require('../img/download3.png')}
+          />
+          <ActivityIndicator
+            size="large"
+            color="#05a5d1"
+            animating={!this.state.hasInitialized}
+          />
+          {this.state.hasInitialized && (
+            <Button info block onPress={this.login} color={buttonStyle}>
+              <Text>Login/Register</Text>
+            </Button>
+          )}
+        </View>
       </Container>
     );
   }
@@ -124,15 +124,15 @@ export default class Login extends Component {
 
   // saveUser = async (data) => {
 
-    // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     name: data.name
-    //   }),
-    // })
-    
-    // const userId = response.json()
-    // await AsyncStorage.setItem('@id', userId.id);
+  // const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
+  //   method: 'POST',
+  //   body: JSON.stringify({
+  //     name: data.name
+  //   }),
+  // })
+
+  // const userId = response.json()
+  // await AsyncStorage.setItem('@id', userId.id);
   //   return data;
   // }
 

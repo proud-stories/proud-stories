@@ -17,9 +17,9 @@ import {
   headerColorStyle,
   headerTextColorStyle,
   buttonStyle
-} from "../styles/colors";
+} from "../../styles/colors";
 
-import styles from "../styles/Account";
+import styles from "../../styles/Account";
 
 export default class Account extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -38,39 +38,39 @@ export default class Account extends Component {
     this.getData();
   }
 
-  state= {
+  state = {
     name: "",
     picture: ""
   }
 
 
-getData = async () => {
-  try {
-    const name = await AsyncStorage.getItem('@name');
-    const picture = await AsyncStorage.getItem('@picture');
-    this.setState({
-      name: name,
-      picture: picture
-    })
-  } catch (error) {
-    // Error retrieving data
-    console.log(error.message);
+  getData = async () => {
+    try {
+      const name = await AsyncStorage.getItem('@name');
+      const picture = await AsyncStorage.getItem('@picture');
+      this.setState({
+        name: name,
+        picture: picture
+      })
+    } catch (error) {
+      // Error retrieving data
+      console.log(error.message);
+    }
   }
-}
 
   render() {
     return (
       <Container>
-          <View style={styles.container}>
-            <Image style={styles.picture} source={{ uri: this.state.picture }} />
+        <View style={styles.container}>
+          <Image style={styles.picture} source={{ uri: this.state.picture }} />
 
-            <Text style={styles.usernameText}>{this.state.name}</Text>
+          <Text style={styles.usernameText}>{this.state.name}</Text>
 
-            <Text style={styles.credit}>Your current credit is: 0</Text>
-            <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
-            <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block><Text>Charge my credits</Text></Button>
-            <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout} ><Text>Logout</Text></Button>
-          </View>
+          <Text style={styles.credit}>Your current credit is: 0</Text>
+          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
+          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block><Text>Charge my credits</Text></Button>
+          <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout} ><Text>Logout</Text></Button>
+        </View>
       </Container>
     );
   }
@@ -78,7 +78,7 @@ getData = async () => {
   logout = () => {
     SInfo.deleteItem("accessToken", {});
     SInfo.deleteItem("refreshToken", {});
-  
+
     auth0.webAuth
       .clearSession()
       .then(res => {
@@ -87,7 +87,7 @@ getData = async () => {
       .catch(err => {
         console.log("error clearing session: ", err);
       });
-  
+
     this.gotoLogin(); // go to login screen
   };
 
@@ -100,7 +100,7 @@ getData = async () => {
         })
       ]
     });
-  
+
     this.props.navigation.dispatch(resetAction);
-  }; 
+  };
 }
