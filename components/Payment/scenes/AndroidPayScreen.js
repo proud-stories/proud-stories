@@ -34,7 +34,7 @@ export default class AndroidPayScreen extends PureComponent {
         phone_number_required: false,
       })
       this.setState({ token })
-      const payment = await doPayment(this.state.amount, this.state.token.tokenId)
+      const payment = await doPayment(this.state.amount * 100, this.state.token.tokenId)
       this.setState({ loading: false })
     } catch (error) {
       this.setState({ loading: false })

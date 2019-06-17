@@ -50,7 +50,7 @@ getData = async () => {
     const picture = await AsyncStorage.getItem('@picture');
     this.setState({
       name: name,
-      picture: picture
+      picture: picture,
     })
   } catch (error) {
     // Error retrieving data
