@@ -128,16 +128,12 @@ export default class Login extends Component {
 
   saveUser = async (data) => {
 
-    const response = await fetch('https://proud-stories-staging.herokuapp.com/users', {
+    await fetch('https://proud-stories-staging.herokuapp.com/users', {
       method: 'POST',
       body: JSON.stringify({
         name: data.name
       }),
     })
-    
-    const userId = response.json()
-    await AsyncStorage.setItem('@id', userId.id);
-    return data;
   }
 
   gotoTopPage = async data => {

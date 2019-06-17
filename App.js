@@ -4,6 +4,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
 import Account from "./components/ProfileTab/Main"
+import Payment from "./components/Payment/Payment"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,6 +22,9 @@ const AppNavigator = createStackNavigator({
   },
   Account: {
     screen: Account
+  },
+  Payment: {
+    screen: Payment
   }
 },
   {

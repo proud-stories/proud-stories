@@ -6,8 +6,18 @@ import testID from '../utils/testID'
 import { doPayment } from '../api'
 import { Item, Input } from 'native-base';
 
+
 export default class CardFormScreen extends PureComponent {
   static title = 'Card Form'
+
+  theme = {
+    primaryBackgroundColor: "",
+    secondaryBackgroundColor: "",
+    primaryForegroundColor: "",
+    secondaryForegroundColor: "",
+    accentColor: "",
+    errorColor: ""
+  }
 
   state = {
     amount: 0,
@@ -18,24 +28,11 @@ export default class CardFormScreen extends PureComponent {
   handleCardPayPress = async () => {
     try {
       this.setState({ loading: true, token: null })
-      const token = await stripe.paymentRequestWithCardForm({
-        requiredBillingAddressFields: 'full',
-        prefilledInformation: {
-          billingAddress: {
-            name: 'Gunilla Haugeh',
-            line1: 'Canary Place',
-            line2: '3',
-            city: 'Macon',
-            state: 'Georgia',
-            country: 'US',
-            postalCode: '31217',
-          },
-        },
-      })
+      const token = await stripe.paymentRequestWithCardForm()
       this.setState({ token })
-      const payment = await doPayment(this.state.amount * 100, this.state.token.tokenId )
+      await doPayment(this.state.amount * 100, this.state.token.tokenId )
       this.setState({ loading: false })
-
+      this.gotoAccountPage()
     } catch (error) {
       this.setState({ loading: false })
     }

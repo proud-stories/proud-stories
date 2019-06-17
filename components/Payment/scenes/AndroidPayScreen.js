@@ -34,11 +34,12 @@ export default class AndroidPayScreen extends PureComponent {
       })
       const token = await stripe.paymentRequestWithNativePay({
         total_price: this.state.amount,
-        currency_code: 'USD',
+        currency_code: 'JPY',
       })
       this.setState({ token })
-      const payment = await doPayment(this.state.amount * 100, this.state.token.tokenId)
+      await doPayment(this.state.amount * 100, this.state.token.tokenId)
       this.setState({ loading: false })
+      this.gotoAccountPage()
     } catch (error) {
       this.setState({ loading: false })
     }
@@ -77,6 +78,19 @@ export default class AndroidPayScreen extends PureComponent {
       </View>
     )
   }
+
+  gotoAccountPage = () => {
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: "Account",
+        })
+      ]
+    });
+
+    this.props.navigation.dispatch(resetAction);
+  };
 }
 
 const styles = StyleSheet.create({
