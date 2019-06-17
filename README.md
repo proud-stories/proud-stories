@@ -1,6 +1,8 @@
 # proud stories
 
-Introducing "proud stories" - a micro social-investment SNS where users share their activities showcasing pride in their community with the world through short videos. Videos receive "applause" - a small monetary contribution for each upvote on your video. Check it out on the Play Store [here](loc cit).
+Introducing "proud stories" - a micro social-investment SNS where users share their activities showcasing pride in their community with the world through short videos. Users can also receive "applause" - a small monetary contribution for each upvote a video receives.
+
+Check it out on the Google Play Store [here](loc cit)!
 
 [Insert several screenshots here]
 
