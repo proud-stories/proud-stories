@@ -54,9 +54,12 @@ export default class Account extends Component {
         name: name,
         picture: picture,
       })
-      const balance = fetch(`https://proud-stories-staging.herokuapp.com/users/${id}/balance`)
-      this.setState({
-        balance: data.balance
+      fetch(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
+      .then(response=> response.body.json())
+      .then(data=> {
+        this.setState({
+          balance: data.balance
+        })
       })
     } catch (error) {
       // Error retrieving data

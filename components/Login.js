@@ -130,9 +130,9 @@ export default class Login extends Component {
 
     await fetch('https://proud-stories-staging.herokuapp.com/users', {
       method: 'POST',
-      body: JSON.stringify({
+      body: {
         name: data.name
-      }),
+      },
     })
     return data;
   }
