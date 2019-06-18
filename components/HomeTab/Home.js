@@ -153,9 +153,6 @@ class HomeTab extends Component {
                                         null
                                 }
                             </View>
-                            <CardItem>
-                                <Text>Uiii</Text>
-                            </CardItem>
                         </Card>
                         <Button
                             onPress={() => this.applyCategories()}
