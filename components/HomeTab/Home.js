@@ -34,7 +34,6 @@ class HomeTab extends Component {
         this._renderRow = this._renderRow.bind(this)
     }
 
-
     _renderRow(_type, data, index) {
         return <CardComponent
             className={'card'}
@@ -66,7 +65,7 @@ class HomeTab extends Component {
     // }
 
     componentDidMount() {
-        fetch("http://10.0.2.2:3333/videos")
+        fetch("https://proud-stories.herokuapp.com/users/1/videos")
             .then(data => data.json())
             .then(data => {
                 //add the items from database into state
