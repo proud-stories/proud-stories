@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Platform, StyleSheet } from 'react-native'
 import DrawerLayout from 'react-native-drawer-layout-polyfill'
 import stripe from 'tipsi-stripe'
+import { NavigationActions, StackActions } from "react-navigation";
 import Header from './components/Header'
 import MenuItem from './components/MenuItem'
 import AndroidPayScreen from './scenes/AndroidPayScreen'
