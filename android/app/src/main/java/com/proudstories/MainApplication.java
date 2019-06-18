@@ -3,6 +3,7 @@ package com.proudstories;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.gettipsi.stripe.StripeReactPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -36,12 +37,11 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new AsyncStoragePackage(),
-            new RNFetchBlobPackage(),
-            new ImagePickerPackage(), new RNCameraPackage(),
-          new PickerPackage(), new ReactNativeExceptionHandlerPackage(), new VectorIconsPackage(),
-          new ReactVideoPackage(), new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(),
-          new ReactNativeConfigPackage(), new RNDeviceInfo(), new A0Auth0Package(), new RNGestureHandlerPackage());
+            new StripeReactPackage(), new AsyncStoragePackage(), new RNFetchBlobPackage(),
+          new ImagePickerPackage(), new RNCameraPackage(), new PickerPackage(),
+          new ReactNativeExceptionHandlerPackage(), new VectorIconsPackage(), new ReactVideoPackage(),
+          new RNSensitiveInfoPackage(), new ReactNativeRestartPackage(), new ReactNativeConfigPackage(),
+          new RNDeviceInfo(), new A0Auth0Package(), new RNGestureHandlerPackage());
     }
 
     @Override

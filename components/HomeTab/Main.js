@@ -28,7 +28,7 @@ class HomeTab extends Component {
     static navigationOptions = {
 
         tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
+            <Icon name="home" style={{ color: tintColor }} />
         )
     }
 
