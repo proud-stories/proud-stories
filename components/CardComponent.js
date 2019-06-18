@@ -5,12 +5,11 @@ import {
     StyleSheet,
     Image,
     Dimensions,
+    TouchableWithoutFeedback
 } from "react-native";
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
 import Moment from 'react-moment';
-
-const THRESHOLD = 10000;
 
 class CardComponent extends Component {
     constructor(props) {
@@ -21,6 +20,12 @@ class CardComponent extends Component {
             didLike: props.didLike,
             likes: Number(props.likes)
         }
+    }
+
+    handleClick = () => {
+        const newState = {...this.state};
+        newState.paused = !newState.paused;
+        this.setState(newState)
     }
 
     render() {
@@ -36,14 +41,17 @@ class CardComponent extends Component {
                         </Body>
                     </Left>
                 </CardItem>
-                <CardItem cardBody style={{ height: 220 }}>
+                {/* <Button onPress={this.handleClick}><Text>Press!</Text></Button> */}
+                <TouchableWithoutFeedback onPress={this.handleClick}>
+                <CardItem cardBody style={{ height: 220 }} onPress={this.handleClick}>
                     <Video
                         source={{ uri: this.props.url }}   // Can be a URL or a local file.
                         style={{ width: Dimensions.get("window").width, margin: 0 }}
                         repeat
-                        paused={this.state.paused}
+                        paused={!this.state.paused}
                         style={styles.backgroundVideo} />
                 </CardItem>
+                </TouchableWithoutFeedback>
                 <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
