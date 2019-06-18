@@ -134,6 +134,7 @@ export default class Login extends Component {
         name: data.name
       }),
     })
+    return data;
   }
 
   gotoTopPage = async data => {

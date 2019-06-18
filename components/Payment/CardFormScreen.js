@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import stripe from 'tipsi-stripe'
-import Button from '../components/Button'
-import testID from '../utils/testID'
-import { doPayment } from '../api'
+import Button from './components/Button'
+import testID from './utils/testID'
+import { doPayment } from './api'
 import { Item, Input } from 'native-base';
 
 
