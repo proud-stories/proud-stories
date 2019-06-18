@@ -44,17 +44,18 @@ export default class Account extends Component {
   }
 
 
-getData = async () => {
-  try {
-    const name = await AsyncStorage.getItem('@name');
-    const picture = await AsyncStorage.getItem('@picture');
-    this.setState({
-      name: name,
-      picture: picture,
-    })
-  } catch (error) {
-    // Error retrieving data
-    console.log(error.message);
+  getData = async () => {
+    try {
+      const name = await AsyncStorage.getItem('@name');
+      const picture = await AsyncStorage.getItem('@picture');
+      this.setState({
+        name: name,
+        picture: picture,
+      })
+    } catch (error) {
+      // Error retrieving data
+      console.log(error.message);
+    }
   }
 
   render() {
@@ -65,11 +66,11 @@ getData = async () => {
 
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
-            <Text style={styles.credit}>Your current credit is: 0</Text>
-            <Button info style={{marginBottom: 5, backgroundColor: '#930077'}} block><Text>My Videos</Text></Button>
-            <Button success style={{marginBottom: 5, backgroundColor: '#e4007c'}} block onPress={this.gotoPayment}><Text>Charge my credits</Text></Button>
-            <Button danger style={{marginBottom: 5, backgroundColor: '#ffbd39'}} block onPress={this.logout}><Text>Logout</Text></Button>
-          </View>
+          <Text style={styles.credit}>Your current credit is: 0</Text>
+          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block><Text>My Videos</Text></Button>
+          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={this.gotoPayment}><Text>Charge my credits</Text></Button>
+          <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
+        </View>
       </Container>
     );
   }
@@ -101,7 +102,7 @@ getData = async () => {
     });
 
     this.props.navigation.dispatch(resetAction);
-  }; 
+  };
 
   gotoPayment = () => {
     const resetAction = StackActions.reset({
@@ -112,7 +113,7 @@ getData = async () => {
         })
       ]
     });
-  
+
     this.props.navigation.dispatch(resetAction);
-  }; 
+  };
 }

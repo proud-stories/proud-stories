@@ -3886,6 +3886,11 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash-es@4.17.4:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
+  integrity sha1-3MHXVS4VCgZABzupyzHXDwMpUOc=
+
 lodash.pad@^4.1.0:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/lodash.pad/-/lodash.pad-4.5.1.tgz#4330949a833a7c8da22cc20f6a26c4d59debba70"
@@ -5130,6 +5135,13 @@ prompts@^2.0.1:
     kleur "^3.0.2"
     sisteransi "^1.0.0"
 
+prop-types@15.5.8:
+  version "15.5.8"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
+  integrity sha1-a3suFBCDvjjIWVqlH8VXdccZk5Q=
+  dependencies:
+    fbjs "^0.8.9"
+
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -5265,6 +5277,13 @@ react-moment@^0.9.2:
   resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.9.2.tgz#1cdc6ed02f1735282282129edf0f607f420df039"
   integrity sha512-jpKIEvcEOTSa4RXWTjDlvja7sN+ee5Gyk5ZKa704FZxE01OxmKIpq9GUliqTrAgdDYJJUQsnqQamczn0TN+DTg==
 
+react-native-animatable@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.2.tgz#4783ee1a73dc98815aef234ce6b819f80bfe7d80"
+  integrity sha512-rmah3KQ63ft8DxkzFUwJSuZeq+oSYwldoGF4DTOR5WM2WR5wiWLgBAtrAHlI3Di3by323uOR21s+MlqPcHz2Kw==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-auth0@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-native-auth0/-/react-native-auth0-1.4.2.tgz#683049fb81f05c63b0a2401c26a30eadc216a34d"
@@ -5354,6 +5373,19 @@ react-native-keyboard-aware-scroll-view@0.8.0:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-modal@^11.0.2:
+  version "11.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.0.2.tgz#bd2e16901b23d5ac4762c7a5ec03192138805236"
+  integrity sha512-FLXSdzUJx30oVnet6nheT+/+90QYwqBiTmFmsL27ZGdEPpgc5QaMJsS7kIhs5xhmgPvW5+Gw8z7I9DIkc7z+HQ==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "^1.3.1"
+
+react-native-multiple-select@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-multiple-select/-/react-native-multiple-select-0.5.2.tgz#2667c542a6011c31a3f5c0ea539b787ba4900d33"
+  integrity sha512-ledfBDPsgz/jOgWLq94uKZXdhFG4UenYGVAlZMuPpNrMcyV+h4mngUPLQ83dt9/QQOwMFfrVY2QQHw40GygHZg==
+
 react-native-paper@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-2.16.0.tgz#5a9edd5615bb010ec0d29cbfd5524c2944b2505d"
@@ -5370,22 +5402,6 @@ react-native-restart@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.10.tgz#b86d866de08622bc8ae55f60fb919d845617a9c1"
   integrity sha512-1cjx/dauCz8q2pP2TeZ9MjE+o0HVsjAZgaZGqV5xUYyFz9/xOQUfwJWYkfRdBEZfUQOeGihBRBojLodICGDvag==
-
-react-native-root-siblings@^3.0.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.2.1.tgz#06bd8722babe8a30e914b73eae4beffa3218ec57"
-  integrity sha512-WNNhLRFpyK8R00OOdMhQVepeBV+khMTi+Yk3QcPRetMLvao8kLkCP5SObiXpbTFPZlkuSfHo/0jtEKyUA8qWpw==
-  dependencies:
-    prop-types "^15.6.2"
-    static-container "^1.0.0"
-
-react-native-root-toast@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-root-toast/-/react-native-root-toast-3.1.1.tgz#9eb6c9821fc5cbb105f3bd8d058a8fcf7db7093a"
-  integrity sha512-jl7d3FuQhs4+irlUHXonQglXRzTH0Z5WbkO0eP73BvtMwsdAzbZcFYqVcISotR7FLwiOGy0xWesARZZehFxgUg==
-  dependencies:
-    prop-types "^15.5.10"
-    react-native-root-siblings "^3.0.0"
 
 react-native-safe-area-view@^0.12.0:
   version "0.12.0"
@@ -5664,6 +5680,15 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+recyclerlistview@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/recyclerlistview/-/recyclerlistview-1.3.4.tgz#4c0e57d19d5480d3c4e7e5abc45b23ca7ce09a5f"
+  integrity sha1-TA5X0Z1UgNPE5+WrxFsjynzgml8=
+  dependencies:
+    lodash-es "4.17.4"
+    prop-types "15.5.8"
+    ts-object-utils "0.0.5"
 
 regenerate-unicode-properties@^8.0.2:
   version "8.1.0"
@@ -6244,11 +6269,6 @@ stacktrace-parser@^0.1.3:
   dependencies:
     type-fest "^0.3.0"
 
-static-container@^1.0.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/static-container/-/static-container-1.3.0.tgz#e4f7b4be4e42954e3d1955ab7b3974a78b7bad87"
-  integrity sha512-OJnvgv6tq9T5QbFUMioEK4WP48pMn/X4qdcrWAhop6boMMz6pMmWPWXgjimn1wKqcClZ6Ff0iSKViRXzwx111w==
-
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -6516,6 +6536,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+ts-object-utils@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/ts-object-utils/-/ts-object-utils-0.0.5.tgz#95361cdecd7e52167cfc5e634c76345e90a26077"
+  integrity sha1-lTYc3s1+UhZ8/F5jTHY0XpCiYHc=
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

@@ -12,8 +12,6 @@ import Moment from 'react-moment';
 
 const THRESHOLD = 10000;
 
-
-type Props = {};
 class CardComponent extends Component {
     constructor(props) {
         super(props)
@@ -21,7 +19,7 @@ class CardComponent extends Component {
         this.state = {
             paused: true,
             didLike: props.didLike,
-            likes: Number(props.count)
+            likes: Number(props.likes)
         }
     }
 
@@ -81,6 +79,7 @@ class CardComponent extends Component {
 
     likeVideo() {
         this.setState({ didLike: true, likes: this.state.likes + 1 });
+        console.log("Here")
         fetch('http://10.0.2.2:3333/videos/likes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -90,7 +89,6 @@ class CardComponent extends Component {
             }),
         }).then(res => res.json())
             .then(res => {
-                console.log(res.status)
                 if (res.status !== 200)
                     this.setState({ didLike: false, likes: this.state.likes - 1 });
 
