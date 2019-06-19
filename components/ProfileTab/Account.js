@@ -109,15 +109,6 @@ export default class Account extends Component {
   };
 
   gotoLogin = () => {
-    // const resetAction = StackActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({
-    //       routeName: "Login"
-    //     })
-    //   ]
-    // });
-
     this.props.navigation.navigate("Login");
   };
 

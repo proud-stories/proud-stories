@@ -46,23 +46,6 @@ navigator.navigationOptions = {
 
 export default navigator;
 
-// const AppTabContainer = createAppContainer(AppTabNavigator)
-
-// class MainScreen extends Component {
-
-//     static navigationOptions = {
-//         title: "proud stories"
-//     }
-
-//     render() {
-//         return (
-//             <Root>
-//                 <AppTabContainer />
-//             </Root>
-//         );
-//     }
-// }
-// export default MainScreen;
 
 const styles = StyleSheet.create({
     container: {
