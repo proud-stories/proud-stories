@@ -5,9 +5,9 @@ import Button from './components/Button'
 import testID from './utils/testID'
 import { doPayment } from './api'
 import { Item, Input } from 'native-base';
-import { NavigationActions, StackActions } from "react-navigation";
+import { NavigationActions, StackActions, withNavigation } from "react-navigation";
 
-export default class CardFormScreen extends PureComponent {
+class CardFormScreen extends PureComponent {
   static title = 'Card Form'
 
   theme = {
@@ -96,3 +96,5 @@ const styles = StyleSheet.create({
     width: 270
   }
 })
+
+export default withNavigation(CardFormScreen);
