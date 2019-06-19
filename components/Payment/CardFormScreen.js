@@ -30,7 +30,7 @@ export default class CardFormScreen extends PureComponent {
       this.setState({ loading: true, token: null })
       const token = await stripe.paymentRequestWithCardForm()
       this.setState({ token })
-      await doPayment(this.state.amount * 100, this.state.token.tokenId )
+      await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
       this.props.navigation.navigate('Account')
     } catch (error) {
