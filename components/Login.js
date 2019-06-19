@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, ActivityIndicator } from "react-native";
+import { View, Image, ActivityIndicator, StyleSheet } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
@@ -12,10 +12,8 @@ import axios from "axios"
 
 import {
   headerColorStyle,
-  headerTextColorStyle,
-  buttonStyle
+  headerTextColorStyle 
 } from "../styles/colors";
-import styles from "../styles/Login";
 
 const auth0 = new Auth0({
   domain: Config.AUTH0_DOMAIN,
@@ -83,7 +81,7 @@ export default class Login extends Component {
             animating={!this.state.hasInitialized}
           />
           {this.state.hasInitialized && (
-            <Button info block onPress={this.login} color={buttonStyle}>
+            <Button info block onPress={this.login} style={{backgroundColor:'#08c3fc'}}>
               <Text>Login/Register</Text>
             </Button>
           )}
@@ -105,8 +103,8 @@ export default class Login extends Component {
       })
       .then(res => {
         this.setState({
-          hasInitialized: false
-        })
+              hasInitialized: false
+            })
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
@@ -135,20 +133,25 @@ export default class Login extends Component {
   }
 
   gotoTopPage = async data => {
-    console.log('saving to data storeage', data)
     await Promise.all([
       AsyncStorage.setItem('@name', data.name),
       AsyncStorage.setItem('@picture', data.picture),
       AsyncStorage.setItem('@id', data.sub)
     ]);
-    console.log('saved to data storeage', data)
+
     this.setState({
       hasInitialized: true
     });
 
-
-    console.log(this.props)
     this.props.navigation.navigate('Home')
 
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});
