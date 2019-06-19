@@ -34,8 +34,9 @@ export default class Account extends Component {
     };
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.getData();
+    this.getBalance();
   }
 
   state = {
@@ -53,13 +54,20 @@ export default class Account extends Component {
       this.setState({
         name: name,
         picture: picture,
+        id: id
       })
-      axios.get(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
-      .then(response=> response.body.json())
-      .then(data=> {
-        this.setState({
-          balance: data.balance
-        })
+    } catch (error) {
+      // Error retrieving data
+      console.log(error.message);
+    }
+  }
+
+  getBalance = async () => {
+    try {
+      const balance = await fetch(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
+      const json = await balance.json();
+      this.setState({
+        balance: json.balance
       })
     } catch (error) {
       // Error retrieving data
