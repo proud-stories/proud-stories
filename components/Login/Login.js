@@ -6,16 +6,12 @@ import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import SInfo from "react-native-sensitive-info";
 import RNRestart from "react-native-restart";
-import AsyncStorage from '@react-native-community/async-storage';
-import { Container, Button, Text } from 'native-base';
-import axios from "axios"
+import AsyncStorage from "@react-native-community/async-storage";
+import { Container, Button, Text } from "native-base";
+import axios from "axios";
 
-import {
-  headerColorStyle,
-  headerTextColorStyle,
-  buttonStyle
-} from "../styles/colors";
-import styles from "../styles/Login";
+import { headerColorStyle, headerTextColorStyle, buttonStyle } from "../../styles/colors";
+import styles from "../../styles/Login";
 
 const auth0 = new Auth0({
   domain: Config.AUTH0_DOMAIN,
@@ -36,7 +32,7 @@ export default class Login extends Component {
   };
 
   state = {
-    hasInitialized: false,
+    hasInitialized: false
   };
 
   componentDidMount() {
@@ -74,14 +70,8 @@ export default class Login extends Component {
     return (
       <Container>
         <View style={styles.container}>
-          <Image
-            source={require('../img/download3.png')}
-          />
-          <ActivityIndicator
-            size="large"
-            color="#05a5d1"
-            animating={!this.state.hasInitialized}
-          />
+          <Image source={require("../img/download3.png")} />
+          <ActivityIndicator size="large" color="#05a5d1" animating={!this.state.hasInitialized} />
           {this.state.hasInitialized && (
             <Button info block onPress={this.login} color={buttonStyle}>
               <Text>Login/Register</Text>
@@ -107,12 +97,12 @@ export default class Login extends Component {
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
-            return this.saveUser(data)
+            return this.saveUser(data);
           })
           .then(data => {
             this.setState({
               hasInitialized: false
-            })
+            });
             return this.gotoTopPage(data);
           })
           .catch(err => {
@@ -129,26 +119,24 @@ export default class Login extends Component {
       });
   };
 
-  saveUser = async (data) => {
-    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: data.sub});
+  saveUser = async data => {
+    await axios.post("https://proud-stories.herokuapp.com/users", { name: data.name, auth_id: data.sub });
     return data;
-  }
+  };
 
   gotoTopPage = async data => {
-    console.log('saving to data storeage', data)
+    console.log("saving to data storeage", data);
     await Promise.all([
-      AsyncStorage.setItem('@name', data.name),
-      AsyncStorage.setItem('@picture', data.picture),
-      AsyncStorage.setItem('@id', data.sub)
+      AsyncStorage.setItem("@name", data.name),
+      AsyncStorage.setItem("@picture", data.picture),
+      AsyncStorage.setItem("@id", data.sub)
     ]);
-    console.log('saved to data storeage', data)
+    console.log("saved to data storeage", data);
     this.setState({
       hasInitialized: true
     });
 
-
-    console.log(this.props)
-    this.props.navigation.replace('Home')
-
+    console.log(this.props);
+    this.props.navigation.replace("Home");
   };
 }

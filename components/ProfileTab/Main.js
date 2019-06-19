@@ -1,68 +1,59 @@
 import React, { Component } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    Platform
-} from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 
-import Account from './Account'
-import Login from "../Login"
-import MyVideos from "./MyVideos/Videos"
-import EditVideo from "./MyVideos/EditVideo"
-import Payment from "../Payment/Payment"
-import CardFormScreen from '../Payment/CardFormScreen'
+import Account from "./Account";
+import Login from "../Login/Main";
+import MyVideos from "./MyVideos/Videos";
+import EditVideo from "./MyVideos/EditVideo";
+import Payment from "../Payment/Payment";
+import CardFormScreen from "../Payment/CardFormScreen";
 
-import { createAppContainer, createStackNavigator, create } from 'react-navigation';
-import { Icon, Root } from 'native-base'
+import { createAppContainer, createStackNavigator, create } from "react-navigation";
+import { Icon, Root } from "native-base";
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createStackNavigator(
+  {
     ProfileHome: {
-        screen: Account
+      screen: Account
     },
     Login: {
-        screen: Login
+      screen: Login
     },
     MyVideos: {
-        screen: MyVideos
+      screen: MyVideos
     },
     EditVideo: {
-        screen: EditVideo
+      screen: EditVideo
     },
     Payment: {
-        screen: Payment
+      screen: Payment
     },
     CardFormScreen: {
-        screen: CardFormScreen
+      screen: CardFormScreen
     }
-},
-{
+  },
+  {
     initialRouteName: "ProfileHome"
-});
+  }
+);
 
-const AppTabContainer = createAppContainer(AppNavigator)
+const AppTabContainer = createAppContainer(AppNavigator);
 
 class ProfileTab extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({ tintColor }) => <Icon name="person" style={{ color: tintColor }} />
+  };
 
-    static navigationOptions = {
-
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
-        )
-    }
-
-    render() {
-        return (
-            <AppTabContainer />
-        );
-    }
+  render() {
+    return <AppTabContainer />;
+  }
 }
 export default ProfileTab;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
