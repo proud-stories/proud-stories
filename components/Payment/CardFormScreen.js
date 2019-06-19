@@ -5,7 +5,7 @@ import Button from './components/Button'
 import testID from './utils/testID'
 import { doPayment } from './api'
 import { Item, Input } from 'native-base';
-import { NavigationActions, StackActions, withNavigation } from "react-navigation";
+import {  withNavigation } from "react-navigation";
 
 class CardFormScreen extends PureComponent {
   static title = 'Card Form'

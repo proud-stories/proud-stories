@@ -146,15 +146,17 @@ export default class Login extends Component {
       hasInitialized: true
     });
 
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: "Home",
-        })
-      ]
-    });
+    // const resetAction = StackActions.reset({
+    //   index: 0,
+    //   actions: [
+    //     NavigationActions.navigate({
+    //       routeName: "Home",
+    //     })
+    //   ]
+    // });
 
-    this.props.navigation.dispatch(resetAction);
+    this.props.navigation.navigate('Home')
+
+    // this.props.navigation.dispatch(resetAction);
   };
 }

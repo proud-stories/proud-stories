@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
 import Account from "./components/ProfileTab/Main"
@@ -13,7 +13,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createSwitchNavigator({
   Home: {
     screen: MainScreen
   },
@@ -28,7 +28,8 @@ const AppNavigator = createStackNavigator({
   }
 },
   {
-    initialRouteName: "Login" // show the login screen by default
+    initialRouteName: "Login",
+    headerMode: "none" // show the login screen by default
   });
 
 const AppContainer = createAppContainer(AppNavigator);
