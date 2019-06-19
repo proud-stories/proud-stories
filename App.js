@@ -13,18 +13,12 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createStackNavigator({
   Home: {
     screen: MainScreen
   },
   Login: {
     screen: Login
-  },
-  Account: {
-    screen: Account
-  },
-  Payment: {
-    screen: Payment
   }
 },
   {
