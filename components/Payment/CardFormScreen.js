@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import stripe from 'tipsi-stripe'
-import Button from '../components/Button'
-import testID from '../utils/testID'
-import { doPayment } from '../api'
+import Button from './components/Button'
+import testID from './utils/testID'
+import { doPayment } from './api'
 import { Item, Input } from 'native-base';
-
+import { NavigationActions, StackActions } from "react-navigation";
 
 export default class CardFormScreen extends PureComponent {
   static title = 'Card Form'
@@ -30,9 +30,9 @@ export default class CardFormScreen extends PureComponent {
       this.setState({ loading: true, token: null })
       const token = await stripe.paymentRequestWithCardForm()
       this.setState({ token })
-      await doPayment(this.state.amount * 100, this.state.token.tokenId )
+      await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
-      this.gotoAccountPage()
+      this.props.navigation.navigate('Account')
     } catch (error) {
       this.setState({ loading: false })
     }
@@ -47,7 +47,7 @@ export default class CardFormScreen extends PureComponent {
           Pay by Credit Card
         </Text>
         <Item  style={styles.input}>
-            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="USD" />
+            <Input autoFocus keyboardType="numeric" onChangeText={(amount) => this.setState({amount})} placeholder="JPY" />
         </Item>
         <Text style={styles.instruction}>
           Click button to show Card Form dialog.
@@ -63,7 +63,7 @@ export default class CardFormScreen extends PureComponent {
           {...testID('cardFormToken')}>
           {token &&
             <Text style={styles.instruction}>
-              Token: {token.tokenId}
+              Charge Successful
             </Text>
           }
         </View>

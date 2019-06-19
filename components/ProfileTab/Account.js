@@ -3,7 +3,7 @@ import { View, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { Container, Content, Button, Text } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import axios from 'axios';
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import SInfo from "react-native-sensitive-info";
@@ -40,7 +40,8 @@ export default class Account extends Component {
 
   state = {
     name: "",
-    picture: ""
+    picture: "",
+    balance: ""
   }
 
 
@@ -48,9 +49,17 @@ export default class Account extends Component {
     try {
       const name = await AsyncStorage.getItem('@name');
       const picture = await AsyncStorage.getItem('@picture');
+      const id = await AsyncStorage.getItem('@id')
       this.setState({
         name: name,
         picture: picture,
+      })
+      axios.get(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
+      .then(response=> response.body.json())
+      .then(data=> {
+        this.setState({
+          balance: data.balance
+        })
       })
     } catch (error) {
       // Error retrieving data
@@ -66,7 +75,7 @@ export default class Account extends Component {
 
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
-          <Text style={styles.credit}>Your current credit is: 0</Text>
+          <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
           <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block><Text>My Videos</Text></Button>
           <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={this.gotoPayment}><Text>Charge my credits</Text></Button>
           <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
