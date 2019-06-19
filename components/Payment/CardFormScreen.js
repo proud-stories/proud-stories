@@ -32,7 +32,7 @@ export default class CardFormScreen extends PureComponent {
       this.setState({ token })
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
-      this.props.navigation.navigate('Account')
+      this.props.navigation.navigate('ProfileHome')
     } catch (error) {
       this.setState({ loading: false })
     }
@@ -70,19 +70,6 @@ export default class CardFormScreen extends PureComponent {
       </View>
     )
   }
-
-  gotoAccountPage = () => {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: "Account",
-        })
-      ]
-    });
-
-    this.props.navigation.dispatch(resetAction);
-  };
 }
 
 const styles = StyleSheet.create({

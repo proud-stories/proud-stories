@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Platform, StyleSheet } from 'react-native'
 import stripe from 'tipsi-stripe'
 import CardFormScreen from './CardFormScreen'
@@ -9,7 +9,7 @@ stripe.setOptions({
   androidPayMode: 'test',
 })
 
-export default class Payment extends PureComponent {
+export default class Payment extends Component {
 
   render() {
 

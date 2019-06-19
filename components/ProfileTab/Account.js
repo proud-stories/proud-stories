@@ -85,7 +85,7 @@ export default class Account extends Component {
 
           <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
           <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block><Text>My Videos</Text></Button>
-          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={this.gotoPayment}><Text>Charge my credits</Text></Button>
+          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
           <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
         </View>
       </Container>
@@ -121,16 +121,4 @@ export default class Account extends Component {
     this.props.navigation.dispatch(resetAction);
   };
 
-  gotoPayment = () => {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: "Payment"
-        })
-      ]
-    });
-
-    this.props.navigation.dispatch(resetAction);
-  };
 }
