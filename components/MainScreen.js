@@ -45,7 +45,7 @@ const AppTabContainer = createAppContainer(AppTabNavigator)
 class MainScreen extends Component {
 
     static navigationOptions = {
-        title: "ProudStories"
+        title: "proud stories"
     }
 
     render() {
