@@ -3,7 +3,7 @@ import { View, Image } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { Container, Content, Button, Text } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import axios from 'axios';
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import SInfo from "react-native-sensitive-info";
@@ -54,7 +54,7 @@ export default class Account extends Component {
         name: name,
         picture: picture,
       })
-      fetch(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
+      axios.get(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
       .then(response=> response.body.json())
       .then(data=> {
         this.setState({

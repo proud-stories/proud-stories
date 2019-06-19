@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Platform, StyleSheet } from 'react-native'
 import stripe from 'tipsi-stripe'
 import CardFormScreen from './CardFormScreen'
+import { NavigationActions, StackActions } from "react-navigation";
 
 stripe.setOptions({
   publishableKey: 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y',
