@@ -118,7 +118,7 @@ export default class Account extends Component {
     //   ]
     // });
 
-    this.props.navigation.replace("Login");
+    this.props.navigation.navigate("Login");
   };
 
 }

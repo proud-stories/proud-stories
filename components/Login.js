@@ -104,15 +104,15 @@ export default class Login extends Component {
         prompt: "login"
       })
       .then(res => {
+        this.setState({
+          hasInitialized: false
+        })
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
             return this.saveUser(data)
           })
           .then(data => {
-            this.setState({
-              hasInitialized: false
-            })
             return this.gotoTopPage(data);
           })
           .catch(err => {
@@ -148,7 +148,7 @@ export default class Login extends Component {
 
 
     console.log(this.props)
-    this.props.navigation.replace('Home')
+    this.props.navigation.navigate('Home')
 
   };
 }
