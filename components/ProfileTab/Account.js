@@ -28,9 +28,9 @@ export default class Account extends Component {
   state = {
     name: "",
     picture: "",
-    balance: ""
+    balance: "",
+    id: ""
   }
-
 
   getData = async () => {
     try {
@@ -50,7 +50,7 @@ export default class Account extends Component {
 
   getBalance = async () => {
     try {
-      const balance = await fetch(`https://proud-stories.herokuapp.com/users/1/balance`)
+      const balance = await axios.get(`https://proud-stories.herokuapp.com/users/${this.state.id}/balance`);
       const json = await balance.json();
       this.setState({
         balance: json.balance
@@ -70,9 +70,9 @@ export default class Account extends Component {
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
           <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
-          <Button style={{ marginBottom: 5, backgroundColor: '#FE73AC' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
-          <Button style={{ marginBottom: 5, backgroundColor: '#82B616' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
-          <Button style={{ marginBottom: 5, backgroundColor: '#182376' }} block onPress={this.logout}><Text>Logout</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
         </View>
       </Container>
     );
