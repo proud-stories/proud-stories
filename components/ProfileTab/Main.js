@@ -36,10 +36,9 @@ const AppNavigator = createStackNavigator({
         screen: CardFormScreen
     }
 },
-{
-    initialRouteName: "ProfileHome",
-    headerMode: "none"
-});
+    {
+        initialRouteName: "ProfileHome"
+    });
 
 const AppTabContainer = createAppContainer(AppNavigator)
 

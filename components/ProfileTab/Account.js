@@ -24,13 +24,7 @@ import styles from "../../styles/Account";
 export default class Account extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: "Account",
-      headerStyle: {
-        backgroundColor: headerColorStyle
-      },
-      headerTitleStyle: {
-        color: headerTextColorStyle
-      }
+      headerTitle: "Account"
     };
   };
 
@@ -84,7 +78,7 @@ export default class Account extends Component {
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
           <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
-          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block><Text>My Videos</Text></Button>
+          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
           <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
           <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
         </View>
