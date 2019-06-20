@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, StyleSheet } from "react-native";
-import { NavigationActions, StackActions } from "react-navigation";
-import { Container, Content, Button, Text } from 'native-base';
+import { Container, Button, Text } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import Auth0 from "react-native-auth0";
