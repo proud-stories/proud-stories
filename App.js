@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
 import Account from "./components/ProfileTab/Main"
 import Payment from "./components/Payment/Payment"
+import { Root } from 'native-base';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -13,29 +14,28 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createSwitchNavigator({
   Home: {
     screen: MainScreen
   },
   Login: {
     screen: Login
-  },
-  Account: {
-    screen: Account
-  },
-  Payment: {
-    screen: Payment
   }
 },
   {
-    initialRouteName: "Login" // show the login screen by default
+    initialRouteName: "Login",
+    headerMode: "none" // show the login screen by default
   });
 
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return (
+      <Root>
+        <AppContainer />
+      </Root>
+    );
   }
 }
 

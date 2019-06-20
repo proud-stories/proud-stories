@@ -8,6 +8,7 @@ import SInfo from "react-native-sensitive-info";
 import RNRestart from "react-native-restart";
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Button, Text } from 'native-base';
+import axios from "axios"
 
 import {
   headerColorStyle,
@@ -103,18 +104,20 @@ export default class Login extends Component {
         prompt: "login"
       })
       .then(res => {
+        this.setState({
+          hasInitialized: false
+        })
         auth0.auth
           .userInfo({ token: res.accessToken })
-          // .then(data => {
-          //   return this.saveUser(data)
-          // })
           .then(data => {
-            this.hasInitialized = false;
+            return this.saveUser(data)
+          })
+          .then(data => {
             return this.gotoTopPage(data);
           })
           .catch(err => {
             console.log("err: ");
-            console.log(JSON.stringify(err));
+            console.log(err);
           });
 
         SInfo.setItem("accessToken", res.accessToken, {});
@@ -127,34 +130,25 @@ export default class Login extends Component {
   };
 
   saveUser = async (data) => {
-
-    await fetch('https://proud-stories-staging.herokuapp.com/users', {
-      method: 'POST',
-      body: {
-        name: data.name
-      },
-    })
+    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: data.sub});
     return data;
   }
 
   gotoTopPage = async data => {
-    await AsyncStorage.setItem('@name', data.name);
-    await AsyncStorage.setItem('@picture', data.picture);
-    await AsyncStorage.setItem('@id', data.sub);
-
+    console.log('saving to data storeage', data)
+    await Promise.all([
+      AsyncStorage.setItem('@name', data.name),
+      AsyncStorage.setItem('@picture', data.picture),
+      AsyncStorage.setItem('@id', data.sub)
+    ]);
+    console.log('saved to data storeage', data)
     this.setState({
       hasInitialized: true
     });
 
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: "Home",
-        })
-      ]
-    });
 
-    this.props.navigation.dispatch(resetAction);
+    console.log(this.props)
+    this.props.navigation.navigate('Home')
+
   };
 }
