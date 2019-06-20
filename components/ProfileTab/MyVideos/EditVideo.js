@@ -10,6 +10,10 @@ import RNFetchBlob from 'rn-fetch-blob'
 
 class MediaDescTab extends Component {
 
+    static navigationOptions = {
+        title: "Edit video"
+    }
+
     state = {
         ...this.props.navigation.state.params
     }

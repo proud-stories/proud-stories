@@ -10,7 +10,8 @@ export const doPayment = (amount, tokenId, accessToken) => {
     'api_key': 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y'
   };
   return axios
-    .post('https://proud-stories.herokuapp.com/api/doPayment', body, { headers })
+  
+    .post('http://10.0.2.2:3333/api/doPayment', body, { headers })
     .then(({ data }) => {
       return data;
     })

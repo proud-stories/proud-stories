@@ -5,16 +5,24 @@ import {
     StyleSheet,
     FlatList,
     Dimensions,
-    Button
+    Button,
+    Image
 } from "react-native";
 
-import { Container, Content, Icon, Card, CardItem, Body } from 'native-base'
+import { Container, Content, Icon, Card, CardItem, Body, Header } from 'native-base'
 import CardComponent from '../CardComponent'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
 
 class HomeTab extends Component {
+
+    static navigationOptions = {
+        headerTitle: (
+            <Image source={require('../../img/download3.png')} style={{ height: 56, width: 160 }} />
+        )
+    }
+
     constructor(args) {
         super(args);
         this.state = {
@@ -37,50 +45,29 @@ class HomeTab extends Component {
     _renderRow(_type, data, index) {
         return <CardComponent
             className={'card'}
-            id={data.id}
-            title={data.title}
-            description={data.description}
-            url={data.url}
-            likes={data.count}
+            {...data}
             style={{ margin: 0 }}
             key={Math.round(Math.random() * 10000000)}
         />
     }
 
-    handleScroll = (e) => {
-        console.log("hello world from handle scroll")
-        // this.setState({ message: "Changed!" })
-        // let posts = Array.from(ReactDOM.findDOMNode(this).children).filter(elt => elt.className === 'post');
-        // posts.forEach(post => {
-        //     post.paused = !post.paused
-        // })
-    }
-    // const scrollPosition = e.nativeEvent.contentOffset.y;
-    // const paused = this.state.paused;
-    // const { start, end } = this.position;
-    // if (true) {
-    //     this.setState({ paused: false });
-    // } else if ((scrollPosition > end || scrollPosition < start) && !paused) {
-    //     this.setState({ paused: true });
-    // }
-
     componentDidMount() {
-        // fetch("https://proud-stories.herokuapp.com/users/1/videos")
-        //     .then(data => data.json())
-        //     .then(data => {
-        //         //add the items from database into state
-        //         data.forEach(item => {
-        //             item.paused = false;
-        //             this.setState({ videos: [item, ...this.state.videos] })
-        //         })
-        //         console.log(this.state.videos)
-        //         //update the dataProvider
-        //         this.setState({
-        //             dataProvider:
-        //                 new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
-        //         })
-        //     })
-        //     .catch((err) => { throw Error(err) });
+        fetch("http://10.0.2.2:3333/users/1/videos")
+            .then(data => data.json())
+            .then(data => {
+                //add the items from database into state
+                data.forEach(item => {
+                    item.paused = false;
+                    this.setState({ videos: [item, ...this.state.videos] })
+                })
+                console.log(this.state.videos)
+                //update the dataProvider
+                this.setState({
+                    dataProvider:
+                        new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
+                })
+            })
+            .catch((err) => { throw Error(err) });
     }
 
     componentWillMount() {
@@ -189,7 +176,7 @@ class HomeTab extends Component {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-                categories: this.state.categories,
+                categories: this.state.selectedItems,
             }),
         })
             .then(data => data.json())

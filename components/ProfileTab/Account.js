@@ -24,13 +24,7 @@ import styles from "../../styles/Account";
 export default class Account extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: "Account",
-      headerStyle: {
-        backgroundColor: headerColorStyle
-      },
-      headerTitleStyle: {
-        color: headerTextColorStyle
-      }
+      headerTitle: "Account"
     };
   };
 

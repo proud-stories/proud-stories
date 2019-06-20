@@ -10,25 +10,22 @@ import {
 import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
 import Moment from 'react-moment';
+import { withNavigation } from 'react-navigation'
 
 class CardComponent extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-            paused: true,
-            didLike: props.didLike,
-            likes: Number(props.likes)
-        }
+    state = {
+        paused: true,
+        didLike: this.props.liked,
+        likes: Number(this.props.likes)
     }
 
     handleClick = () => {
-        const newState = {...this.state};
-        newState.paused = !newState.paused;
-        this.setState(newState)
+        this.setState({ paused: !this.state.paused })
     }
 
     render() {
+        console.log(this.props)
         const dateToFormat = this.props.created_at;
         return (
             <Card>
@@ -41,30 +38,28 @@ class CardComponent extends Component {
                         </Body>
                     </Left>
                 </CardItem>
-                {/* <Button onPress={this.handleClick}><Text>Press!</Text></Button> */}
                 <TouchableWithoutFeedback onPress={this.handleClick}>
-                <CardItem cardBody style={{ height: 220 }} onPress={this.handleClick}>
-                    <Video
-                        source={{ uri: this.props.url }}   // Can be a URL or a local file.
-                        style={{ width: Dimensions.get("window").width, margin: 0 }}
-                        repeat
-                        paused={!this.state.paused}
-                        style={styles.backgroundVideo} />
-                </CardItem>
+                    <CardItem cardBody style={{ height: 220 }}>
+                        <Video
+                            source={{ uri: this.props.url }}   // Can be a URL or a local file.
+                            style={{ width: Dimensions.get("window").width, margin: 0 }}
+                            repeat
+                            paused={this.state.paused}
+                            style={styles.backgroundVideo} />
+                    </CardItem>
                 </TouchableWithoutFeedback>
                 <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
                             <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: this.state.didLike ? "red" : "black" }} />
                         </Button>
-                        <Button transparent>
+                        <Button transparent onPress={() => this.openComments()}>
                             <Icon name="bubbles" type="SimpleLineIcons" style={{ color: 'black' }} />
                         </Button>
-                        {this.props.editVideo !== undefined &&
-                            <Button transparent onPress={() => this.editVideo()}>
-                                <Icon name="edit" type="FontAwesome" style={{ color: 'black' }} />
-                            </Button>
-                        }
+                        <Button transparent onPress={() => this.editVideo()}>
+                            <Icon name="edit" type="FontAwesome" style={{ color: 'black' }} />
+                        </Button>
+
 
 
                     </Left>
@@ -85,20 +80,23 @@ class CardComponent extends Component {
         );
     }
 
+    editVideo = () => {
+        this.props.navigation.navigate('EditVideo', { ...this.props })
+    }
+
     likeVideo() {
+        let prevLiked = this.state.didLike;
         this.setState({ didLike: true, likes: this.state.likes + 1 });
-        console.log("Here")
-        fetch('http://10.0.2.2:3333/videos/likes', {
+        fetch(`http://10.0.2.2:3333/videos/${this.props.id}/likes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-                videoId: this.props.id,
-                userId: 1,
+                user_id: 1,
             }),
         }).then(res => res.json())
             .then(res => {
                 if (res.status !== 200)
-                    this.setState({ didLike: false, likes: this.state.likes - 1 });
+                    this.setState({ didLike: prevLiked, likes: this.state.likes - 1 });
 
                 if (res.status === 500) {
                     Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
@@ -108,11 +106,11 @@ class CardComponent extends Component {
             })
     }
 
-    editVideo() {
-        this.props.editVideo();
+    openComments = () => {
+        this.props.navigation.navigate('Comments', { id: this.props.video_id })
     }
 }
-export default CardComponent;
+export default withNavigation(CardComponent);
 
 const styles = StyleSheet.create({
     container: {

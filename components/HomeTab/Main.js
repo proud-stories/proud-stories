@@ -7,17 +7,22 @@ import {
 } from "react-native";
 
 import Home from './Home'
+import Comments from './VideoComments'
 
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
-import { Icon } from 'native-base'
+import { Icon, Header, Image, Body } from 'native-base'
 
 const AppNavigator = createStackNavigator({
     Home: {
         screen: Home
+    },
+    Comments: {
+        screen: Comments
     }
 },
     {
-        initialRouteName: "Home"
+        initialRouteName: "Home",
+        headerLayoutPreset: "center"
     });
 
 const AppTabContainer = createAppContainer(AppNavigator)
