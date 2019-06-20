@@ -102,6 +102,7 @@ export default class Login extends Component {
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
+            console.log(data)
             return this.saveUser(data)
           })
           .then(data => {
@@ -128,7 +129,7 @@ export default class Login extends Component {
 
   gotoTopPage = async data => {
     await Promise.all([
-      AsyncStorage.setItem('@name', data.name),
+      AsyncStorage.setItem('@name', data.nickname),
       AsyncStorage.setItem('@picture', data.picture),
       AsyncStorage.setItem('@id', data.sub)
     ]);
