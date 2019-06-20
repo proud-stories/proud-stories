@@ -10,6 +10,10 @@ stripe.setOptions({
 
 export default class Payment extends Component {
 
+  static navigationOptions = {
+    title: "Charge"
+  }
+
   render() {
 
     return (

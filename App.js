@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
@@ -5,12 +6,10 @@ import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
 import Account from "./components/ProfileTab/Main"
 import Payment from "./components/Payment/Payment"
-import { Root } from 'native-base';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
+  android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
 
