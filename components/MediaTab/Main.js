@@ -21,8 +21,7 @@ const AppNavigator = createStackNavigator({
     }
 },
     {
-        initialRouteName: "AddMedia",
-        headerMode: "none"
+        initialRouteName: "AddMedia"
     });
 
 const AppTabContainer = createAppContainer(AppNavigator)

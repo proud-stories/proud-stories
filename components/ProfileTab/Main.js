@@ -16,12 +16,9 @@ import CardFormScreen from '../Payment/CardFormScreen'
 import { createAppContainer, createStackNavigator, create } from 'react-navigation';
 import { Icon, Root } from 'native-base'
 
-const AppNavigator = createStackNavigator({
+const navigator = createStackNavigator({
     ProfileHome: {
         screen: Account
-    },
-    Login: {
-        screen: Login
     },
     MyVideos: {
         screen: MyVideos
@@ -36,28 +33,36 @@ const AppNavigator = createStackNavigator({
         screen: CardFormScreen
     }
 },
-    {
-        initialRouteName: "ProfileHome"
-    });
+{
+    initialRouteName: "ProfileHome",
+});
+navigator.navigationOptions = {
 
-const AppTabContainer = createAppContainer(AppNavigator)
+            tabBarIcon: ({ tintColor }) => (
+                <Icon name="person" style={{ color: tintColor }} />
+            )
+        }
 
-class ProfileTab extends Component {
+export default navigator;
 
-    static navigationOptions = {
+// const AppTabContainer = createAppContainer(AppNavigator)
 
-        tabBarIcon: ({ tintColor }) => (
-            <Icon name="person" style={{ color: tintColor }} />
-        )
-    }
+// class ProfileTab extends Component {
 
-    render() {
-        return (
-            <AppTabContainer />
-        );
-    }
-}
-export default ProfileTab;
+//     static navigationOptions = {
+
+//         tabBarIcon: ({ tintColor }) => (
+//             <Icon name="person" style={{ color: tintColor }} />
+//         )
+//     }
+
+//     render() {
+//         return (
+//             <AppTabContainer />
+//         );
+//     }
+// }
+// export default ProfileTab;
 
 const styles = StyleSheet.create({
     container: {

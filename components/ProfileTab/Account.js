@@ -58,7 +58,7 @@ export default class Account extends Component {
 
   getBalance = async () => {
     try {
-      const balance = await fetch(`https://proud-stories-staging.herokuapp.com/users/1/balance`)
+      const balance = await fetch(`https://proud-stories.herokuapp.com/users/1/balance`)
       const json = await balance.json();
       this.setState({
         balance: json.balance
@@ -103,16 +103,7 @@ export default class Account extends Component {
   };
 
   gotoLogin = () => {
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: "Login"
-        })
-      ]
-    });
-
-    this.props.navigation.dispatch(resetAction);
+    this.props.navigation.navigate("Login");
   };
 
 }

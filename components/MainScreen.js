@@ -14,7 +14,7 @@ import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigat
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Root } from 'native-base'
 
-const AppTabNavigator = createMaterialTopTabNavigator({
+const navigator = createMaterialTopTabNavigator({
     HomeTab: HomeTab,
     AddMediaTab: MediaTab,
     ProfileTab: ProfileTab,
@@ -40,23 +40,12 @@ const AppTabNavigator = createMaterialTopTabNavigator({
     }
 )
 
-const AppTabContainer = createAppContainer(AppTabNavigator)
-
-class MainScreen extends Component {
-
-    static navigationOptions = {
-        title: "proud stories"
-    }
-
-    render() {
-        return (
-            <Root>
-                <AppTabContainer />
-            </Root>
-        );
-    }
+navigator.navigationOptions = {
+    title: "proud stories"
 }
-export default MainScreen;
+
+export default navigator;
+
 
 const styles = StyleSheet.create({
     container: {
