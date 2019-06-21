@@ -6,6 +6,7 @@ import testID from './utils/testID'
 import { doPayment } from './api'
 import { Item, Input } from 'native-base';
 import {  withNavigation } from "react-navigation";
+import axios from 'axios';
 
 class CardFormScreen extends PureComponent {
   static title = 'Card Form'
@@ -19,10 +20,18 @@ class CardFormScreen extends PureComponent {
     errorColor: ""
   }
 
+  componentDidMount = async () => {
+    const id = await AsyncStorage.getItem('@id');
+    this.setState({
+      id: id
+    })
+  }
+
   state = {
     amount: 0,
     loading: false,
     token: null,
+    id: ""
   }
 
   handleCardPayPress = async () => {
@@ -32,6 +41,7 @@ class CardFormScreen extends PureComponent {
       this.setState({ token })
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
+      await updateBalance();
       this.props.navigation.navigate('ProfileHome')
     } catch (error) {
       this.setState({ loading: false })
@@ -69,6 +79,10 @@ class CardFormScreen extends PureComponent {
         </View>
       </View>
     )
+  }
+
+  updateBalance() {
+    axios.post('https://proud-stories.herokuapp.com/transactions', {sender_id: this.state.id, receiver_id: this.state.id, type: "deposit"});
   }
 }
 

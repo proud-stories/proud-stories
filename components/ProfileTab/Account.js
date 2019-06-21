@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { View, Image } from "react-native";
-import { NavigationActions, StackActions } from "react-navigation";
-import { Container, Content, Button, Text } from 'native-base';
+import { View, Image, StyleSheet } from "react-native";
+import { Container, Button, Text } from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import Auth0 from "react-native-auth0";
@@ -13,18 +12,10 @@ const auth0 = new Auth0({
   clientId: Config.AUTH0_CLIENT_ID
 });
 
-import {
-  headerColorStyle,
-  headerTextColorStyle,
-  buttonStyle
-} from "../../styles/colors";
-
-import styles from "../../styles/Account";
-
 export default class Account extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: "Account"
+      headerTitle: "Account",
     };
   };
 
@@ -36,9 +27,9 @@ export default class Account extends Component {
   state = {
     name: "",
     picture: "",
-    balance: ""
+    balance: "",
+    id: ""
   }
-
 
   getData = async () => {
     try {
@@ -58,7 +49,7 @@ export default class Account extends Component {
 
   getBalance = async () => {
     try {
-      const balance = await fetch(`https://proud-stories.herokuapp.com/users/1/balance`)
+      const balance = await axios.get(`https://proud-stories.herokuapp.com/users/${this.state.id}/balance`);
       const json = await balance.json();
       this.setState({
         balance: json.balance
@@ -78,9 +69,9 @@ export default class Account extends Component {
           <Text style={styles.usernameText}>{this.state.name}</Text>
 
           <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
-          <Button info style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
-          <Button success style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
-          <Button danger style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
         </View>
       </Container>
     );
@@ -107,3 +98,27 @@ export default class Account extends Component {
   };
 
 }
+
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	usernameText: {
+		fontSize: 17,
+		fontWeight: "bold",
+		marginTop: 10,
+		marginBottom: 10
+	},
+	credit: {
+		fontSize: 17,
+		marginTop: 10,
+		marginBottom: 30
+	},
+	picture: {
+		width: 80,
+		height: 80
+	}
+});

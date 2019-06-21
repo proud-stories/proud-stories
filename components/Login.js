@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, ActivityIndicator } from "react-native";
-import { NavigationActions, StackActions } from "react-navigation";
+import { View, Image, ActivityIndicator, StyleSheet } from "react-native";
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
@@ -9,13 +8,6 @@ import RNRestart from "react-native-restart";
 import AsyncStorage from '@react-native-community/async-storage';
 import { Container, Button, Text } from 'native-base';
 import axios from "axios"
-
-import {
-  headerColorStyle,
-  headerTextColorStyle,
-  buttonStyle
-} from "../styles/colors";
-import styles from "../styles/Login";
 
 const auth0 = new Auth0({
   domain: Config.AUTH0_DOMAIN,
@@ -27,16 +19,16 @@ export default class Login extends Component {
     return {
       headerTitle: "Login",
       headerStyle: {
-        backgroundColor: headerColorStyle
+        backgroundColor: "#CF3EFE"
       },
       headerTitleStyle: {
-        color: headerTextColorStyle
+        color: "#FFF"
       }
     };
   };
 
   state = {
-    hasInitialized: false,
+    finishedLoading: false,
   };
 
   componentDidMount() {
@@ -63,7 +55,7 @@ export default class Login extends Component {
           });
       } else {
         this.setState({
-          hasInitialized: true
+          finishedLoading: true
         });
         console.log("no access token");
       }
@@ -80,10 +72,10 @@ export default class Login extends Component {
           <ActivityIndicator
             size="large"
             color="#05a5d1"
-            animating={!this.state.hasInitialized}
+            animating={!this.state.finishedLoading}
           />
-          {this.state.hasInitialized && (
-            <Button info block onPress={this.login} color={buttonStyle}>
+          {this.state.finishedLoading && (
+            <Button info block onPress={this.login} style={{backgroundColor:'#08c3fc'}}>
               <Text>Login/Register</Text>
             </Button>
           )}
@@ -94,7 +86,7 @@ export default class Login extends Component {
 
   login = () => {
     this.setState({
-      hasInitialized: true
+      finishedLoading: true
     });
     auth0.webAuth
       .authorize({
@@ -105,11 +97,12 @@ export default class Login extends Component {
       })
       .then(res => {
         this.setState({
-          hasInitialized: false
-        })
+              finishedLoading: false
+            })
         auth0.auth
           .userInfo({ token: res.accessToken })
           .then(data => {
+            console.log(data)
             return this.saveUser(data)
           })
           .then(data => {
@@ -135,20 +128,25 @@ export default class Login extends Component {
   }
 
   gotoTopPage = async data => {
-    console.log('saving to data storeage', data)
     await Promise.all([
-      AsyncStorage.setItem('@name', data.name),
+      AsyncStorage.setItem('@name', data.nickname),
       AsyncStorage.setItem('@picture', data.picture),
       AsyncStorage.setItem('@id', data.sub)
     ]);
-    console.log('saved to data storeage', data)
+
     this.setState({
-      hasInitialized: true
+      finishedLoading: true
     });
 
-
-    console.log(this.props)
     this.props.navigation.navigate('Home')
 
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});
