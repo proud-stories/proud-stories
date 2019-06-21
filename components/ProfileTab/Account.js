@@ -19,8 +19,8 @@ export default class Account extends Component {
     };
   };
 
-  componentDidMount() {
-    this.getData();
+  componentDidMount = async () => {
+    await this.getData();
     this.getBalance();
   }
 
@@ -49,10 +49,10 @@ export default class Account extends Component {
 
   getBalance = async () => {
     try {
-      const balance = await axios.get(`https://proud-stories.herokuapp.com/users/${this.state.id}/balance`);
-      const json = await balance.json();
+      const balance = await axios.get(`https://proud-stories.herokuapp.com/users/auth0_5d0ca0f3b3be220d2bdd865d/balance`);
+      console.log(balance.data.balance);
       this.setState({
-        balance: json.balance
+        balance: balance.data.balance
       })
     } catch (error) {
       // Error retrieving data
