@@ -96,6 +96,7 @@ export default class Login extends Component {
         prompt: "login"
       })
       .then(res => {
+        console.log(res)
         this.setState({
               finishedLoading: false
             })
@@ -115,6 +116,7 @@ export default class Login extends Component {
 
         SInfo.setItem("accessToken", res.accessToken, {});
         SInfo.setItem("refreshToken", res.refreshToken, {});
+        SInfo.setItem("idToken", res.idToken, {});
       })
       .catch(error => {
         console.log("error occurred");
@@ -123,7 +125,7 @@ export default class Login extends Component {
   };
 
   saveUser = async (data) => {
-    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: data.sub});
+    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: data.sub, picture: data.picture});
     return data;
   }
 
