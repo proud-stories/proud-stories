@@ -21,7 +21,7 @@ const AppNavigator = createSwitchNavigator({
   } 
 },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Login",
     headerMode: "none" // show the login screen by default
   });
 
