@@ -7,6 +7,7 @@ import { doPayment } from './api'
 import { Item, Input } from 'native-base';
 import {  withNavigation } from "react-navigation";
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class CardFormScreen extends PureComponent {
   static title = 'Card Form'
