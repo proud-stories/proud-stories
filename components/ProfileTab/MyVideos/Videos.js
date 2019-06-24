@@ -56,13 +56,10 @@ class Videos extends Component {
         fetch(Config.APP_URL + "/users/1/videos")
             .then(data => data.json())
             .then(data => {
-                //add the items from database into state
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.log(this.state.videos)
-                //update the dataProvider
                 this.setState({
                     dataProvider:
                         new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
@@ -183,7 +180,6 @@ class Videos extends Component {
     }
     applyCategories() {
         this.setState({ visibleModal: null })
-        console.log(this.state.selectedItems)
         fetch(Config.APP_URL + "/videos/filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },

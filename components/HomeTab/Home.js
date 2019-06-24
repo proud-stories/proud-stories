@@ -56,13 +56,10 @@ class HomeTab extends Component {
         fetch(Config.APP_URL + "/users/ben_secret_id/feed")
             .then(data => data.json())
             .then(data => {
-                //add the items from database into state
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.log(this.state.videos)
-                //update the dataProvider
                 this.setState({
                     dataProvider:
                         new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
@@ -157,13 +154,13 @@ class HomeTab extends Component {
 
     loadCategories() {
         fetch(Config.APP_URL + "/categories")
-            .then(res => res.json())
             .then(res => {
+                const data = res.json()
                 if (res.status === 200) {
-                    this.setState({ categories: res.categories })
+                    this.setState({ categories: data.categories })
                 }
                 else {
-                    Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
+                    Toast.show({ text: data.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
                 }
             })
             .catch((err) => {

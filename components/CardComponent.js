@@ -27,7 +27,6 @@ class CardComponent extends Component {
     }
 
     render() {
-        console.log(this.props)
         const dateToFormat = this.props.created_at;
         return (
             <Card>
