@@ -44,7 +44,6 @@ export default class Login extends Component {
               auth0.auth
                 .refreshToken({ refreshToken: refreshToken })
                 .then(newAccessToken => {
-                  console.log(newAccessToken)
                   SInfo.setItem("accessToken", newAccessToken);
                   RNRestart.Restart();
                 })
