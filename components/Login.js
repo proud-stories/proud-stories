@@ -90,7 +90,7 @@ export default class Login extends Component {
     });
     auth0.webAuth
       .authorize({
-        scope: Config.AUTHO_SCOPE,
+        scope: Config.AUTH0_SCOPE,
         audience: Config.AUTH0_AUDIENCE,
         device: DeviceInfo.getUniqueID(),
         prompt: "login"
