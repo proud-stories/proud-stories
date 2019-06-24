@@ -19,7 +19,8 @@ class CardComponent extends Component {
     state = {
         paused: true,
         didLike: this.props.liked,
-        likes: Number(this.props.likes)
+        likes: Number(this.props.likes),
+        username: this.props.name
     }
 
     handleClick = () => {
@@ -34,7 +35,7 @@ class CardComponent extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>Username </Text>
+                            <Text>{this.state.username}</Text>
                             <Text style={{ fontSize: 12 }} ><Moment element={Text} fromNow>{dateToFormat}</Moment></Text>
                         </Body>
                     </Left>
@@ -72,7 +73,7 @@ class CardComponent extends Component {
                 <CardItem>
                     <Body>
                         <Text>
-                            <Text style={{ fontWeight: "900" }}>username   </Text>
+                            <Text style={{ fontWeight: "900" }}>{this.state.username}   </Text>
                             {this.props.description}
                         </Text>
                     </Body>
