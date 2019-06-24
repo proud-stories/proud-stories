@@ -43,10 +43,11 @@ class CardFormScreen extends PureComponent {
       console.log("token", this.state.token)
       console.log("amount", this.state.amount)
       console.log("tokenId", this.state.token.tokenId)
+      console.log('id', this.state.id)
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
       console.log('finished payment')
-      await updateBalance();
+      await this.updateBalance();
       this.props.navigation.navigate('ProfileHome')
     } catch (error) {
       this.setState({ loading: false })
@@ -88,9 +89,7 @@ class CardFormScreen extends PureComponent {
 
   updateBalance() {
     console.log("before post request");
-    console.log("id", this.state.id)
-    console.log("amount", this.state.amount)
-    return axios.post('https://proud-stories.herokuapp.com/transactions', {sender_id: this.state.id, receiver_id: this.state.id, amount: this.state.amount, type: "deposit"});
+    return axios.post('https://proud-stories.herokuapp.com/transactions', {auth_id: this.state.id, amount: this.state.amount, type: "deposit"});
   }
 }
 
