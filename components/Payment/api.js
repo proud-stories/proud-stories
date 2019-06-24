@@ -8,7 +8,7 @@ export const doPayment = (amount, tokenId, accessToken) => {
   };
   const headers = {
     'Content-Type': 'application/json',
-    'api_key': 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y'
+    'api_key': Config.STRIPE_API_KEY
   };
   return axios
   
