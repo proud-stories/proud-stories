@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Config from "react-native-config";
+import Config from 'react-native-config'
 
 export const doPayment = (amount, tokenId, accessToken) => {
   const body = {
