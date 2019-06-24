@@ -87,7 +87,7 @@ class CardComponent extends Component {
     likeVideo() {
         let prevLiked = this.state.didLike;
         this.setState({ didLike: true, likes: this.state.likes + 1 });
-        fetch(`http://10.0.2.2:3333/videos/${this.props.id}/likes`, {
+        fetch(`https://proud-stories.herokuapp.com/videos/${this.props.id}/likes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

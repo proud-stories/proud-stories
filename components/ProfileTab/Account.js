@@ -21,7 +21,16 @@ export default class Account extends Component {
 
   componentDidMount = async () => {
     await this.getData();
-    this.getBalance();
+    this.getBalaence();
+  }
+
+  componentWillReceiveProps() {
+    const newAmount = this.props.navigation.getParam('amount', "error");
+    console.log(this.props.navigation.getParam('amount', "error"))
+    this.setState({
+      amount: this.state.amount + newAmount
+    })
+    console.log(this.state.balance)
   }
 
   state = {
