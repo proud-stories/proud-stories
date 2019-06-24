@@ -179,7 +179,7 @@ class Videos extends Component {
     }
     applyCategories() {
         this.setState({ visibleModal: null })
-        fetch(Config.APP_URL + "/videos/filters/", {
+        fetch(Config.APP_URL + "/video_filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
@@ -204,13 +204,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    flatview: {
-        // justifyContent: 'center',
-        paddingTop: 30,
-        borderRadius: 2,
-        borderColor: 'red',
-        borderWidth: 1,
-        height: 400
     }
 });
