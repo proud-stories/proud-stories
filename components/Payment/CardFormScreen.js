@@ -40,8 +40,12 @@ class CardFormScreen extends PureComponent {
       this.setState({ loading: true, token: null })
       const token = await stripe.paymentRequestWithCardForm()
       this.setState({ token })
+      console.log("token", this.state.token)
+      console.log("amount", this.state.amount)
+      console.log("tokenId", this.state.token.tokenId)
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
+      console.log('finished payment')
       await updateBalance();
       this.props.navigation.navigate('ProfileHome')
     } catch (error) {
@@ -83,7 +87,10 @@ class CardFormScreen extends PureComponent {
   }
 
   updateBalance() {
-    axios.post('https://proud-stories.herokuapp.com/transactions', {sender_id: this.state.id, receiver_id: this.state.id, type: "deposit"});
+    console.log("before post request");
+    console.log("id", this.state.id)
+    console.log("amount", this.state.amount)
+    return axios.post('https://proud-stories.herokuapp.com/transactions', {sender_id: this.state.id, receiver_id: this.state.id, amount: this.state.amount, type: "deposit"});
   }
 }
 
