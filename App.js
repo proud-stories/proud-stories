@@ -6,7 +6,7 @@ import MainScreen from './components/MainScreen'
 import Login from "./components/Login";
 import Account from "./components/ProfileTab/Main"
 import Payment from "./components/Payment/Payment"
-import { Root } from 'react-native'
+import { Root } from 'native-base'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
