@@ -11,6 +11,8 @@ import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
 import Moment from 'react-moment';
 import { withNavigation } from 'react-navigation'
+import Config from "react-native-config";
+
 
 class CardComponent extends Component {
 
@@ -87,7 +89,7 @@ class CardComponent extends Component {
     likeVideo() {
         let prevLiked = this.state.didLike;
         this.setState({ didLike: true, likes: this.state.likes + 1 });
-        fetch(`http://10.0.2.2:3333/videos/${this.props.id}/likes`, {
+        fetch(Config.APP_URL + `/videos/${this.props.id}/likes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

@@ -5,6 +5,7 @@ import {
 
 import CommentsComponent from '../CommentsComponent'
 import { Toast, View, Container, Content } from 'native-base'
+import Config from "react-native-config";
 
 
 class Comments extends Component {
@@ -18,7 +19,7 @@ class Comments extends Component {
     }
 
     componentWillMount() {
-        fetch("http://10.0.2.2:3333/comments/1/replies")
+        fetch(Config.APP_URL + "/comments/1/replies")
             .then(data => data.json())
             .then(data => {
                 this.setState({ comments: [...data] })

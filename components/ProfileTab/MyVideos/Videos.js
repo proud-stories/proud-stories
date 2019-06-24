@@ -14,6 +14,8 @@ import { Container, Content, Icon, Card, CardItem, Body, Header } from 'native-b
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
+import Config from "react-native-config";
+
 
 class Videos extends Component {
 
@@ -51,7 +53,7 @@ class Videos extends Component {
     }
 
     componentDidMount() {
-        fetch("http://10.0.2.2:3333/users/1/videos")
+        fetch(Config.APP_URL + "/users/1/videos")
             .then(data => data.json())
             .then(data => {
                 //add the items from database into state
@@ -165,7 +167,7 @@ class Videos extends Component {
     };
 
     loadCategories() {
-        fetch("http://10.0.2.2:3333/categories")
+        fetch(Config.APP_URL + "/categories")
             .then(res => res.json())
             .then(res => {
                 if (res.status === 200) {
@@ -182,7 +184,7 @@ class Videos extends Component {
     applyCategories() {
         this.setState({ visibleModal: null })
         console.log(this.state.selectedItems)
-        fetch("http://10.0.2.2:3333/videos/filters/", {
+        fetch(Config.APP_URL + "/videos/filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

@@ -7,6 +7,8 @@ import {
 
 import { Container, Header, Content, Textarea, Form, Text, Item, Button, Input, Toast, Body } from "native-base";
 import RNFetchBlob from 'rn-fetch-blob'
+import Config from "react-native-config";
+
 
 class MediaDescTab extends Component {
 
@@ -50,7 +52,7 @@ class MediaDescTab extends Component {
     }
 
     saveVideo() {
-        fetch(`http://10.0.2.2:3333/videos/${this.state.id}`, {
+        fetch(Config.APP_URL + `/videos/${this.state.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
@@ -71,7 +73,7 @@ class MediaDescTab extends Component {
     }
 
     deleteVideo() {
-        fetch(`http://10.0.2.2:3333/videos/${this.state.id}`, {
+        fetch(Config.APP_URL + `/videos/${this.state.id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         }).then(res => res.json())
