@@ -44,6 +44,7 @@ export default class Login extends Component {
               auth0.auth
                 .refreshToken({ refreshToken: refreshToken })
                 .then(newAccessToken => {
+                  console.log(newAccessToken)
                   SInfo.setItem("accessToken", newAccessToken);
                   RNRestart.Restart();
                 })
@@ -96,7 +97,6 @@ export default class Login extends Component {
         prompt: "login"
       })
       .then(res => {
-        console.log(res)
         this.setState({
               finishedLoading: false
             })
@@ -117,6 +117,7 @@ export default class Login extends Component {
         SInfo.setItem("accessToken", res.accessToken, {});
         SInfo.setItem("refreshToken", res.refreshToken, {});
         SInfo.setItem("idToken", res.idToken, {});
+        console.log(res.idToken)
       })
       .catch(error => {
         console.log("error occurred");

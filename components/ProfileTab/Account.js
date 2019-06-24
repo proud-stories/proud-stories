@@ -35,7 +35,7 @@ export default class Account extends Component {
     try {
       const name = await AsyncStorage.getItem('@name');
       const picture = await AsyncStorage.getItem('@picture');
-      const id = await AsyncStorage.getItem('@id')
+      const id = await AsyncStorage.getItem('@id');
       this.setState({
         name: name,
         picture: picture,
