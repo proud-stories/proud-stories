@@ -53,7 +53,7 @@ class CardComponent extends Component {
                 <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
-                            <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: this.state.didLike ? "red" : "black" }} />
+                            <Image source={this.state.didLike ? require('../assets/clap-green.png') : require('../assets/clap-white.png')} style={{width:30, height:30 }}/>
                         </Button>
                         <Button transparent onPress={() => this.openComments()}>
                             <Icon name="bubbles" type="SimpleLineIcons" style={{ color: 'black' }} />
