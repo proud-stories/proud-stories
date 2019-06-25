@@ -68,8 +68,8 @@ class HomeTab extends Component {
         }
       }
 
-    componentDidMount() {
-        this.getData()
+    async componentDidMount() {
+        await this.getData()
         fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
