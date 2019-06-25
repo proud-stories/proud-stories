@@ -14,6 +14,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
 import Config from "react-native-config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeTab extends Component {
 
@@ -56,9 +57,11 @@ class HomeTab extends Component {
         this.setState({
             id
         })
+        console.log(this.state.id)
         fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
+                console.log(data)
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
