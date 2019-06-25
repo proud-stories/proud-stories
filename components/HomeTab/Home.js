@@ -3,7 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList,
     Dimensions,
     Button,
     Image
@@ -14,6 +13,8 @@ import CardComponent from '../CardComponent'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
+import Config from "react-native-config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeTab extends Component {
 
@@ -51,17 +52,32 @@ class HomeTab extends Component {
         />
     }
 
-    componentDidMount() {
-        fetch("https://proud-stories.herokuapp.com/users/ben_secret_id/feed")
+    getData = async () => {
+        try {
+          const name = await AsyncStorage.getItem('@name');
+          const picture = await AsyncStorage.getItem('@picture');
+          const id = await AsyncStorage.getItem('@id');
+          this.setState({
+            name: name,
+            picture: picture,
+            id: id
+          })
+        } catch (error) {
+          // Error retrieving data
+          console.log(error.message);
+        }
+      }
+
+    async componentDidMount() {
+        await this.getData()
+        console.log(this.state.id)
+        fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
-                //add the items from database into state
                 data.forEach(item => {
-                    item.paused = false;
+                    item.paused = true;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.log(this.state.videos)
-                //update the dataProvider
                 this.setState({
                     dataProvider:
                         new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
@@ -155,14 +171,14 @@ class HomeTab extends Component {
     };
 
     loadCategories() {
-        fetch("https://proud-stories.herokuapp.com/categories")
-            .then(res => res.json())
+        fetch(Config.APP_URL + "/categories")
             .then(res => {
+                const data = res.json()
                 if (res.status === 200) {
-                    this.setState({ categories: res.categories })
+                    this.setState({ categories: data.categories })
                 }
                 else {
-                    Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
+                    Toast.show({ text: data.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
                 }
             })
             .catch((err) => {
@@ -172,7 +188,7 @@ class HomeTab extends Component {
     applyCategories() {
         this.setState({ visibleModal: null })
 
-        fetch("https://proud-stories.herokuapp.com/videos/filters/", {
+        fetch(Config.APP_URL + "/video_filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

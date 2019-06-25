@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Config from 'react-native-config'
 
 export const doPayment = (amount, tokenId, accessToken) => {
   const body = {
@@ -7,10 +8,11 @@ export const doPayment = (amount, tokenId, accessToken) => {
   };
   const headers = {
     'Content-Type': 'application/json',
-    'api_key': 'pk_test_EYIErk4QX7mMqO8pwLFqqomg00vlqZmU7Y'
+    'api_key': Config.STRIPE_API_KEY
   };
   return axios
-    .post('https://proud-stories.herokuapp.com/api/doPayment', body, { headers })
+  
+    .post(Config.APP_URL + '/api/doPayment', body, { headers })
     .then(({ data }) => {
       return data;
     })

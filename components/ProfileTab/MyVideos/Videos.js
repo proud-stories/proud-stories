@@ -3,7 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList,
     Dimensions,
     Button,
     Image
@@ -14,6 +13,8 @@ import { Container, Content, Icon, Card, CardItem, Body, Header } from 'native-b
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
+import Config from "react-native-config";
+
 
 class Videos extends Component {
 
@@ -51,16 +52,13 @@ class Videos extends Component {
     }
 
     componentDidMount() {
-        fetch("https://proud-stories.herokuapp.com/users/1/videos")
+        fetch(Config.APP_URL + "/users/" + this.state.id + "/videos")
             .then(data => data.json())
             .then(data => {
-                //add the items from database into state
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
                 })
-                console.log(this.state.videos)
-                //update the dataProvider
                 this.setState({
                     dataProvider:
                         new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.state.videos)
@@ -165,7 +163,7 @@ class Videos extends Component {
     };
 
     loadCategories() {
-        fetch("https://proud-stories.herokuapp.com/categories")
+        fetch(Config.APP_URL + "/categories")
             .then(res => res.json())
             .then(res => {
                 if (res.status === 200) {
@@ -181,8 +179,7 @@ class Videos extends Component {
     }
     applyCategories() {
         this.setState({ visibleModal: null })
-        console.log(this.state.selectedItems)
-        fetch("https://proud-stories.herokuapp.com/videos/filters/", {
+        fetch(Config.APP_URL + "/video_filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
@@ -207,13 +204,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    flatview: {
-        // justifyContent: 'center',
-        paddingTop: 30,
-        borderRadius: 2,
-        borderColor: 'red',
-        borderWidth: 1,
-        height: 400
     }
 });

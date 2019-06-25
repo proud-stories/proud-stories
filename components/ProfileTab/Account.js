@@ -67,7 +67,7 @@ export default class Account extends Component {
 
   getBalance = async () => {
     try {
-      const balance = await axios.get(`https://proud-stories.herokuapp.com/users/${this.state.id}/balance`);
+      const balance = await axios.get(Config.APP_URL + `/users/${this.state.id}/balance`);
       this.setState({
         balance: balance.data.balance
       })
