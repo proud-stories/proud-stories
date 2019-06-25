@@ -14,6 +14,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 import Modal from "react-native-modal";
 import MultiSelect from 'react-native-multiple-select'
 import Config from "react-native-config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 class HomeTab extends Component {
 
@@ -51,7 +52,24 @@ class HomeTab extends Component {
         />
     }
 
+    getData = async () => {
+        try {
+          const name = await AsyncStorage.getItem('@name');
+          const picture = await AsyncStorage.getItem('@picture');
+          const id = await AsyncStorage.getItem('@id');
+          this.setState({
+            name: name,
+            picture: picture,
+            id: id
+          })
+        } catch (error) {
+          // Error retrieving data
+          console.log(error.message);
+        }
+      }
+
     componentDidMount() {
+        this.getData()
         fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
