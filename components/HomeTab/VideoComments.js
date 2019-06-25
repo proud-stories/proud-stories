@@ -20,7 +20,7 @@ class Comments extends Component {
         newComment: ""
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const id = this.props.navigation.getParam('id', 1);
         fetch(Config.APP_URL + `/videos/${id}/comments`)
             .then(data => data.json())
