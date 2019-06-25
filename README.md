@@ -43,3 +43,7 @@ The emulator can also be opened through Android Studio. For more info on running
 Auth0 is used for authentication/login, Stripe for payment, and Amazon S3 for storing videos on the cloud. The [server](https://github.com/proud-stories/proud-stories-backend) is built with AdonisJS.
 
 ## Acknowledgements
+http://proud-story.com/en/homepage/
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -18,7 +18,7 @@ class Comments extends Component {
     }
 
     componentWillMount() {
-        fetch("http://10.0.2.2:3333/comments/1/replies")
+        fetch("https://proud-stories.herokuapp.com/comments/1/replies")
             .then(data => data.json())
             .then(data => {
                 this.setState({ comments: [...data] })

@@ -7,6 +7,7 @@ import { doPayment } from './api'
 import { Item, Input } from 'native-base';
 import {  withNavigation } from "react-navigation";
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class CardFormScreen extends PureComponent {
   static title = 'Card Form'
@@ -41,8 +42,10 @@ class CardFormScreen extends PureComponent {
       this.setState({ token })
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
-      await updateBalance();
-      this.props.navigation.navigate('ProfileHome')
+      await this.updateBalance();
+      this.props.navigation.navigate('ProfileHome', {
+        amount: this.state.amount
+      })
     } catch (error) {
       this.setState({ loading: false })
     }
@@ -82,7 +85,7 @@ class CardFormScreen extends PureComponent {
   }
 
   updateBalance() {
-    axios.post('https://proud-stories.herokuapp.com/transactions', {sender_id: this.state.id, receiver_id: this.state.id, type: "deposit"});
+    return axios.post('https://proud-stories.herokuapp.com/transactions', {auth_id: this.state.id, amount: this.state.amount, type: "deposit"});
   }
 }
 

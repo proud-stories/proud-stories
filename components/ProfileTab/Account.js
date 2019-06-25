@@ -19,9 +19,18 @@ export default class Account extends Component {
     };
   };
 
-  componentDidMount() {
-    this.getData();
-    this.getBalance();
+  componentDidMount = async () => {
+    await this.getData();
+    this.getBalaence();
+  }
+
+  componentWillReceiveProps() {
+    const newAmount = this.props.navigation.getParam('amount', "error");
+    console.log(this.props.navigation.getParam('amount', "error"))
+    this.setState({
+      amount: this.state.amount + newAmount
+    })
+    console.log(this.state.balance)
   }
 
   state = {
@@ -35,7 +44,7 @@ export default class Account extends Component {
     try {
       const name = await AsyncStorage.getItem('@name');
       const picture = await AsyncStorage.getItem('@picture');
-      const id = await AsyncStorage.getItem('@id')
+      const id = await AsyncStorage.getItem('@id');
       this.setState({
         name: name,
         picture: picture,
@@ -50,9 +59,8 @@ export default class Account extends Component {
   getBalance = async () => {
     try {
       const balance = await axios.get(`https://proud-stories.herokuapp.com/users/${this.state.id}/balance`);
-      const json = await balance.json();
       this.setState({
-        balance: json.balance
+        balance: balance.data.balance
       })
     } catch (error) {
       // Error retrieving data

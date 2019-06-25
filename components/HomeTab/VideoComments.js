@@ -21,7 +21,7 @@ class Comments extends Component {
 
     componentWillMount() {
         const id = this.props.navigation.getParam('id', 1);
-        fetch(`http://10.0.2.2:3333/videos/${id}/comments`)
+        fetch(`https://proud-stories.herokuapp.com/videos/${id}/comments`)
             .then(data => data.json())
             .then(data => {
                 this.setState({ comments: [...data] })
@@ -55,7 +55,7 @@ class Comments extends Component {
 
     postComment() {
         const id = this.props.navigation.getParam('id', 1);
-        fetch(`http://10.0.2.2:3333/videos/${id}/comments`, {
+        fetch(`https://proud-stories.herokuapp.com/videos/${id}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

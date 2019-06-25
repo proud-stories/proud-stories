@@ -85,7 +85,7 @@ class MediaDescTab extends Component {
     }
 
     loadCategories() {
-        fetch("http://10.0.2.2:3333/categories")
+        fetch("https://proud-stories.herokuapp.com/categories")
             .then(res => res.json())
             .then(res => {
                 if (res.status === 200) {
@@ -103,7 +103,7 @@ class MediaDescTab extends Component {
     uploadVideo = () => {
         const { navigation } = this.props;
         const file = navigation.getParam('file', null);
-        RNFetchBlob.fetch('POST', 'http://10.0.2.2:3333/upload', {
+        RNFetchBlob.fetch('POST', 'https://proud-stories.herokuapp.com/upload', {
             'Content-Type': 'multipart/form-data',
         }, [
                 {

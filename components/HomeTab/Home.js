@@ -52,7 +52,7 @@ class HomeTab extends Component {
     }
 
     componentDidMount() {
-        fetch("http://10.0.2.2:3333/users/1/videos")
+        fetch("https://proud-stories.herokuapp.com/users/ben_secret_id/feed")
             .then(data => data.json())
             .then(data => {
                 //add the items from database into state
@@ -155,7 +155,7 @@ class HomeTab extends Component {
     };
 
     loadCategories() {
-        fetch("http://10.0.2.2:3333/categories")
+        fetch("https://proud-stories.herokuapp.com/categories")
             .then(res => res.json())
             .then(res => {
                 if (res.status === 200) {
@@ -172,7 +172,7 @@ class HomeTab extends Component {
     applyCategories() {
         this.setState({ visibleModal: null })
 
-        fetch("http://10.0.2.2:3333/videos/filters/", {
+        fetch("https://proud-stories.herokuapp.com/videos/filters/", {
             method: "post",
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({

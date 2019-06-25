@@ -11,7 +11,7 @@ export const doPayment = (amount, tokenId, accessToken) => {
   };
   return axios
   
-    .post('http://10.0.2.2:3333/api/doPayment', body, { headers })
+    .post('https://proud-stories.herokuapp.com/api/doPayment', body, { headers })
     .then(({ data }) => {
       return data;
     })

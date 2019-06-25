@@ -115,6 +115,8 @@ export default class Login extends Component {
 
         SInfo.setItem("accessToken", res.accessToken, {});
         SInfo.setItem("refreshToken", res.refreshToken, {});
+        SInfo.setItem("idToken", res.idToken, {});
+        console.log(res.idToken)
       })
       .catch(error => {
         console.log("error occurred");
@@ -123,15 +125,22 @@ export default class Login extends Component {
   };
 
   saveUser = async (data) => {
-    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: data.sub});
+    const formattedData = await this.idFormatter(data.sub);
+    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: formattedData, picture: data.picture});
     return data;
   }
 
+  idFormatter = id => {
+    const formattedId = id.replace("|", "_");
+    return formattedId;
+  }
+
   gotoTopPage = async data => {
+    const formattedData = await this.idFormatter(data.sub);
     await Promise.all([
       AsyncStorage.setItem('@name', data.nickname),
       AsyncStorage.setItem('@picture', data.picture),
-      AsyncStorage.setItem('@id', data.sub)
+      AsyncStorage.setItem('@id', formattedData)
     ]);
 
     this.setState({
