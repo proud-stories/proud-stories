@@ -37,15 +37,18 @@ class CardFormScreen extends PureComponent {
 
   handleCardPayPress = async () => {
     try {
+      console.log(this.props.navigation)
       this.setState({ loading: true, token: null })
       const token = await stripe.paymentRequestWithCardForm()
       this.setState({ token })
+      console.log("got token")
       await doPayment(this.state.amount, this.state.token.tokenId )
       this.setState({ loading: false })
+      console.log("finished payment")
       await this.updateBalance();
-      this.props.navigation.navigate('ProfileHome', {
-        amount: this.state.amount
-      })
+      console.log("balance updated")
+      // await this.props.navigation.state.params.updateBalance(this.state.amount)
+      this.props.navigation.navigate('ProfileHome')
     } catch (error) {
       this.setState({ loading: false })
     }
