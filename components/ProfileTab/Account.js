@@ -6,6 +6,7 @@ import axios from 'axios';
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import SInfo from "react-native-sensitive-info";
+import { withNavigation } from "react-navigation";
 
 const auth0 = new Auth0({
   domain: Config.AUTH0_DOMAIN,
@@ -19,25 +20,33 @@ export default class Account extends Component {
     };
   };
 
-  componentDidMount = async () => {
-    await this.getData();
-    this.getBalaence();
-  }
-
-  componentWillReceiveProps() {
-    const newAmount = this.props.navigation.getParam('amount', "error");
-    console.log(this.props.navigation.getParam('amount', "error"))
+  updateBalance = (newAmount) => {
     this.setState({
       amount: this.state.amount + newAmount
     })
-    console.log(this.state.balance)
+  }
+
+
+  componentDidMount = async () => {
+    await this.getData();
+    this.getBalance();
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener("didFocus", () => {
+      console.log("did focus")
+      this.getBalance();
+    });
+  }
+  
+  componentWillUnmount() {
+    this.focusListener.remove();
   }
 
   state = {
     name: "",
     picture: "",
     balance: "",
-    id: ""
+    id: "",
+    balanceUpdated: true
   }
 
   getData = async () => {
@@ -78,7 +87,7 @@ export default class Account extends Component {
 
           <Text style={styles.credit}>Your current credit is: {this.state.balance}</Text>
           <Button style={{ marginBottom: 5, backgroundColor: '#930077' }} block onPress={() => this.props.navigation.navigate('MyVideos')}><Text>My Videos</Text></Button>
-          <Button style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment')}><Text>Charge my credits</Text></Button>
+          <Button style={{ marginBottom: 5, backgroundColor: '#e4007c' }} block onPress={() => this.props.navigation.navigate('Payment', {'updateBalance': this.updateBalance})}><Text>Charge my credits</Text></Button>
           <Button style={{ marginBottom: 5, backgroundColor: '#ffbd39' }} block onPress={this.logout}><Text>Logout</Text></Button>
         </View>
       </Container>
