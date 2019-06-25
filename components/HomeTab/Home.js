@@ -52,7 +52,7 @@ class HomeTab extends Component {
     }
 
     componentDidMount() {
-        fetch(Config.APP_URL + "/users/ben_secret_id/feed")
+        fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
                 data.forEach(item => {

@@ -52,7 +52,7 @@ class Videos extends Component {
     }
 
     componentDidMount() {
-        fetch(Config.APP_URL + "/users/ben_secret_id/videos")
+        fetch(Config.APP_URL + "/users/" + this.state.id + "/videos")
             .then(data => data.json())
             .then(data => {
                 data.forEach(item => {
