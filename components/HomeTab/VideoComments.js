@@ -6,6 +6,7 @@ import {
 
 import CommentsComponent from '../CommentsComponent'
 import { Toast, View, Container, Content, Item, Input } from 'native-base'
+import Config from "react-native-config";
 
 
 class Comments extends Component {
@@ -19,9 +20,9 @@ class Comments extends Component {
         newComment: ""
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const id = this.props.navigation.getParam('id', 1);
-        fetch(`https://proud-stories.herokuapp.com/videos/${id}/comments`)
+        fetch(Config.APP_URL + `/videos/${id}/comments`)
             .then(data => data.json())
             .then(data => {
                 this.setState({ comments: [...data] })
@@ -55,7 +56,7 @@ class Comments extends Component {
 
     postComment() {
         const id = this.props.navigation.getParam('id', 1);
-        fetch(`https://proud-stories.herokuapp.com/videos/${id}/comments`, {
+        fetch(Config.APP_URL + `/videos/${id}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
