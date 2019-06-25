@@ -8,6 +8,7 @@ import {
 import { Container, Header, Content, Textarea, Form, Text, Item, Button, Input, Toast, Body } from "native-base";
 import RNFetchBlob from 'rn-fetch-blob'
 import MultiSelect from 'react-native-multiple-select'
+import Config from "react-native-config";
 
 class MediaDescTab extends Component {
 
@@ -85,7 +86,7 @@ class MediaDescTab extends Component {
     }
 
     loadCategories() {
-        fetch("https://proud-stories.herokuapp.com/categories")
+        fetch(Config.APP_URL + "/categories")
             .then(res => res.json())
             .then(res => {
                 if (res.status === 200) {
@@ -103,7 +104,7 @@ class MediaDescTab extends Component {
     uploadVideo = () => {
         const { navigation } = this.props;
         const file = navigation.getParam('file', null);
-        RNFetchBlob.fetch('POST', 'https://proud-stories.herokuapp.com/upload', {
+        RNFetchBlob.fetch('POST', Config.APP_URL + '/upload', {
             'Content-Type': 'multipart/form-data',
         }, [
                 {

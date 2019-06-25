@@ -16,7 +16,7 @@ class Comments extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 30, width: 30 }} />
                         <Body>
-                            <Text>Username</Text>
+                            <Text>{this.props.name}</Text>
                             <Text style={{ fontSize: 12 }} note><Moment element={Text} fromNow>{dateToFormat}</Moment></Text>
                         </Body>
                     </Left>

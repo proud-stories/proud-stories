@@ -11,13 +11,16 @@ import Video from 'react-native-video';
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } from 'native-base'
 import Moment from 'react-moment';
 import { withNavigation } from 'react-navigation'
+import Config from "react-native-config";
+
 
 class CardComponent extends Component {
 
     state = {
         paused: true,
         didLike: this.props.liked,
-        likes: Number(this.props.likes)
+        likes: Number(this.props.likes),
+        username: this.props.name
     }
 
     handleClick = () => {
@@ -25,7 +28,6 @@ class CardComponent extends Component {
     }
 
     render() {
-        console.log(this.props)
         const dateToFormat = this.props.created_at;
         return (
             <Card>
@@ -33,7 +35,7 @@ class CardComponent extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 32, width: 32 }} />
                         <Body>
-                            <Text>Username </Text>
+                            <Text>{this.state.username}</Text>
                             <Text style={{ fontSize: 12 }} ><Moment element={Text} fromNow>{dateToFormat}</Moment></Text>
                         </Body>
                     </Left>
@@ -51,7 +53,7 @@ class CardComponent extends Component {
                 <CardItem>
                     <Left>
                         <Button transparent onPress={() => this.likeVideo()}>
-                            <Icon name={this.state.didLike ? "heart" : "heart-o"} type="FontAwesome" style={{ color: this.state.didLike ? "red" : "black" }} />
+                            <Image source={this.state.didLike ? require('../assets/clap-green.png') : require('../assets/clap-white.png')} style={{width:30, height:30 }}/>
                         </Button>
                         <Button transparent onPress={() => this.openComments()}>
                             <Icon name="bubbles" type="SimpleLineIcons" style={{ color: 'black' }} />
@@ -71,7 +73,7 @@ class CardComponent extends Component {
                 <CardItem>
                     <Body>
                         <Text>
-                            <Text style={{ fontWeight: "900" }}>username   </Text>
+                            <Text style={{ fontWeight: "900" }}>{this.state.username}   </Text>
                             {this.props.description}
                         </Text>
                     </Body>
@@ -87,7 +89,7 @@ class CardComponent extends Component {
     likeVideo() {
         let prevLiked = this.state.didLike;
         this.setState({ didLike: true, likes: this.state.likes + 1 });
-        fetch(`https://proud-stories.herokuapp.com/videos/${this.props.id}/likes`, {
+        fetch(Config.APP_URL + `/videos/${this.props.id}/likes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
