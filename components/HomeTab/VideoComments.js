@@ -7,6 +7,7 @@ import {
 import CommentsComponent from '../CommentsComponent'
 import { Toast, View, Container, Content, Item, Input } from 'native-base'
 import Config from "react-native-config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class Comments extends Component {
@@ -17,10 +18,17 @@ class Comments extends Component {
 
     state = {
         comments: [],
-        newComment: ""
+        newComment: "",
+        auth_id: ""
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const auth_id = await AsyncStorage.getItem('@id');
+        const name = await AsyncStorage.getItem('@name');
+        this.setState({
+            auth_id: auth_id,
+            name: name
+          })
         const id = this.props.navigation.getParam('id', 1);
         fetch(Config.APP_URL + `/videos/${id}/comments`)
             .then(data => data.json())
@@ -61,14 +69,17 @@ class Comments extends Component {
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
                 comment: this.state.newComment,
-                user_id: 1
+                auth_id: this.state.auth_id
             }),
-        }).then((res) => res.json()).then((res) => {
+        }).then((res) => res.json())
+        .catch((err) => console.log(err))
+        .then((res) => {
+            console.log(res)
             Toast.show({ text: "Comment added successfully", buttonText: "Okay", type: "success", position: "top", duration: 5000 })
             this.setState({ comments: [res, ...this.state.comments] }, () => {
             })
-
         })
+        .catch((err) => console.log(err))
     }
 
 }

@@ -45,6 +45,7 @@ class HomeTab extends Component {
 
     _renderRow(_type, data, index) {
         return <CardComponent
+            id={data.video_id}
             className={'card'}
             {...data}
             style={{ margin: 0 }}
@@ -54,14 +55,14 @@ class HomeTab extends Component {
 
     getData = async () => {
         try {
-          const name = await AsyncStorage.getItem('@name');
-          const picture = await AsyncStorage.getItem('@picture');
-          const id = await AsyncStorage.getItem('@id');
-          this.setState({
-            name: name,
-            picture: picture,
-            id: id
-          })
+            const name = await AsyncStorage.getItem('@name');
+            const picture = await AsyncStorage.getItem('@picture');
+            const id = await AsyncStorage.getItem('@id');
+            this.setState({
+                name: name,
+                picture: picture,
+                id: id
+            })
         } catch (error) {
           // Error retrieving data
           console.log(error.message);
@@ -100,7 +101,7 @@ class HomeTab extends Component {
                     dataProvider={this.state.dataProvider}
                     layoutProvider={this._layoutProvider}
                 />
-                <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
+                {/* <Content onScroll={this.handleScroll} scrollEventThrottle={16}>
                     <View>
                         {this.state.videos.map((video) => (
                             <View key={video.id}>
@@ -108,7 +109,7 @@ class HomeTab extends Component {
                             </View>
                         ))}
                     </View>
-                </Content>
+                </Content> */}
                 <Modal
                     isVisible={this.state.visibleModal === 'fancy'}
                     backdropColor="#dbdbdb"

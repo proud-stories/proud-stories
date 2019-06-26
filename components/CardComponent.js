@@ -12,15 +12,25 @@ import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Toast } fro
 import Moment from 'react-moment';
 import { withNavigation } from 'react-navigation'
 import Config from "react-native-config";
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 class CardComponent extends Component {
+
+    async componentDidMount() {
+        const auth_id = await AsyncStorage.getItem('@id');
+        this.setState({
+            auth_id: auth_id
+        })
+        console.log(this.props)
+    }
 
     state = {
         paused: true,
         didLike: this.props.liked,
         likes: Number(this.props.likes),
-        username: this.props.name
+        username: this.props.name,
+        auth_id: ""
     }
 
     handleClick = () => {
@@ -93,15 +103,18 @@ class CardComponent extends Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-                user_id: 1,
+                auth_id: this.state.auth_id,
             }),
-        }).then(res => res.json())
+        })
+        // .then(res => res.json())
             .then(res => {
-                if (res.status !== 200)
+                console.log(this.props.id)
+                console.log(res)
+                if (res.status !== 200) {
                     this.setState({ didLike: prevLiked, likes: this.state.likes - 1 });
-
+                }
                 if (res.status === 500) {
-                    Toast.show({ text: res.error, buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
+                    Toast.show({ text: "Charge your balance", buttonText: "Okay", type: "danger", position: "top", duration: 5000 })
                 }
             }).catch((err) => {
                 console.error(err)

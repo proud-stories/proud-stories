@@ -6,7 +6,6 @@ import axios from 'axios';
 import Auth0 from "react-native-auth0";
 import Config from "react-native-config";
 import SInfo from "react-native-sensitive-info";
-import { withNavigation } from "react-navigation";
 
 const auth0 = new Auth0({
   domain: Config.AUTH0_DOMAIN,
@@ -32,7 +31,6 @@ export default class Account extends Component {
     this.getBalance();
     const { navigation } = this.props;
     this.focusListener = navigation.addListener("didFocus", () => {
-      console.log("did focus")
       this.getBalance();
     });
   }

@@ -6,8 +6,12 @@ import Moment from 'react-moment';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import { withNavigation } from 'react-navigation'
 
-class Comments extends Component {
 
+class Comments extends Component {
+    
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
         const dateToFormat = this.props.created_at;
         return (
@@ -16,7 +20,7 @@ class Comments extends Component {
                     <Left>
                         <Thumbnail source={require('../assets/me.png')} style={{ height: 30, width: 30 }} />
                         <Body>
-                            <Text>{this.props.name}</Text>
+                            <Text style={{ fontSize: 12 }}>{this.props.name || "anonymous"}</Text>
                             <Text style={{ fontSize: 12 }} note><Moment element={Text} fromNow>{dateToFormat}</Moment></Text>
                         </Body>
                     </Left>
