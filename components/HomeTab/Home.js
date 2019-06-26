@@ -52,18 +52,6 @@ class HomeTab extends Component {
         />
     }
 
-<<<<<<< HEAD
-    async componentDidMount() {
-        const id = await AsyncStorage.getItem('@id');
-        this.setState({
-            id
-        })
-        console.log(this.state.id)
-        fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
-            .then(data => data.json())
-            .then(data => {
-                console.log(data)
-=======
     getData = async () => {
         try {
           const name = await AsyncStorage.getItem('@name');
@@ -85,7 +73,6 @@ class HomeTab extends Component {
         fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
             .then(data => data.json())
             .then(data => {
->>>>>>> f1593eaa08a6bd0ef0d1df904238c808c6cab9b8
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })
