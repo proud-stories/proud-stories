@@ -74,6 +74,7 @@ class Comments extends Component {
         }).then((res) => res.json())
         .catch((err) => console.log(err))
         .then((res) => {
+            console.log(res)
             Toast.show({ text: "Comment added successfully", buttonText: "Okay", type: "success", position: "top", duration: 5000 })
             this.setState({ comments: [res, ...this.state.comments] }, () => {
             })
