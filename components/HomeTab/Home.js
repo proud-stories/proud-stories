@@ -52,6 +52,7 @@ class HomeTab extends Component {
         />
     }
 
+<<<<<<< HEAD
     async componentDidMount() {
         const id = await AsyncStorage.getItem('@id');
         this.setState({
@@ -62,6 +63,29 @@ class HomeTab extends Component {
             .then(data => data.json())
             .then(data => {
                 console.log(data)
+=======
+    getData = async () => {
+        try {
+          const name = await AsyncStorage.getItem('@name');
+          const picture = await AsyncStorage.getItem('@picture');
+          const id = await AsyncStorage.getItem('@id');
+          this.setState({
+            name: name,
+            picture: picture,
+            id: id
+          })
+        } catch (error) {
+          // Error retrieving data
+          console.log(error.message);
+        }
+      }
+
+    async componentDidMount() {
+        await this.getData()
+        fetch(Config.APP_URL + "/users/" + this.state.id + "/feed")
+            .then(data => data.json())
+            .then(data => {
+>>>>>>> f1593eaa08a6bd0ef0d1df904238c808c6cab9b8
                 data.forEach(item => {
                     item.paused = false;
                     this.setState({ videos: [item, ...this.state.videos] })

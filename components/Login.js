@@ -126,7 +126,7 @@ export default class Login extends Component {
 
   saveUser = async (data) => {
     const formattedData = await this.idFormatter(data.sub);
-    await axios.post('https://proud-stories.herokuapp.com/users', {name: data.name, auth_id: formattedData, picture: data.picture});
+    await axios.post(Config.APP_URL + '/users', {name: data.name, auth_id: formattedData, picture: data.picture});
     return data;
   }
 

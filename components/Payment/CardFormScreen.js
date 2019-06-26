@@ -8,6 +8,7 @@ import { Item, Input } from 'native-base';
 import {  withNavigation } from "react-navigation";
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config'
 
 class CardFormScreen extends PureComponent {
   static title = 'Card Form'
@@ -88,7 +89,7 @@ class CardFormScreen extends PureComponent {
   }
 
   updateBalance() {
-    return axios.post('https://proud-stories.herokuapp.com/transactions', {auth_id: this.state.id, amount: this.state.amount, type: "deposit"});
+    return axios.post(Config.APP_URL + '/transactions', {auth_id: this.state.id, amount: this.state.amount, type: "deposit"});
   }
 }
 
